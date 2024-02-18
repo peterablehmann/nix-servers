@@ -1,0 +1,37 @@
+name: check
+
+on:
+  push:
+  pull_request:
+
+permissions: read-all
+
+jobs:
+  Check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v4
+      - name: Setup Nix
+        uses: DeterminateSystems/nix-installer-action@main
+        with:
+          diagnostic-endpoint: ""
+      - name: Setup Nix cache
+        uses: DeterminateSystems/magic-nix-cache-action@main
+
+      - name: "Run flake checks"
+        run: nix flake check --all-systems
+  Lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v4
+      - name: Setup Nix
+        uses: DeterminateSystems/nix-installer-action@main
+        with:
+          diagnostic-endpoint: ""
+
+      - name: Check format
+        run: nix fmt -- --check .
+      - name: Lint using Statix
+        run: nix run nixpkgs#statix -- check .
