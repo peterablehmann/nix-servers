@@ -1,0 +1,15 @@
+keys:
+  - &peter age1d085lpynkxxf0mfus0rd3qq0r38clwz9d5ddrl79x982z00j6qsqq8f54g
+  - &system_mns age1s7xs405mkw2gagclktekz27lxhh38se7adrkdfc0x2l28j9xsvdqcdrsyr
+creation_rules:
+  - path_regex: secrets/common.(yaml|json|env|ini)$
+    key_groups:
+    - age:
+      - *peter
+      - *system_mns
+  
+  - path_regex: secrets/[^/]+\.mns.(yaml|json|env|ini)$
+    key_groups:
+    - age:
+      - *peter
+      - *system_mns
