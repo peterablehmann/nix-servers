@@ -1,0 +1,29 @@
+{ config
+, inputs
+, ...
+}:
+{
+  sops.secrets."users/peter/hashedPassword" = {
+    neededForUsers = true;
+    sopsFile = "${inputs.self}/secrets/common.yaml";
+  };
+
+  users.users.peter = {
+    isNormalUser = true;
+    extraGroups = [
+      "wheel"
+      "networkmanager"
+      "wireshark"
+      "libvirtd"
+    ];
+
+    openssh.authorizedKeys.keys = [
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIP1Ss4ebDys/jMEzTPTv3/h9uRly37034XKQ79w9y7Yf xgwq@kee"
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPwWRxjlcObusKS+fO5RCmFlz+1nASaVAZddfE3ULgP6 peter@kleeblatt.xnee.net"
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEE/wLmMGV+SY/QzvjNTnDmRCVMZr1hk+xuxdXXwaOL6 2024-01-23-peter@gungnir-wsl"
+      "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDIufiw/wK2tMs2Kr2kZCkdJL0KNo1Ww2wJiS+c8I0QcBz9Ed+Wd6KixXPZK2XBZL3iv0bKXf/7U7mjj6bOetCz0ZI15pdNTYkk2nldvb5JkjXybgX+METJYNxAvoy5f5irDmRHPCG0RZayWCMLqu6uFMEkL6bV8Zn/Dr+PtzJTwgOyb36AWR1lscJ2CYc8tR7EmtxX1i9mexeF+WtG1fk3r3Qxqcxu1/kpncrZkYzvfb9MzuIhr0yWzgPaOd1jKPeAka/uNeQIozvz4VdT4rN8A2MzukAiLu5Cbs3DOQq/FW84Qk8q1me3SlTQ+MCskS0oJLYoxgxhWE85jtjYHU7woT6oehl448PJJk3L9dUX2wJclMbn/dM4YnhW9XN5OTLbhgl7pIzeuAmtV9G6uVafJkUov00/3id+iUrgrycMZrFFQJnKOChF+NVPJ17pCsGD7gycaNCVoXCvwF1GiFleKolfGQsPBShyT6Pop+JyDNQBNMHsGsrFYBQwHZaHhts7ngnt0CqS90/izrOS/kF1kserqZFErMeT9gpQCFjXPrwgSCUdA3c7A+DGpimFKARYUZitOTuZvBj6I2Aj3EX8VJ2tyRZvXQ11rpo33jqahCbUBCk6JOwu+OTvSjtMywqr6jYpcbIvRDaB9L7km/JfOMSFBUkO09JHxAfdwaqx9Q== cardno:20_158_828"
+    ];
+
+    hashedPasswordFile = config.sops.secrets."users/peter/hashedPassword".path;
+  };
+}
