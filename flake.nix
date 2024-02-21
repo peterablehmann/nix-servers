@@ -32,6 +32,14 @@
             self.nixosModules.common
           ];
         };
+        sync = nixpkgs.lib.nixosSystem {
+          specialArgs = { inherit inputs outputs; };
+          system = "x86_64-linux";
+          modules = [
+            ./nodes/sync
+            self.nixosModules.common
+          ];
+        };
       };
 
       nixosModules = {
