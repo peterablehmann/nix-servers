@@ -8,6 +8,12 @@
     sopsFile = "${inputs.self}/secrets/common.yaml";
   };
 
+  security.sudo = {
+    enable = true;
+    execWheelOnly = true;
+    wheelNeedsPassword = false;
+  };
+
   users.users.peter = {
     isNormalUser = true;
     extraGroups = [
