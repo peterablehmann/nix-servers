@@ -8,6 +8,7 @@
     ./boot.nix
     ./nix.nix
     ./ssh.nix
+    ./tailscale.nix
     ./users.nix
   ];
 

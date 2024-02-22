@@ -1,0 +1,15 @@
+{ config
+, inputs
+, ...
+}:
+{
+  sops.secrets."tailscale/authkey" = {
+    sopsFile = "${inputs.self}/secrets/common.yaml";
+  };
+
+  services.tailscale = {
+    enable = true;
+    authKeyFile = config.sops.secrets."tailscale/authkey".path;
+    useRoutingFeatures = "server";
+  };
+}
