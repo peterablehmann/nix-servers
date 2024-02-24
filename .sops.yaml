@@ -22,3 +22,8 @@ creation_rules:
     - age:
       - *peter
       - *system_sync
+
+  - path_regex: secrets/monitoring.(yaml|json|env|ini)$
+    key_groups:
+    - age:
+      - *peter
