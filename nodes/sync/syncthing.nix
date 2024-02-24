@@ -7,7 +7,7 @@ in
   services.caddy = {
     enable = true;
     virtualHosts = {
-      "sync.xnee.de" = {
+      "sync.xnee.net" = {
         extraConfig = ''
           reverse_proxy http://localhost:8384 {
             header_up Host {upstream_hostport}

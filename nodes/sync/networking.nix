@@ -7,7 +7,7 @@
     useDHCP = false;
     hostName = "sync";
     usePredictableInterfaceNames = lib.mkDefault false;
-    domain = "xnee.de";
+    domain = "xnee.net";
     nameservers = [
       #HETZNER
       "2a01:4ff:ff00::add:2"
