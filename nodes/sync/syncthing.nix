@@ -1,18 +1,25 @@
 { config, lib, pkgs, ... }:
 let
-  domain = "sync.xnee.de";
+  domain = "sync.xnee.net";
 in
 {
   networking.firewall.allowedTCPPorts = [ 80 443 ];
-  services.caddy = {
+  security.acme = {
+    defaults.email = "acme@xnee.net";
+    acceptTerms = true;
+    certs."${domain}" = { };
+  };
+
+  services.nginx = {
     enable = true;
-    virtualHosts = {
-      "sync.xnee.net" = {
-        extraConfig = ''
-          reverse_proxy http://localhost:8384 {
-            header_up Host {upstream_hostport}
-          } 
-        '';
+    recommendedTlsSettings = true;
+    recommendedOptimisation = true;
+    recommendedProxySettings = true;
+    virtualHosts."${domain}" = {
+      enableACME = true;
+      forceSSL = true;
+      locations."/" = {
+        proxyPass = "http://${config.services.syncthing.guiAddress}";
       };
     };
   };
@@ -22,6 +29,7 @@ in
     dataDir = "/mnt/share";
     guiAddress = "127.0.0.1:8384";
     settings = {
+      gui.insecureSkipHostcheck = true;
       devices = {
         kleeblatt = {
           name = "kleeblatt.xnee.net";
