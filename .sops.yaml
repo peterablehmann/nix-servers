@@ -1,6 +1,7 @@
 keys:
   - &peter age1d085lpynkxxf0mfus0rd3qq0r38clwz9d5ddrl79x982z00j6qsqq8f54g
   - &system_mns age1s7xs405mkw2gagclktekz27lxhh38se7adrkdfc0x2l28j9xsvdqcdrsyr
+  - &system_monitoring age1dpaezlv6va4a8pdqc9w8exuy54d8y2q20yu9zc98q326lusyfdpsf6ph93
   - &system_sync age1ap6uwhhy4uvq72hwyts7gzl027mnypakvj6svphgw2fm8jk72v7qtccs76
 
 creation_rules:
@@ -9,6 +10,7 @@ creation_rules:
     - age:
       - *peter
       - *system_mns
+      - *system_monitoring
       - *system_sync
   
   - path_regex: secrets/[^/]+\.mns.(yaml|json|env|ini)$
@@ -27,3 +29,4 @@ creation_rules:
     key_groups:
     - age:
       - *peter
+      - *system_monitoring
