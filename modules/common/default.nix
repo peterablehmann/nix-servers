@@ -6,6 +6,7 @@
     inputs.disko.nixosModules.disko
     inputs.sops-nix.nixosModules.sops
     ./boot.nix
+    ./exporters.nix
     ./nix.nix
     ./ssh.nix
     ./tailscale.nix
