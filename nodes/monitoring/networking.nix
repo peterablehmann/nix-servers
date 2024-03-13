@@ -21,8 +21,8 @@
       networkConfig.DHCP = "no";
       matchConfig.Name = "eth0";
       address = [
-        "10.0.2.1/32"
-        "2a01:4f9:6a:4f6f::2:1/64"
+        "10.0.2.1/8"
+        "2a01:4f9:6a:4f6f::201/64"
       ];
       routes = [
         { routeConfig.Gateway = "fe80::1"; }
