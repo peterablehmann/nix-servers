@@ -1,10 +1,7 @@
-{config
+{ config
 , inputs
 , ...
 }:
-let
-  domain = "monitoring.xnee.net";
-in
 {
   sops.secrets."basicAuth/password" = {
     sopsFile = "${inputs.self}/secrets/monitoring.yaml";
@@ -27,14 +24,7 @@ in
               "sync.xnee.de"
             ];
           }];
-          relabel_configs = [
-            {
-              source_labels = [ "__address__" ];
-              target_label = "__address__";
-              replacement = "metrics.$1";
-            }
-          ];
-          metrics_path = "/node";
+          metrics_path = "/exporters/node-exporter";
           basic_auth = {
             username = "prometheus";
             password_file = config.sops.secrets."basicAuth/password".path;
