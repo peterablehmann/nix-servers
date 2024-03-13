@@ -35,7 +35,7 @@
   services.prometheus.exporters.node = {
     enable = true;
     listenAddress = "127.0.0.1";
-    extraFlags = [ "--web.telemetry-path=\"/node_exporter/metrics\"" ];
+    extraFlags = [ "--web.telemetry-path=\"/exporters/node-exporter\"" ];
     enabledCollectors = [
       "systemd"
     ];
