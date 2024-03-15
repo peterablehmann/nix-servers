@@ -1,4 +1,5 @@
 { inputs
+, config
 , ...
 }:
 {
@@ -12,6 +13,10 @@
     ./tailscale.nix
     ./users.nix
   ];
+
+  deployment = {
+    targetHost = config.networking.fqdn;
+  };
 
   time.timeZone = "Europe/Berlin";
   i18n.defaultLocale = "de_DE.UTF-8";
