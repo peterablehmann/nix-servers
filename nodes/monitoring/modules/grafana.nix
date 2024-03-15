@@ -50,7 +50,6 @@ in
       dashboards.settings.providers = [
         {
           name = "Node-Exporter";
-          folder = "Proxmox";
           type = "file";
           options.path = pkgs.fetchurl {
             url = "https://raw.githubusercontent.com/rfmoz/grafana-dashboards/master/prometheus/node-exporter-full.json";

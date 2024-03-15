@@ -24,9 +24,8 @@
     virtualHosts."${config.networking.hostName}.${config.networking.domain}" = {
       enableACME = true;
       forceSSL = true;
-      locations."/exporters/node-exporter" = {
+      locations."/exporters/node-exporter/" = {
         proxyPass = "http://${config.services.prometheus.exporters.node.listenAddress}:${builtins.toString config.services.prometheus.exporters.node.port}/";
-        proxyWebsockets = true;
         basicAuthFile = config.sops.secrets."monitoring/basicAuthFile".path;
       };
     };
@@ -35,7 +34,7 @@
   services.prometheus.exporters.node = {
     enable = true;
     listenAddress = "127.0.0.1";
-    extraFlags = [ "--web.telemetry-path=\"/exporters/node-exporter\"" ];
+    extraFlags = [ "--web.telemetry-path=/exporters/node-exporter" ];
     enabledCollectors = [
       "systemd"
     ];

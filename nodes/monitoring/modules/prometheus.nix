@@ -24,11 +24,21 @@
               "sync.xnee.de"
             ];
           }];
-          metrics_path = "/exporters/node-exporter";
+          metrics_path = "/exporters/node-exporter/metrics";
           basic_auth = {
             username = "prometheus";
             password_file = config.sops.secrets."basicAuth/password".path;
           };
+        }
+        {
+          job_name = "prometheus";
+          scrape_interval = "5s";
+          scheme = "http";
+          static_configs = [{
+            targets = [
+              "monitoring.xnee.net:9001"
+            ];
+          }];
         }
       ];
     };
