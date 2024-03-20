@@ -18,6 +18,9 @@
     # Colmena
     colmena.url = "github:zhaofengli/colmena/main";
     colmena.inputs.nixpkgs.follows = "nixpkgs";
+
+    # Attic
+    attic.url = "github:zhaofengli/attic";
   };
 
   outputs =
@@ -27,6 +30,7 @@
     , sops-nix
     , flake-utils
     , colmena
+    , attic
     , ...
     } @ inputs:
     let
@@ -82,6 +86,15 @@
           extraModules = [ inputs.colmena.nixosModules.deploymentOptions ];
           modules = [
             ./nodes/sync
+            self.nixosModules.common
+          ];
+        };
+        cache = nixpkgs.lib.nixosSystem {
+          specialArgs = { inherit inputs outputs; };
+          system = "x86_64-linux";
+          extraModules = [ inputs.colmena.nixosModules.deploymentOptions ];
+          modules = [
+            ./nodes/cache
             self.nixosModules.common
           ];
         };
