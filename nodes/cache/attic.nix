@@ -27,10 +27,10 @@
         listen = "127.0.0.1:8080";
 
         storage = {
-        type = "s3";
-        endpoint = "https://s3.wasabisys.com";
-        region = "eu-central-2";
-        bucket = "cache-xnee-net";
+          type = "s3";
+          endpoint = "https://s3.wasabisys.com";
+          region = "eu-central-2";
+          bucket = "cache-xnee-net";
         };
 
         # Data chunking

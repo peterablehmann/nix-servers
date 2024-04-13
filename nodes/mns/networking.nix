@@ -1,7 +1,15 @@
 { lib
+, config
 , ...
 }:
+let
+  inherit (config.lib.topology) mkConnectionRev;
+in
 {
+  topology.self.interfaces.eth0 = {
+    network = "Internet";
+    physicalConnections = [ (mkConnectionRev "Internet" "*") ];
+  };
   networking = {
     useNetworkd = true;
     useDHCP = false;
