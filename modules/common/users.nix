@@ -1,7 +1,3 @@
-{ config
-, inputs
-, ...
-}:
 {
   users.users.root.openssh.authorizedKeys.keys = [
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIP1Ss4ebDys/jMEzTPTv3/h9uRly37034XKQ79w9y7Yf xgwq@kee"
