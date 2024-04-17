@@ -4,6 +4,7 @@ keys:
   - &system_monitoring age1dpaezlv6va4a8pdqc9w8exuy54d8y2q20yu9zc98q326lusyfdpsf6ph93
   - &system_sync age1ap6uwhhy4uvq72hwyts7gzl027mnypakvj6svphgw2fm8jk72v7qtccs76
   - &system_cache age1tst50yvdtvlggtjcpa47pvywcdaxfv00v04wfwf552wg4wraaexqsaqlke
+  - &system_ymir age12fl532qw8as57y2ekeuxk3ahq6cckkrqlmqqk9585uceh35u4glsjwrrce
 
 creation_rules:
   - path_regex: secrets/common.(yaml|json|env|ini)$
@@ -14,6 +15,7 @@ creation_rules:
       - *system_monitoring
       - *system_sync
       - *system_cache
+      - *system_ymir
   
   - path_regex: secrets/[^/]+\.mns.(yaml|json|env|ini)$
     key_groups:
@@ -38,3 +40,9 @@ creation_rules:
     - age:
       - *peter
       - *system_cache
+  
+  - path_regex: secrets/ymir.(yaml|json|env|ini)$
+    key_groups:
+    - age:
+      - *peter
+      - *system_ymir
