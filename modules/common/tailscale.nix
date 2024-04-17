@@ -13,5 +13,6 @@
     enable = true;
     authKeyFile = config.sops.secrets."tailscale/authkey".path;
     useRoutingFeatures = "server";
+    extraUpFlags = [ "--advertise-exit-node" ];
   };
 }
