@@ -1,40 +1,11 @@
-{ config
-, inputs
-, ...
-}:
 {
-  networking.firewall.allowedTCPPorts = [ 80 443 ];
-
-  sops.secrets."monitoring/basicAuthFile" = {
-    sopsFile = "${inputs.self}/secrets/common.yaml";
-    owner = "nginx";
-  };
-
-  security.acme = {
-    defaults.email = "acme@xnee.net";
-    acceptTerms = true;
-    certs."${config.networking.fqdn}" = { };
-  };
-
-  services.nginx = {
-    enable = true;
-    recommendedTlsSettings = true;
-    recommendedOptimisation = true;
-    recommendedProxySettings = true;
-    virtualHosts."${config.networking.hostName}.${config.networking.domain}" = {
-      enableACME = true;
-      forceSSL = true;
-      locations."/exporters/node-exporter/" = {
-        proxyPass = "http://${config.services.prometheus.exporters.node.listenAddress}:${builtins.toString config.services.prometheus.exporters.node.port}/";
-        basicAuthFile = config.sops.secrets."monitoring/basicAuthFile".path;
-      };
-    };
-  };
-
   services.prometheus.exporters.node = {
     enable = true;
-    listenAddress = "127.0.0.1";
-    extraFlags = [ "--web.telemetry-path=/exporters/node-exporter" ];
+    openFirewall = true;
+    firewallRules =
+      "ip saddr 65.108.0.24 tcp dport 9100 accept
+      ip6 saddr 2a01:4f9:6a:4f6f::201 tcp dport 9100 accept
+      tcp dport 9100 drop";
     enabledCollectors = [
       "systemd"
     ];

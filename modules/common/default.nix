@@ -23,5 +23,7 @@
 
   sops.age.sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
 
+  networking.nftables.enable = true;
+
   system.stateVersion = "23.11";
 }

@@ -1,5 +1,4 @@
-{ config
-, inputs
+{ inputs
 , ...
 }:
 {
@@ -16,19 +15,15 @@
         {
           job_name = "node-exporter";
           scrape_interval = "5s";
-          scheme = "https";
+          scheme = "http";
           static_configs = [{
             targets = [
-              "mns.xnee.net"
-              "monitoring.xnee.net"
-              "sync.xnee.de"
+              "cache.xnee.net:9100"
+              "mns.xnee.net:9100"
+              "monitoring.xnee.net:9100"
+              "sync.xnee.de:9100"
             ];
           }];
-          metrics_path = "/exporters/node-exporter/metrics";
-          basic_auth = {
-            username = "prometheus";
-            password_file = config.sops.secrets."basicAuth/password".path;
-          };
         }
         {
           job_name = "prometheus";
