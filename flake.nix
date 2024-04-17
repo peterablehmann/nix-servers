@@ -106,6 +106,16 @@
             nix-topology.nixosModules.default
           ];
         };
+        ymir = nixpkgs.lib.nixosSystem {
+          specialArgs = { inherit inputs outputs; };
+          system = "x86_64-linux";
+          extraModules = [ inputs.colmena.nixosModules.deploymentOptions ];
+          modules = [
+            ./nodes/ymir
+            self.nixosModules.common
+            nix-topology.nixosModules.default
+          ];
+        };
       };
 
       nixosModules = {
