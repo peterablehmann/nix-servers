@@ -22,6 +22,7 @@
               "mns.xnee.net:9100"
               "monitoring.xnee.net:9100"
               "sync.xnee.de:9100"
+              "ymir.xnee.net:9100"
             ];
           }];
         }
