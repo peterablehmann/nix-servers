@@ -6,6 +6,7 @@
   imports = [
     inputs.disko.nixosModules.disko
     inputs.sops-nix.nixosModules.sops
+    inputs.nixos-dns.nixosModules.dns
     ./boot.nix
     ./exporters.nix
     ./nix.nix
@@ -17,6 +18,8 @@
   deployment = {
     targetHost = config.networking.fqdn;
   };
+
+  networking.domains.defaultTTL = 60;
 
   time.timeZone = "Europe/Berlin";
   i18n.defaultLocale = "de_DE.UTF-8";

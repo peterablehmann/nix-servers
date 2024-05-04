@@ -1,8 +1,22 @@
-{ lib
+{ config
+, lib
 , ...
 }:
+let
+  IPv4 = "65.108.0.33";
+  IPv6 = "2a01:4f9:6a:4f6f::203";
+in
 {
   networking = {
+    domains = {
+      enable = true;
+      subDomains."${config.networking.fqdn}" = { };
+      baseDomains."${config.networking.domain}" = {
+        a.data = IPv4;
+        aaaa.data = IPv6;
+      };
+    };
+
     useNetworkd = true;
     useDHCP = false;
     hostName = "ymir";
@@ -21,8 +35,8 @@
       networkConfig.DHCP = "no";
       matchConfig.Name = "eth0";
       address = [
-        "65.108.0.33/32"
-        "2a01:4f9:6a:4f6f::203/64"
+        "${IPv4}/32"
+        "${IPv6}/64"
       ];
       routes = [
         { routeConfig.Gateway = "fe80::1"; }

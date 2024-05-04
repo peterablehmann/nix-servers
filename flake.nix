@@ -24,6 +24,11 @@
 
     # Nix-Topology
     nix-topology.url = "github:oddlama/nix-topology";
+
+    # NixOS-DNS
+    # peterablehmann/NixOS-DNS/tree/fix-cnames
+    nixos-dns.url = "github:Janik-Haag/NixOS-DNS";
+    nixos-dns.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs =
@@ -35,6 +40,7 @@
     , colmena
     , attic
     , nix-topology
+    , nixos-dns
     , ...
     } @ inputs:
     let
@@ -120,6 +126,28 @@
 
       nixosModules = {
         common = ./modules/common;
+      };
+
+      dns = (nixos-dns.utils.generate nixpkgs.legacyPackages.x86_64-linux).octodnsConfig {
+        dnsConfig = {
+          inherit (self) nixosConfigurations;
+          extraConfig = import ./dns.nix;
+        };
+        config = {
+          providers = {
+            hetzner = {
+              class = "octodns_hetzner.HetznerProvider";
+              token = "env/HETZNER_DNS_API";
+            };
+          };
+        };
+        zones = {
+          "bigdriver.net." = nixos-dns.utils.octodns.generateZoneAttrs [ "hetzner" ];
+          "lehmann.zone." = nixos-dns.utils.octodns.generateZoneAttrs [ "hetzner" ];
+          "uic-fahrzeugnummer.de." = nixos-dns.utils.octodns.generateZoneAttrs [ "hetzner" ];
+          "xnee.de." = nixos-dns.utils.octodns.generateZoneAttrs [ "hetzner" ];
+          "xnee.net." = nixos-dns.utils.octodns.generateZoneAttrs [ "hetzner" ];
+        };
       };
 
       formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixpkgs-fmt;
