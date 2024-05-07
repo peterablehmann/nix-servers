@@ -58,6 +58,9 @@
           pkgs.colmena
           sops
           jq
+          octodns
+          octodns-providers.bind
+          octodns-providers.hetzner
         ];
       };
     })) //
