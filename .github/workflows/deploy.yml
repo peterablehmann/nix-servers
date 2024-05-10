@@ -53,6 +53,6 @@ jobs:
       - name: Build DNS config
         run: nix build .#dns
       - name: Deploy DNS config
-        run: nix develop --command 'octodns-sync --config-file result --doit'
+        run: nix develop --command bash -c 'octodns-sync --config-file result --doit'
         env:
           HETZNER_DNS_API: ${{ secrets.HETZNER_DNS_API }}
