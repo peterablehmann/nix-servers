@@ -2,6 +2,8 @@ name: check
 
 on:
   push:
+    branches:
+      - '!main'
   pull_request:
 
 permissions: read-all
@@ -21,6 +23,7 @@ jobs:
 
       - name: "Run flake checks"
         run: nix flake check --all-systems
+
   Lint:
     runs-on: ubuntu-latest
     steps:
