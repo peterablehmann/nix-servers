@@ -4,6 +4,8 @@
 }:
 let
   inherit (config.lib.topology) mkConnectionRev;
+  IPv4 = "168.119.172.8";
+  IPv6 = "2a01:4f8:1c1e:ad66::1";
 in
 {
   topology.self.interfaces.eth0 = {
@@ -11,6 +13,14 @@ in
     physicalConnections = [ (mkConnectionRev "Internet" "*") ];
   };
   networking = {
+    domains = {
+      enable = true;
+      subDomains."${config.networking.fqdn}" = { };
+      baseDomains."${config.networking.domain}" = {
+        a.data = IPv4;
+        aaaa.data = IPv6;
+      };
+    };
     useNetworkd = true;
     useDHCP = false;
     hostName = "mns";
@@ -29,8 +39,8 @@ in
       networkConfig.DHCP = "no";
       matchConfig.Name = "eth0";
       address = [
-        "168.119.172.8/32"
-        "2a01:4f8:1c1e:ad66::1/64"
+        "${IPv4}/32"
+        "${IPv6}/64"
       ];
       routes = [
         { routeConfig.Gateway = "fe80::1"; }
