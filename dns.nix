@@ -24,7 +24,7 @@
         "default2307._domainkey" = {
           txt.data = "v=DKIM1;p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAyWMWI+s5s12xeAt+lhlOADEd/bemDd8bibDZu6eVYn8om+Gopn68IVyJ5+9SuJ4lkveFzNJagw7X9QRhTMqXI2+DpT1Yo59Z9CeyEhV7BFtsyKwlXTn2oTI3e4fswrQhMhrnUms2oaq+7D5tYo5qI9u7QLtBUnNoFWilaSpbKT+fbQODB8hW7x+af54fBS/+SqeKFSJ91cvoiLiOq+DWRRSqen/4lCFy2YD9HaUvjOsvxcVJHXwW+56fyAgPPquq5jYj8cbE7jcdoRqhx9uBzffLmNNFsRu7SXQBTiARdNpIuIU7/OdsZXHmnaj9RYX4Kyr6FfYSFRjC2sa6S7j56QIDAQAB";
         };
-        "autoconfig".cname.data = "mail.your-server.de.";
+        "autoconfig".cname.data = "mail.your-server.de";
         "_imaps._tcp".srv.data = {
           priority = 0;
           weight = 100;
@@ -70,15 +70,15 @@
           a.data = "78.46.0.148";
           aaaa.data = "2a01:4f8:d0a:2160::2";
         };
-        "www".cname.data = "lehmann.zone.";
-        "cloud".cname.data = "nx24177.your-storageshare.de.";
+        "www".cname.data = "lehmann.zone";
+        "cloud".cname.data = "nx24177.your-storageshare.de";
       };
       "uic-fahrzeugnummer.de" = lib.recursiveUpdate defaults {
         "" = {
           a.data = "78.46.0.148";
           aaaa.data = "2a01:4f8:d0a:2160::2";
         };
-        "www".cname.data = "uic-fahrzeugnummer.de.";
+        "www".cname.data = "uic-fahrzeugnummer.de";
       };
       "xnee.de" = lib.recursiveUpdate defaults {
         "dhcp".aaaa.data = "2a01:4f9:6a:4f6f::5";
@@ -96,7 +96,7 @@
       };
       "xnee.net" = lib.recursiveUpdate defaults {
         "vyos1".aaaa.data = "2a01:4f9:6a:4f6f::202";
-        "fritzbox".cname.data = "pm50yyz373t4yr6i.myfritz.net.";
+        "fritzbox".cname.data = "pm50yyz373t4yr6i.myfritz.net";
       };
     };
 }
