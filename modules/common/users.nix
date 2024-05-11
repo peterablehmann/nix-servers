@@ -1,5 +1,6 @@
 {
   users.users.root.openssh.authorizedKeys.keys = [
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFRhmoWMJhRTMmNkwVuWrYvbf+uModcPJhfyRfEjMrR9 nixservers/DEPLOY_KEY"
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIP1Ss4ebDys/jMEzTPTv3/h9uRly37034XKQ79w9y7Yf xgwq@kee"
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIF1R8qF4UYwXpVVP8PC/K6CMGBXVQV0QvEWOAuGDvtSV 2024-04-15-peter@gungnir-wsl"
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBJRP8UDa+ZcEPZFYwUs0QxOn1e1dXIOP32wlMF8Nx42 2024-02-17-peter@kleeblatt"
