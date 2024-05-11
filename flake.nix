@@ -85,16 +85,6 @@
             nix-topology.nixosModules.default
           ];
         };
-        monitoring = nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit inputs outputs; };
-          system = "x86_64-linux";
-          extraModules = [ inputs.colmena.nixosModules.deploymentOptions ];
-          modules = [
-            ./nodes/monitoring
-            self.nixosModules.common
-            nix-topology.nixosModules.default
-          ];
-        };
         sync = nixpkgs.lib.nixosSystem {
           specialArgs = { inherit inputs outputs; };
           system = "x86_64-linux";
@@ -129,6 +119,7 @@
 
       nixosModules = {
         common = ./modules/common;
+        monitoring = ./modules/monitoring;
       };
 
       dns = (nixos-dns.utils.generate nixpkgs.legacyPackages.x86_64-linux).octodnsConfig {

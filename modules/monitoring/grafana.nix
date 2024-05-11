@@ -12,6 +12,8 @@ in
     certs."${domain}" = { };
   };
 
+  networking.domains.subDomains."${domain}" = { };
+
   networking.firewall.allowedTCPPorts = [ 80 443 ];
   services.nginx = {
     enable = true;
