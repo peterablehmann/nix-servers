@@ -1,4 +1,5 @@
 { inputs
+, lib
 , ...
 }:
 {
@@ -13,12 +14,9 @@
           scrape_interval = "5s";
           scheme = "http";
           static_configs = [{
-            targets = [
-              "cache.xnee.net:9100"
-              "mns.xnee.net:9100"
-              "sync.xnee.de:9100"
-              "ymir.xnee.net:9100"
-            ];
+            targets = (lib.mapAttrsToList (name: host: "${host.config.networking.fqdn}:9100") (
+              lib.filterAttrs (name: host: host.config.services.prometheus.exporters.node.enable) inputs.self.nixosConfigurations
+            ));
           }];
         }
         {
