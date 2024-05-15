@@ -120,6 +120,7 @@
       nixosModules = {
         common = ./modules/common;
         monitoring = ./modules/monitoring;
+        kanidm = ./modules/kanidm.nix;
       };
 
       dns = (nixos-dns.utils.generate nixpkgs.legacyPackages.x86_64-linux).octodnsConfig {
