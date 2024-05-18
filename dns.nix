@@ -97,6 +97,13 @@
       "xnee.net" = lib.recursiveUpdate defaults {
         "vyos1".aaaa.data = "2a01:4f9:6a:4f6f::202";
         "fritzbox".cname.data = "pm50yyz373t4yr6i.myfritz.net";
+        "proxmox" = {
+          a.data = " 	148.251.179.25";
+          aaaa.data = "2a01:4f8:211:5a9::1";
+        };
+        "n1.cluster".aaaa.data = "2a01:4f8:211:5a9::11";
+        "n2.cluster".aaaa.data = "2a01:4f8:211:5a9::12";
+        "n3.cluster".aaaa.data = "2a01:4f8:211:5a9::13";
       };
     };
 }
