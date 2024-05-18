@@ -14,9 +14,9 @@
           scrape_interval = "5s";
           scheme = "http";
           static_configs = [{
-            targets = (lib.mapAttrsToList (name: host: "${host.config.networking.fqdn}:9100") (
+            targets = lib.mapAttrsToList (name: host: "${host.config.networking.fqdn}:9100") (
               lib.filterAttrs (name: host: host.config.services.prometheus.exporters.node.enable) inputs.self.nixosConfigurations
-            ));
+            );
           }];
         }
         {
