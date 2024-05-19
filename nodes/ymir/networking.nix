@@ -3,10 +3,15 @@
 , ...
 }:
 let
+  inherit (config.lib.topology) mkConnectionRev;
   IPv4 = "128.140.9.158";
   IPv6 = "2a01:4f8:c2c:17c9::1";
 in
 {
+  topology.self.interfaces.eth0 = {
+    network = "Internet";
+    physicalConnections = [ (mkConnectionRev "Internet" "*") ];
+  };
   networking = {
     domains = {
       enable = true;

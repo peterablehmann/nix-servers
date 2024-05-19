@@ -8,11 +8,6 @@ let
 in
 {
   networks = {
-    "Proxmox" = {
-      name = "Proxmox";
-      cidrv4 = "10.0.0.0/8";
-      cidrv6 = "2a01:4f9:6a:4f6f::/64";
-    };
     "Internet" = {
       name = "Internet";
       style = {
@@ -38,25 +33,6 @@ in
   };
   nodes = {
     "Internet" = mkInternet { };
-    "proxmox.xnee.de" = {
-      deviceType = "device";
-      hardware.info = "AX41-NVMe";
-      interfaces = {
-        "enp9s0" = {
-          network = "Internet";
-          addresses = [ "65.108.0.24" "2a01:4f9:6a:4f6f::1" ];
-          physicalConnections = [ (mkConnectionRev "Internet" "*") ];
-        };
-        "vmbr0" = {
-          virtual = true;
-          addresses = [ "10.0.0.1" "2a01:4f9:6a:4f6f::1" ];
-          network = "Proxmox";
-          physicalConnections = [
-            (mkConnection "monitoring" "eth0")
-          ];
-        };
-      };
-    };
     "Fritz!Box" = {
       deviceType = "router";
       hardware.image = ./media/fritzbox_7590.png;
