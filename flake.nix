@@ -95,16 +95,6 @@
             nix-topology.nixosModules.default
           ];
         };
-        cache = nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit inputs outputs; };
-          system = "x86_64-linux";
-          extraModules = [ inputs.colmena.nixosModules.deploymentOptions ];
-          modules = [
-            ./nodes/cache
-            self.nixosModules.common
-            nix-topology.nixosModules.default
-          ];
-        };
         ymir = nixpkgs.lib.nixosSystem {
           specialArgs = { inherit inputs outputs; };
           system = "x86_64-linux";
