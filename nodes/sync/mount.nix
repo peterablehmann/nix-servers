@@ -4,9 +4,9 @@
 , ...
 }:
 {
-  sops.secrets."storagebox" = {
+  sops.secrets."mount/storagebox" = {
     neededForUsers = true;
-    sopsFile = "${inputs.self}/secrets/mount.sync.yaml";
+    sopsFile = "${inputs.self}/secrets/sync.yaml";
   };
   environment.systemPackages = [ pkgs.cifs-utils ];
   fileSystems."/mnt/share" = {
@@ -18,6 +18,6 @@
         automount_opts = "x-systemd.automount,noauto,x-systemd.idle-timeout=60,x-systemd.device-timeout=5s,x-systemd.mount-timeout=5s";
 
       in
-      [ "${automount_opts},uid=237,credentials=${config.sops.secrets."storagebox".path}" ];
+      [ "${automount_opts},uid=237,credentials=${config.sops.secrets."mount/storagebox".path}" ];
   };
 }
