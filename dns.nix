@@ -80,20 +80,7 @@
         };
         "www".cname.data = "uic-fahrzeugnummer.de";
       };
-      "xnee.de" = lib.recursiveUpdate defaults {
-        "dhcp".aaaa.data = "2a01:4f9:6a:4f6f::5";
-        "garage1".aaaa.data = "2a01:4f9:6a:4f6f::8";
-        "garage2".aaaa.data = "2a01:4f9:6a:4f6f::9";
-        "garage3".aaaa.data = "2a01:4f9:6a:4f6f::a";
-        "installer".aaaa.data = "2a01:4f9:6a:4f6f:ffff:ffff:ffff:ffff";
-        "netbox".aaaa.data = "2a01:4f9:6a:4f6f::b";
-        "proxmox" = {
-          a.data = "65.108.0.24";
-          aaaa.data = "2a01:4f9:6a:4f6f::1";
-        };
-        "s3".aaaa.data = [ "2a01:4f9:6a:4f6f::8" "2a01:4f9:6a:4f6f::9" "2a01:4f9:6a:4f6f::a" ];
-        "stonks-ticker".aaaa.data = "2a01:4f9:6a:4f6f::6";
-      };
+      "xnee.de" = lib.recursiveUpdate defaults { };
       "xnee.net" = lib.recursiveUpdate defaults {
         "fritzbox".cname.data = "pm50yyz373t4yr6i.myfritz.net";
         "proxmox" = {
