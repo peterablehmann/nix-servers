@@ -3,8 +3,8 @@
 , ...
 }:
 let
-  IPv4 = "65.108.0.33";
-  IPv6 = "2a01:4f9:6a:4f6f::203";
+  IPv4 = "128.140.9.158";
+  IPv6 = "2a01:4f8:c2c:17c9::1";
 in
 {
   networking = {
@@ -23,9 +23,10 @@ in
     usePredictableInterfaceNames = lib.mkDefault false;
     domain = "xnee.net";
     nameservers = [
-      #HETZNER
-      "2a01:4ff:ff00::add:2"
+      "185.12.64.1"
+      "185.12.64.2"
       "2a01:4ff:ff00::add:1"
+      "2a01:4ff:ff00::add:2"
     ];
     dhcpcd.enable = false;
   };
@@ -40,10 +41,10 @@ in
       ];
       routes = [
         { routeConfig.Gateway = "fe80::1"; }
-        { routeConfig = { Destination = "10.0.0.1"; }; }
+        { routeConfig = { Destination = "172.31.1.1"; }; }
         {
           routeConfig = {
-            Gateway = "10.0.0.1";
+            Gateway = "172.31.1.1";
             GatewayOnLink = true;
           };
         }

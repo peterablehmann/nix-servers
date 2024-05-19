@@ -4,7 +4,7 @@ keys:
   - &system_monitoring age1dpaezlv6va4a8pdqc9w8exuy54d8y2q20yu9zc98q326lusyfdpsf6ph93
   - &system_sync age1ap6uwhhy4uvq72hwyts7gzl027mnypakvj6svphgw2fm8jk72v7qtccs76
   - &system_cache age1tst50yvdtvlggtjcpa47pvywcdaxfv00v04wfwf552wg4wraaexqsaqlke
-  - &system_ymir age1ql80ts2xlkzru4ws6q2syg6etuwy36dnzgtsj7uy2p27k4nzwc9q3gc6wg
+  - &system_ymir age183wgf8xp46chqk049ekyg7vsan2p50zh4lqfllcllzwuekeywdzqn7pz0q
 
 creation_rules:
   - path_regex: secrets/common.(yaml|json|env|ini)$
