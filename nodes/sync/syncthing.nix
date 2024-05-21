@@ -3,26 +3,15 @@ let
   domain = "sync.xnee.net";
 in
 {
-  networking.firewall.allowedTCPPorts = [ 80 443 ];
-  security.acme = {
-    defaults.email = "acme@xnee.net";
-    acceptTerms = true;
-    certs."${domain}" = { };
-  };
+  security.acme.certs."${domain}" = { };
 
-  services.nginx = {
-    enable = true;
-    recommendedTlsSettings = true;
-    recommendedOptimisation = true;
-    recommendedProxySettings = true;
-    virtualHosts."${domain}" = {
+  services.nginx.virtualHosts."${domain}" = {
       enableACME = true;
       forceSSL = true;
       locations."/" = {
         proxyPass = "http://${config.services.syncthing.guiAddress}";
       };
     };
-  };
 
   services.syncthing = {
     enable = true;

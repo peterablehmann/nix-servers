@@ -14,13 +14,7 @@ in
 
   networking.domains.subDomains."${domain}" = { };
 
-  networking.firewall.allowedTCPPorts = [ 80 443 ];
-  services.nginx = {
-    enable = true;
-    recommendedTlsSettings = true;
-    recommendedOptimisation = true;
-    recommendedProxySettings = true;
-    virtualHosts."${domain}" = {
+  services.nginx.virtualHosts."${domain}" = {
       enableACME = true;
       forceSSL = true;
       locations."/" = {
@@ -28,7 +22,6 @@ in
         proxyWebsockets = true;
       };
     };
-  };
 
   services.grafana = {
     enable = true;

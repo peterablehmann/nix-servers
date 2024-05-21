@@ -10,6 +10,7 @@
     ./acme.nix
     ./boot.nix
     ./exporters.nix
+    ./nginx.nix
     ./nix.nix
     ./ssh.nix
     ./tailscale.nix
