@@ -7,6 +7,7 @@
     inputs.disko.nixosModules.disko
     inputs.sops-nix.nixosModules.sops
     inputs.nixos-dns.nixosModules.dns
+    ./acme.nix
     ./boot.nix
     ./exporters.nix
     ./nix.nix

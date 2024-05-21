@@ -1,8 +1,14 @@
-{ inputs
+{ config
+, inputs
 , lib
 , ...
 }:
 {
+  sops.secrets."prometheus/basic_auth" = {
+    sopsFile = "${inputs.self}/secrets/ymir.yaml";
+    owner = "prometheus";
+  };
+
   services = {
     prometheus = {
       enable = true;
@@ -12,9 +18,13 @@
         {
           job_name = "node-exporter";
           scrape_interval = "5s";
-          scheme = "http";
+          scheme = "https";
+          basic_auth = {
+            username = "prometheus";
+            password_file = config.sops.secrets."prometheus/basic_auth".path;
+          };
           static_configs = [{
-            targets = lib.mapAttrsToList (name: host: "${host.config.networking.fqdn}:9100") (
+            targets = lib.mapAttrsToList (name: host: "node-exporter.${host.config.networking.fqdn}") (
               lib.filterAttrs (name: host: host.config.services.prometheus.exporters.node.enable) inputs.self.nixosConfigurations
             );
           }];
