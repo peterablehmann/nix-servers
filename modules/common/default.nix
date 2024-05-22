@@ -8,6 +8,7 @@
     inputs.sops-nix.nixosModules.sops
     inputs.nixos-dns.nixosModules.dns
     ./acme.nix
+    ./backup.nix
     ./boot.nix
     ./exporters.nix
     ./nginx.nix

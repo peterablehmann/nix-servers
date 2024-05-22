@@ -1,6 +1,6 @@
 {
   imports = [
-    ./backup.nix
+    # ./backup.nix
     ./disko.nix
     ./hardware-configuration.nix
     ./networking.nix
@@ -11,4 +11,5 @@
     eula = true;
     openFirewall = true;
   };
+  backup.paths = [ "/var/lib/minecraft" ];
 }
