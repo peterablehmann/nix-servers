@@ -44,4 +44,5 @@ in
       };
     };
   };
+  backup.paths = [ config.services.kanidm.serverSettings.online_backup.path ];
 }
