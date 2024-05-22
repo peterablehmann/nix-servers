@@ -6,12 +6,12 @@ in
   security.acme.certs."${domain}" = { };
 
   services.nginx.virtualHosts."${domain}" = {
-      enableACME = true;
-      forceSSL = true;
-      locations."/" = {
-        proxyPass = "http://${config.services.syncthing.guiAddress}";
-      };
+    enableACME = true;
+    forceSSL = true;
+    locations."/" = {
+      proxyPass = "http://${config.services.syncthing.guiAddress}";
     };
+  };
 
   services.syncthing = {
     enable = true;
