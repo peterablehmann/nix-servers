@@ -51,6 +51,14 @@ in
             hash = "sha256-cwmR0Wu0+v2N3KZiE4FDttQW5dW45Pzcn3lcNRDDbJc=";
           };
         }
+        {
+          name = "TLS";
+          type = "file";
+          options.path = pkgs.fetchurl {
+            url = "https://raw.githubusercontent.com/peterablehmann/grafana-dashboards/main/tls-cert-dashboard.json";
+            hash = "sha256-m1zUbU/oLQgmcMug0AfXwwx6cRKS4LLxvrYZpN74UB4=";
+          };
+        }
       ];
     };
   };
