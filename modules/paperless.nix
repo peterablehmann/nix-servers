@@ -23,7 +23,7 @@ in
   services.paperless = {
     enable = true;
     passwordFile = config.sops.secrets."paperless/password".path;
-    extraConfig = {
+    settings = {
       PAPERLESS_ADMIN_USER = "peter";
     };
   };
