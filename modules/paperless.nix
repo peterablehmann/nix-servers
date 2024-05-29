@@ -25,6 +25,9 @@ in
     passwordFile = config.sops.secrets."paperless/password".path;
     settings = {
       PAPERLESS_ADMIN_USER = "peter";
+      PAPERLESS_OCR_USER_ARGS = {
+        "invalidate_digital_signatures" = true;
+      };
     };
   };
 
