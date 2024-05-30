@@ -110,6 +110,7 @@
       nixosModules = {
         common = ./modules/common;
         monitoring = ./modules/monitoring;
+        netbox = ./modules/netbox.nix;
         kanidm = ./modules/kanidm.nix;
         paperless = ./modules/paperless.nix;
       };
