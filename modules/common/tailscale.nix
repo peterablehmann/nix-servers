@@ -13,7 +13,7 @@
     enable = true;
     authKeyFile = config.sops.secrets."tailscale/authkey".path;
     useRoutingFeatures = "server";
-    extraUpFlags = [ 
+    extraUpFlags = [
       "--advertise-exit-node"
       "--stateful-filtering"
     ];
