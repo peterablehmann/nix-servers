@@ -56,7 +56,7 @@ in
           type = "file";
           options.path = pkgs.fetchurl {
             url = "https://raw.githubusercontent.com/peterablehmann/grafana-dashboards/main/tls-cert-dashboard.json";
-            hash = "sha256-m1zUbU/oLQgmcMug0AfXwwx6cRKS4LLxvrYZpN74UB4=";
+            hash = "sha256-iu1huuK9ebEgcf8A3qM92N0rq7rr7uM6oynzDY/wv7M=";
           };
         }
       ];
