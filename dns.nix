@@ -22,7 +22,7 @@
           txt.data = "v=DMARC1;p=quarantine;sp=quarantine;pct=100;rua=mailto:dmarc@xnee.net;ruf=mailto:dmarc@xnee.net;adkim=s;aspf=s;";
         };
         "default2307._domainkey" = {
-          txt.data = "v=DKIM1; p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEArqEeTUiLEckwQlJD5XvIL+x8LHYLWHWoazbOXFd0w+qy/J39sOeXb5y9SrFRaPqT6EZw0vWMqqYTWhVY9N9XICHCMFnh2jdEwtDguN5BSe0AmE/qVQD+IhXbUNDtwycaLaj/a0AzD36zpcihu24BfTTA65pFsDpYhDvkGymayKyQszTwp2ebWlfKGXKYOPkTxAnDPvRqgbfOppLvO6az6uCKoIpAR9y6Db4yY2vBDpnnSMS8t1NST94PgpdfJ5f3F4FaAmVwVUa/lsF7I0trez5HPiHhmItiv1lRMfynJloBvBeeq4Ywam725mpYTXrCh/jzlOUrTa+jVPTFJMV9cwIDAQAB";
+          txt.data = "v=DKIM1; p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAw97egS/syiVvNUBjmHfPBZC5cDOO0gFuQHJglRSS9/NqDkXHGc6oWt2reYknIlXJwmKBpisjvULsy2oKl88M0cfAD2iQn6IJc+FASpfqPZSidvaMQnqSq4vgB8wzyvlMZ/7vXWJFnntwZl5H+nG8C29A4LLIR8JEfNpBt5G3VEJbLq6JWoQ4075XjJNNqSe53usNL521zWR/P3ENuQ5k2BvdsuHAUbE76GVaOS118SlGT0Gb6erid75E0pl+wcSAKgtVths8mP03hhL8CaTU5v1EU3ClJL7IF6BkMDwSKyabiC7ohFpRVrNzykXE7nBEAocItpxf2jpC5zhB0AgnSwIDAQAB";
         };
         "autoconfig".cname.data = "mail.your-server.de";
         "_imaps._tcp".srv.data = {
