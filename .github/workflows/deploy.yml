@@ -39,7 +39,7 @@ jobs:
         run: nix run nixpkgs#statix -- check .
   
   DNS:
-    needs: [Check, Lint, Build]
+    needs: [Check, Lint]
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository code
@@ -57,40 +57,40 @@ jobs:
         env:
           HETZNER_DNS_API: ${{ secrets.HETZNER_DNS_API }}
 
-  Build:
-    needs: [Check, Lint]
-    runs-on: ubuntu-latest
-    steps:
-      - name: Check out repository code
-        uses: actions/checkout@v4
-      - name: Setup Nix
-        uses: DeterminateSystems/nix-installer-action@main
-        with:
-          diagnostic-endpoint: ""
-      - name: Setup Nix cache
-        uses: DeterminateSystems/magic-nix-cache-action@main
-      - name: Initialize SSH-Key
-        uses: webfactory/ssh-agent@v0.9.0
-        with:
-          ssh-private-key: ${{ secrets.DEPLOY_KEY }}
-      - name: Build & push
-        run: nix develop --command bash -c 'colmena apply push'
+  # Build:
+  #   needs: [Check, Lint]
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Check out repository code
+  #       uses: actions/checkout@v4
+  #     - name: Setup Nix
+  #       uses: DeterminateSystems/nix-installer-action@main
+  #       with:
+  #         diagnostic-endpoint: ""
+  #     - name: Setup Nix cache
+  #       uses: DeterminateSystems/magic-nix-cache-action@main
+  #     - name: Initialize SSH-Key
+  #       uses: webfactory/ssh-agent@v0.9.0
+  #       with:
+  #         ssh-private-key: ${{ secrets.DEPLOY_KEY }}
+  #     - name: Build & push
+  #       run: nix develop --command bash -c 'colmena apply push'
   
-  Apply:
-    needs: [Build]
-    runs-on: ubuntu-latest
-    steps:
-      - name: Check out repository code
-        uses: actions/checkout@v4
-      - name: Setup Nix
-        uses: DeterminateSystems/nix-installer-action@main
-        with:
-          diagnostic-endpoint: ""
-      - name: Setup Nix cache
-        uses: DeterminateSystems/magic-nix-cache-action@main
-      - name: Initialize SSH-Key
-        uses: webfactory/ssh-agent@v0.9.0
-        with:
-          ssh-private-key: ${{ secrets.DEPLOY_KEY }}
-      - name: Build & push
-        run: nix develop --command bash -c 'colmena apply'
+  # Apply:
+  #   needs: [Build]
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Check out repository code
+  #       uses: actions/checkout@v4
+  #     - name: Setup Nix
+  #       uses: DeterminateSystems/nix-installer-action@main
+  #       with:
+  #         diagnostic-endpoint: ""
+  #     - name: Setup Nix cache
+  #       uses: DeterminateSystems/magic-nix-cache-action@main
+  #     - name: Initialize SSH-Key
+  #       uses: webfactory/ssh-agent@v0.9.0
+  #       with:
+  #         ssh-private-key: ${{ secrets.DEPLOY_KEY }}
+  #     - name: Build & push
+  #       run: nix develop --command bash -c 'colmena apply'
