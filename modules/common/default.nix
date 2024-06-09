@@ -11,6 +11,7 @@
     ./backup.nix
     ./boot.nix
     ./exporters.nix
+    ./fail2ban.nix
     ./nginx.nix
     ./nix.nix
     ./ssh.nix
