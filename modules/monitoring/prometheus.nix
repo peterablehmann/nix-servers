@@ -14,6 +14,7 @@
       enable = true;
       port = 9001;
       checkConfig = "syntax-only";
+      retentionTime = "90d";
       scrapeConfigs = [
         {
           job_name = "node-exporter";
