@@ -3,6 +3,7 @@ keys:
   - &system_mns age1s7xs405mkw2gagclktekz27lxhh38se7adrkdfc0x2l28j9xsvdqcdrsyr
   - &system_sync age1ap6uwhhy4uvq72hwyts7gzl027mnypakvj6svphgw2fm8jk72v7qtccs76
   - &system_ymir age183wgf8xp46chqk049ekyg7vsan2p50zh4lqfllcllzwuekeywdzqn7pz0q
+  - &system_heptifili age1xvkj88jyajrefredvy4t7xgwfxrerezunsjcqqqfxytpw648l4aqfjakav
 
 creation_rules:
   - path_regex: secrets/common.(yaml|json|env|ini)$
@@ -12,6 +13,7 @@ creation_rules:
       - *system_mns
       - *system_sync
       - *system_ymir
+      - *system_heptifili
   
   - path_regex: secrets/mns.(yaml|json|env|ini)$
     key_groups:
@@ -30,3 +32,9 @@ creation_rules:
     - age:
       - *peter
       - *system_ymir
+  
+  - path_regex: secrets/heptifili.(yaml|json|env|ini)$
+    key_groups:
+    - age:
+      - *peter
+      - *system_heptifili

@@ -18,7 +18,7 @@ let
 in
 {
   networking.domains.subDomains.${domain} = { };
-  security.acme.certs."${domain}" = { };
+  security.acme.certs."${domain}" = { webroot = null; dnsProvider = "hetzner"; };
   services.nginx.virtualHosts."${domain}" = {
     enableACME = true;
     forceSSL = true;

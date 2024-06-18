@@ -16,7 +16,6 @@
     extraUpFlags = [
       "--advertise-exit-node"
       "--stateful-filtering"
-      "--accept-routes"
     ];
   };
 }
