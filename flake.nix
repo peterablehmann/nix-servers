@@ -107,16 +107,16 @@
             nix-topology.nixosModules.default
           ];
         };
-        sync = nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit inputs outputs; };
-          system = "x86_64-linux";
-          extraModules = [ inputs.colmena.nixosModules.deploymentOptions ];
-          modules = [
-            ./nodes/sync
-            self.nixosModules.common
-            nix-topology.nixosModules.default
-          ];
-        };
+        # sync = nixpkgs.lib.nixosSystem {
+        #   specialArgs = { inherit inputs outputs; };
+        #   system = "x86_64-linux";
+        #   extraModules = [ inputs.colmena.nixosModules.deploymentOptions ];
+        #   modules = [
+        #     ./nodes/sync
+        #     self.nixosModules.common
+        #     nix-topology.nixosModules.default
+        #   ];
+        # };
         ymir = nixpkgs.lib.nixosSystem {
           specialArgs = { inherit inputs outputs; };
           system = "x86_64-linux";
@@ -135,6 +135,7 @@
         netbox = ./modules/netbox.nix;
         kanidm = ./modules/kanidm.nix;
         paperless = ./modules/paperless.nix;
+        syncthing = ./modules/syncthing.nix;
       };
 
       dns = (nixos-dns.utils.generate nixpkgs.legacyPackages.x86_64-linux).octodnsConfig {

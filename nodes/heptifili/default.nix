@@ -3,6 +3,7 @@
 }:
 {
   imports = [
+    inputs.self.nixosModules.syncthing
     ./modules/zfs.nix
     ./disko.nix
     ./dyndns.nix
