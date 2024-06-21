@@ -1,3 +1,6 @@
+{ pkgs
+, ...
+}:
 {
   imports = [
     # ./backup.nix
@@ -10,6 +13,7 @@
     enable = true;
     eula = true;
     openFirewall = true;
+    package = pkgs.papermcServers.papermc-1_20_5;
   };
   backup.paths = [ "/var/lib/minecraft" ];
 }
