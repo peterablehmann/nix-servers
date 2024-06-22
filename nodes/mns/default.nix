@@ -1,4 +1,5 @@
 { pkgs
+, config
 , ...
 }:
 {
@@ -16,4 +17,15 @@
     package = pkgs.papermcServers.papermc-1_20_5;
   };
   backup.paths = [ "/var/lib/minecraft" ];
+
+  # Fot squaremap
+  networking.domains.subDomains.${"map.${config.networking.fqdn}"} = { };
+  security.acme.certs.${"map.${config.networking.fqdn}"} = { };
+  services.nginx.virtualHosts."map.${config.networking.fqdn}" = {
+    enableACME = true;
+    forceSSL = true;
+    locations."/" = {
+      proxyPass = "http://127.0.0.1:8080";
+    };
+  };
 }
