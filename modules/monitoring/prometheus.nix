@@ -31,6 +31,20 @@
           }];
         }
         {
+          job_name = "zfs-exporter";
+          scrape_interval = "30s";
+          scheme = "https";
+          basic_auth = {
+            username = "prometheus";
+            password_file = config.sops.secrets."prometheus/basic_auth".path;
+          };
+          static_configs = [{
+            targets = lib.mapAttrsToList (name: host: "zfs-exporter.${host.config.networking.fqdn}") (
+              lib.filterAttrs (name: host: host.config.services.prometheus.exporters.zfs.enable) inputs.self.nixosConfigurations
+            );
+          }];
+        }
+        {
           job_name = "certs";
           scrape_interval = "5m";
           basic_auth = {

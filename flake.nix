@@ -45,7 +45,7 @@
   outputs =
     { self
     , nixpkgs
-    # , lix-module
+      # , lix-module
     , disko
     , sops-nix
     , flake-utils
