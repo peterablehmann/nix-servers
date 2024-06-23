@@ -14,7 +14,7 @@
     enable = true;
     eula = true;
     openFirewall = true;
-    package = pkgs.papermcServers.papermc-1_20_5;
+    package = pkgs.papermcServers.papermc-1_21;
   };
   backup.paths = [ "/var/lib/minecraft" ];
 
