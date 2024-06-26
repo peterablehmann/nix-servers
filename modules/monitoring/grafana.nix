@@ -15,7 +15,7 @@ in
   networking.domains.subDomains."${domain}" = { };
 
   services.nginx.virtualHosts."${domain}" = {
-    enableACME = true;
+    useACMEHost = domain;
     forceSSL = true;
     locations."/" = {
       proxyPass = "http://${config.services.grafana.settings.server.http_addr}:${builtins.toString config.services.grafana.settings.server.http_port }";

@@ -20,7 +20,7 @@ in
   security.acme.certs."${domain}" = { };
   networking.domains.subDomains."${domain}" = { };
   services.nginx.virtualHosts."${domain}" = {
-    enableACME = true;
+    useACMEHost = domain;
     forceSSL = true;
     locations."/" = {
       proxyPass = "https://localhost:${builtins.toString config.services.prometheus.exporters.blackbox.port }";

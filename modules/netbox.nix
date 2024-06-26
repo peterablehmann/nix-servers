@@ -22,7 +22,7 @@ in
     enable = true;
     user = "netbox";
     virtualHosts."${domain}" = {
-      enableACME = true;
+      useACMEHost = domain;
       forceSSL = true;
       locations = {
         "/" = {

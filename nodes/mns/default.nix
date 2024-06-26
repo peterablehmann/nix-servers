@@ -22,7 +22,7 @@
   networking.domains.subDomains.${"map.${config.networking.fqdn}"} = { };
   security.acme.certs.${"map.${config.networking.fqdn}"} = { };
   services.nginx.virtualHosts."map.${config.networking.fqdn}" = {
-    enableACME = true;
+    useACMEHost = "map.${config.networking.fqdn}";
     forceSSL = true;
     locations."/" = {
       proxyPass = "http://127.0.0.1:8080";

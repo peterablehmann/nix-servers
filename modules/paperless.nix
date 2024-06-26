@@ -9,7 +9,7 @@ in
   networking.domains.subDomains.${domain} = { };
   security.acme.certs.${domain} = { };
   services.nginx.virtualHosts."${domain}" = {
-    enableACME = true;
+    useACMEHost = domain;
     forceSSL = true;
     locations."/" = {
       proxyPass = "http://${config.services.paperless.address}:${builtins.toString config.services.paperless.port}";

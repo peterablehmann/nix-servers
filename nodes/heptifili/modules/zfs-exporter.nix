@@ -20,7 +20,7 @@ in
   networking.domains.subDomains.${domain} = { };
   security.acme.certs."${domain}" = { webroot = null; dnsProvider = "hetzner"; };
   services.nginx.virtualHosts."${domain}" = {
-    enableACME = true;
+    useACMEHost = domain;
     forceSSL = true;
     locations."/" = {
       proxyPass = "https://${config.services.prometheus.exporters.zfs.listenAddress}:${builtins.toString config.services.prometheus.exporters.zfs.port }";

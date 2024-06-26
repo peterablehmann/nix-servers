@@ -18,9 +18,9 @@ let
 in
 {
   networking.domains.subDomains.${domain} = { };
-  security.acme.certs."${domain}" = { webroot = null; dnsProvider = "hetzner"; };
+  security.acme.certs."${domain}" = { };
   services.nginx.virtualHosts."${domain}" = {
-    enableACME = true;
+    useACMEHost = domain;
     forceSSL = true;
     locations."/" = {
       proxyPass = "https://localhost:${builtins.toString config.services.prometheus.exporters.node.port }";
