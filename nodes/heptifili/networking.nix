@@ -36,15 +36,23 @@ in
   };
   systemd.network = {
     enable = true;
-    networks."10-wan" = {
-      networkConfig.DHCP = "yes";
-      matchConfig.Name = "enp87s0";
-      address = [
-        "${IPv4}/23"
-        "${IPv6}/64"
-      ];
-      routes = [{ Gateway = "192.168.10.1"; }];
-      linkConfig.RequiredForOnline = "routable";
+    networks = {
+      "10-wan" = {
+        networkConfig.DHCP = "yes";
+        matchConfig.Name = "enp87s0";
+        address = [
+          "${IPv4}/23"
+          "${IPv6}/64"
+        ];
+        routes = [{ Gateway = "192.168.10.1"; }];
+        linkConfig.RequiredForOnline = "routable";
+      };
+      # Direct link to sleipnir.xnee.net
+      "20-lan" = {
+        networkConfig.DHCP = "no";
+        matchConfig.Name = "enp86s0";
+        address = [ "192.168.12.1/30" ];
+      };
     };
   };
 }
