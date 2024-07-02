@@ -37,7 +37,7 @@ in
         };
         sleipnir = {
           name = "sleipnir.xnee.net";
-          id = "7LVG6JG-N7GRS45-B3THPPH-THPNTKJ-SHL5PX2-AMEVKWP-F24PED6-74CWNAV";
+          id = "KF4KT6E-7QKG6E6-XI62EOV-PYXNGBS-FYYGWN7-QES3TLA-24K75HH-ZPRSIQ3";
         };
       };
       folders = {
