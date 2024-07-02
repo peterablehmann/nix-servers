@@ -31,8 +31,8 @@ in
           name = "hasenpfote.xnee.net";
           id = "LAXQGRV-P7YOQLX-OACH3ZD-RHOQHFI-T233PKG-FKVKOMM-HQHM2FT-E7P6FAV";
         };
-        tab_s8_xnee_de = {
-          name = "Tab S8";
+        durin = {
+          name = "durin.xnee.net";
           id = "TWRW63W-65RC4D4-76XRSPS-RCLMBF2-4W3GLAV-4M2DN36-R3BHNZM-ZXDLQAB";
         };
         sleipnir = {
@@ -44,17 +44,17 @@ in
         keepass = {
           id = "56n2x-jhoz6";
           path = "~/keepass";
-          devices = [ "kleeblatt" "hasenpfote" "tab_s8_xnee_de" "sleipnir" ];
+          devices = [ "kleeblatt" "hasenpfote" "durin" "sleipnir" ];
         };
         obsidianvault = {
           id = "esczl-qkfaz";
           path = "~/obsidianvault";
-          devices = [ "kleeblatt" "hasenpfote" "tab_s8_xnee_de" "sleipnir" ];
+          devices = [ "kleeblatt" "hasenpfote" "durin" "sleipnir" ];
         };
         dcim = {
           id = "vpehd-xcue1";
           path = "~/dcim";
-          devices = [ "kleeblatt" "hasenpfote" "tab_s8_xnee_de" "sleipnir" ];
+          devices = [ "kleeblatt" "hasenpfote" "durin" "sleipnir" ];
         };
       };
     };
