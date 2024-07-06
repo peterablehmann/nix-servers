@@ -5,7 +5,7 @@
 let
   inherit (config.lib.topology) mkConnectionRev;
   IPv4 = "192.168.10.10";
-  IPv6 = "fd00::10:10";
+  IPv6 = "fde6:bbc7:8946:7387::10:10";
 in
 {
   topology.self.interfaces.eth0 = {
