@@ -55,4 +55,5 @@ in
       };
     };
   };
+  services.tailscale.extraUpFlags = [ "--advertise-routes=192.168.10.0/23,fde6:bbc7:8946:7387::/64" ];
 }
