@@ -136,6 +136,7 @@
         kanidm = ./modules/kanidm.nix;
         paperless = ./modules/paperless.nix;
         syncthing = ./modules/syncthing.nix;
+        uptime-kuma = ./modules/uptime-kuma.nix;
       };
 
       dns = (nixos-dns.utils.generate nixpkgs.legacyPackages.x86_64-linux).octodnsConfig {
