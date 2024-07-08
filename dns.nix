@@ -82,10 +82,6 @@
           };
         };
         "fritzbox".cname.data = "pm50yyz373t4yr6i.myfritz.net";
-        "openstack" = {
-          a.data = "88.198.5.88";
-          aaaa.data = " 2a01:4f8:222:23a4::1";
-        };
       };
     };
 }
