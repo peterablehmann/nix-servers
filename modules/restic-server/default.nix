@@ -13,6 +13,7 @@ in
     forceSSL = true;
     locations."/" = {
       proxyPass = "http://${config.services.restic.server.listenAddress}";
+      extraConfig = "client_max_body_size 10G;";
     };
   };
 
