@@ -39,7 +39,7 @@ in
     networks = {
       "10-wan" = {
         networkConfig.DHCP = "yes";
-        matchConfig.MACAddress = "6c:1f:f7:0c:c1:bc";
+        matchConfig.MACAddress = "6c:1f:f7:0c:c1:bb";
         address = [
           "${IPv4}/23"
           "${IPv6}/64"
@@ -50,7 +50,7 @@ in
       # Direct link to sleipnir.xnee.net
       "20-lan" = {
         networkConfig.DHCP = "no";
-        matchConfig.MACAddress = "6c:1f:f7:0c:c1:bb";
+        matchConfig.MACAddress = "6c:1f:f7:0c:c1:bc";
         address = [ "192.168.12.1/30" ];
       };
     };
