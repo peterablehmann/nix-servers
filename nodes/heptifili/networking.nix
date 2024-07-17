@@ -52,6 +52,7 @@ in
         networkConfig.DHCP = "no";
         matchConfig.MACAddress = "6c:1f:f7:0c:c1:bc";
         address = [ "192.168.12.1/30" ];
+        linkConfig.RequiredForOnline = "no";
       };
     };
   };
