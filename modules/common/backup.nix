@@ -49,6 +49,9 @@ in
           "backup/wasabi" = {
             inherit sopsFile;
           };
+          "backup/heptifili" = {
+            inherit sopsFile;
+          };
         };
 
       programs.ssh = {
@@ -63,5 +66,6 @@ in
       };
       services.restic.backups."${config.networking.hostName}-hetzner" = mkResticConfig { repository = "sftp://u371467-sub2@u371467.your-storagebox.de:22//backup"; inherit (cfg) paths exclude; };
       services.restic.backups."${config.networking.hostName}-wasabi" = mkResticConfig { repository = "s3:https://s3.eu-central-2.wasabisys.com/backup-xnee-net"; environmentFile = config.sops.secrets."backup/wasabi".path; inherit (cfg) paths exclude; };
+      services.restic.backups."${config.networking.hostName}-heptifili" = mkResticConfig { repository = "rest:https://restic.heptifili.xnee.net/nix-servers/user"; environmentFile = config.sops.secrets."backup/heptifili".path; inherit (cfg) paths exclude; };
     };
 }
