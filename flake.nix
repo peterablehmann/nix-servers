@@ -137,6 +137,7 @@
         paperless = ./modules/paperless.nix;
         syncthing = ./modules/syncthing.nix;
         uptime-kuma = ./modules/uptime-kuma.nix;
+        restic-server = ./modules/restic-server;
       };
 
       dns = (nixos-dns.utils.generate nixpkgs.legacyPackages.x86_64-linux).octodnsConfig {
