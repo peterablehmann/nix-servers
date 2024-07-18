@@ -9,6 +9,5 @@
     inputs.self.nixosModules.monitoring
     inputs.self.nixosModules.kanidm
     inputs.self.nixosModules.paperless
-    inputs.self.nixosModules.uptime-kuma
   ];
 }
