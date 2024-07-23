@@ -33,6 +33,7 @@ in
       "2a01:4ff:ff00::add:1"
       "2a01:4ff:ff00::add:2"
     ];
+    timeServers = [ "ntp.hetzner.com" ];
     dhcpcd.enable = false;
   };
   systemd.network = {
