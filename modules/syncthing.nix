@@ -18,7 +18,7 @@ in
 
   services.syncthing = {
     enable = true;
-    dataDir = "/data/syncthing";
+    dataDir = "/var/lib/syncthing";
     guiAddress = "127.0.0.1:8384";
     settings = {
       gui.insecureSkipHostcheck = true;
