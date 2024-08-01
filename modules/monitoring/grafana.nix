@@ -1,5 +1,6 @@
 { config
 , pkgs
+, inputs
 , ...
 }:
 let
@@ -23,14 +24,37 @@ in
     };
   };
 
+  sops.secrets."oauth2/grafana/token" = {
+    sopsFile = "${inputs.self}/secrets/ymir.yaml";
+    owner = "grafana";
+  };
+
   services.grafana = {
     enable = true;
     settings = {
       server = {
         http_addr = "127.0.0.1";
         http_port = 3312;
+        root_url = "https://${domain}";
         inherit domain;
         enforce_domain = true;
+      };
+      "auth.generic_oauth"   = {
+        enabled = true;
+        name = "Kanidm";
+        client_id = "grafana";
+        client_secret = "$__file{${config.sops.secrets."oauth2/grafana/token".path}}";
+        scopes = "openid,profile,email,groups";
+        auth_url = "https://idm.xnee.net/ui/oauth2";
+        token_url = "https://idm.xnee.net/oauth2/token";
+        api_url = "https://idm.xnee.net/oauth2/openid/grafana/userinfo";
+        use_pkce = true;
+        use_refresh_token = true;
+        allow_sign_up = true;
+        login_attribute_path = "preferred_username";
+        groups_attribute_path = "groups";
+        role_attribute_path = "contains(grafana_role[*], 'GrafanaAdmin') && 'GrafanaAdmin' || contains(grafana_role[*], 'Admin') && 'Admin' || contains(grafana_role[*], 'Editor') && 'Editor' || 'Viewer'";
+        allow_assign_grafana_admin = true;
       };
     };
     provision = {
