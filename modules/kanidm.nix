@@ -26,7 +26,7 @@ in
   services.kanidm = {
     enableClient = true;
     clientSettings = {
-      uri = domain;
+      uri = "https://${domain}";
       verify_ca = true;
       verify_hostnames = true;
     };
