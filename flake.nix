@@ -138,6 +138,7 @@
         syncthing = ./modules/syncthing.nix;
         uptime-kuma = ./modules/uptime-kuma.nix;
         restic-server = ./modules/restic-server;
+        nextcloud = ./modules/nextcloud.nix;
       };
 
       dns = (nixos-dns.utils.generate nixpkgs.legacyPackages.x86_64-linux).octodnsConfig {
