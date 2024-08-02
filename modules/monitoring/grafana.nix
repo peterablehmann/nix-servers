@@ -39,7 +39,7 @@ in
         inherit domain;
         enforce_domain = true;
       };
-      "auth.generic_oauth"   = {
+      "auth.generic_oauth" = {
         enabled = true;
         name = "Kanidm";
         client_id = "grafana";

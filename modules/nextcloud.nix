@@ -20,15 +20,16 @@ in
     forceSSL = true;
   };
 
-  sops.secrets = let
-    owner = "nextcloud";
-  in
-  {
-    "nextcloud/adminpass" = {
-      sopsFile = "${inputs.self}/secrets/heptifili.yaml";
-      inherit owner;
+  sops.secrets =
+    let
+      owner = "nextcloud";
+    in
+    {
+      "nextcloud/adminpass" = {
+        sopsFile = "${inputs.self}/secrets/heptifili.yaml";
+        inherit owner;
+      };
     };
-  };
 
   services.nextcloud = {
     enable = true;
