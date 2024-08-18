@@ -134,6 +134,7 @@
         monitoring = ./modules/monitoring;
         netbox = ./modules/netbox.nix;
         kanidm = ./modules/kanidm.nix;
+        keycloak = ./modules/keycloak.nix;
         paperless = ./modules/paperless.nix;
         syncthing = ./modules/syncthing.nix;
         uptime-kuma = ./modules/uptime-kuma.nix;

@@ -8,6 +8,7 @@
     ./networking.nix
     inputs.self.nixosModules.monitoring
     inputs.self.nixosModules.kanidm
+    inputs.self.nixosModules.keycloak
     inputs.self.nixosModules.paperless
   ];
 }
