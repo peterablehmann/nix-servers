@@ -10,5 +10,6 @@
     inputs.self.nixosModules.kanidm
     inputs.self.nixosModules.keycloak
     inputs.self.nixosModules.paperless
+    inputs.self.nixosModules.radicale
   ];
 }

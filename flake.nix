@@ -140,6 +140,7 @@
         uptime-kuma = ./modules/uptime-kuma.nix;
         restic-server = ./modules/restic-server;
         nextcloud = ./modules/nextcloud.nix;
+        radicale = ./modules/radicale;
       };
 
       dns = (nixos-dns.utils.generate nixpkgs.legacyPackages.x86_64-linux).octodnsConfig {
