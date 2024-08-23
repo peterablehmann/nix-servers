@@ -5,7 +5,6 @@
   imports = [
     inputs.self.nixosModules.syncthing
     inputs.self.nixosModules.restic-server
-    inputs.self.nixosModules.nextcloud
     ./modules/zfs.nix
     ./modules/zfs-exporter.nix
     ./disko.nix
