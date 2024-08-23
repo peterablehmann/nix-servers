@@ -12,7 +12,7 @@ let
     timerConfig = {
       OnCalendar = "daily";
       Persistent = true;
-      RandomizedDelaySec = "6h";
+      RandomizedDelaySec = "2h";
     };
     passwordFile = config.sops.secrets."backup/password".path;
     pruneOpts = [
