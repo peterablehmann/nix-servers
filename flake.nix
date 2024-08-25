@@ -57,7 +57,8 @@
     } @ inputs:
     let
       inherit (self) outputs;
-      conf = self.nixosConfigurations;
+      # let's filter the installer configuration since we don't want to deploy it with colmena
+      conf = builtins.removeAttrs self.nixosConfigurations [ "home-installer" ];
     in
     (flake-utils.lib.eachDefaultSystem (system:
     let
