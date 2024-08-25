@@ -87,6 +87,13 @@
       } // builtins.mapAttrs (name: value: { imports = value._module.args.modules; }) conf;
 
       nixosConfigurations = {
+        home-installer = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          modules = [
+            ./installers/home
+          ];
+        };
+
         heptifili = nixpkgs.lib.nixosSystem {
           specialArgs = { inherit inputs outputs; };
           system = "x86_64-linux";
