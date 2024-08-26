@@ -72,15 +72,9 @@
       };
       "xnee.de" = lib.recursiveUpdate defaults { };
       "xnee.net" = lib.recursiveUpdate defaults {
-        "ip.heptifili" = {
-          a = {
-            data = "192.168.10.10";
-            ttl = 1;
-          };
-          aaaa = {
-            data = "fde6:bbc7:8946:7387::10:10";
-            ttl = 1;
-          };
+        "yrsa" = {
+          a.data = "192.168.10.10";
+          aaaa.data = "fde6:bbc7:8946:7387::10:10";
         };
         "fritzbox".cname.data = "pm50yyz373t4yr6i.myfritz.net";
       };
