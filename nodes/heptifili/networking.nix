@@ -4,8 +4,8 @@
 }:
 let
   inherit (config.lib.topology) mkConnectionRev;
-  IPv4 = "192.168.10.10";
-  IPv6 = "fde6:bbc7:8946:7387::10:10";
+  IPv4 = "192.168.33.1";
+  IPv6 = "fde6:bbc7:8946:7387::2101";
 in
 {
   topology.self.interfaces.eth0 = {
@@ -26,10 +26,10 @@ in
     useNetworkd = true;
     useDHCP = false;
     hostName = "heptifili";
-    usePredictableInterfaceNames = lib.mkDefault true;
+    usePredictableInterfaceNames = lib.mkDefault false;
     domain = "xnee.net";
     nameservers = [
-      "192.168.10.10"
+      "192.168.32.1"
       "fde6:bbc7:8946:7387:6b4:feff:feca:b60b"
     ];
     timeServers = [ "fde6:bbc7:8946:7387:6b4:feff:feca:b60b" ];
@@ -39,23 +39,16 @@ in
     enable = true;
     networks = {
       "10-wan" = {
-        networkConfig.DHCP = "yes";
-        matchConfig.MACAddress = "6c:1f:f7:0c:c1:bb";
+        networkConfig.DHCP = "ipv6";
+        matchConfig.Name = "eth0";
         address = [
-          "${IPv4}/23"
+          "${IPv4}/22"
           "${IPv6}/64"
         ];
         routes = [{ Gateway = "192.168.10.1"; }];
         linkConfig.RequiredForOnline = "routable";
       };
-      # Direct link to sleipnir.xnee.net
-      "20-lan" = {
-        networkConfig.DHCP = "no";
-        matchConfig.MACAddress = "6c:1f:f7:0c:c1:bc";
-        address = [ "192.168.12.1/30" ];
-        linkConfig.RequiredForOnline = "no";
-      };
     };
   };
-  services.tailscale.extraUpFlags = [ "--advertise-routes=192.168.10.0/23,fde6:bbc7:8946:7387::/64" ];
+  services.tailscale.extraUpFlags = [ "--advertise-routes=192.168.32.0/22,fde6:bbc7:8946:7387::/64" ];
 }

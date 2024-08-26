@@ -72,6 +72,10 @@
       };
       "xnee.de" = lib.recursiveUpdate defaults { };
       "xnee.net" = lib.recursiveUpdate defaults {
+        "ip.heptifili".aaaa = {
+          data = "fde6:bbc7:8946:7387::2101";
+          ttl = 1;
+        };
         "yrsa" = {
           a.data = "192.168.32.10";
           aaaa.data = "fde6:bbc7:8946:7387::10:10";
