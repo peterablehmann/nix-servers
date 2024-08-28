@@ -15,12 +15,6 @@ let
       RandomizedDelaySec = "2h";
     };
     passwordFile = config.sops.secrets."backup/password".path;
-    pruneOpts = [
-      "--keep-last 7"
-      "--keep-daily 31"
-      "--keep-monthly 6"
-      "--keep-yearly 100"
-    ];
   };
 in
 {
