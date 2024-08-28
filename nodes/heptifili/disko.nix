@@ -2,7 +2,7 @@
   disko.devices = {
     disk = {
       sda = {
-        device = "/dev/nvme0n1";
+        device = "/dev/sda";
         type = "disk";
         content = {
           type = "gpt";
@@ -10,7 +10,7 @@
             ESP = {
               label = "EFI";
               type = "EF00";
-              size = "500M";
+              size = "200M";
               content = {
                 type = "filesystem";
                 format = "vfat";

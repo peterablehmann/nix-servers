@@ -45,7 +45,7 @@ in
           "${IPv4}/22"
           "${IPv6}/64"
         ];
-        routes = [{ Gateway = "192.168.10.1"; }];
+        routes = [{ Gateway = "192.168.32.1"; }];
         linkConfig.RequiredForOnline = "routable";
       };
     };
