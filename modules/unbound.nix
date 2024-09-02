@@ -9,7 +9,7 @@
     settings = {
       server = {
         interface = [ "eth0" ];
-        access-control = [ 
+        access-control = [
           "192.168.32.0/22 allow"
           "fde6:bbc7:8946::/48 allow"
         ];
@@ -19,7 +19,7 @@
         {
           name = ".";
           #forward-addr = "9.9.9.9#dns.quad9.net";
-          forward-addr = [ 
+          forward-addr = [
             "9.9.9.9#dns.quad9.net"
             "149.112.112.112#dns.quad9.net"
             "2620:fe::fe#dns.quad9.net"
