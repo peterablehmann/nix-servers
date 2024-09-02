@@ -155,6 +155,7 @@
         paperless = ./modules/paperless.nix;
         syncthing = ./modules/syncthing.nix;
         uptime-kuma = ./modules/uptime-kuma.nix;
+        unbound = ./modules/unbound.nix;
         restic-server = ./modules/restic-server;
         nextcloud = ./modules/nextcloud.nix;
         radicale = ./modules/radicale;
