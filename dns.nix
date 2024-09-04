@@ -84,6 +84,10 @@
           a.data = "192.168.33.2";
           aaaa.data = "fde6:bbc7:8946:7387::2102";
         };
+        "mikrotik" = {
+          a.data = "192.168.33.3";
+          aaaa.data = "fde6:bbc7:8946:7387::2103";
+        };
         "yrsa" = {
           a.data = "192.168.32.10";
           aaaa.data = "fde6:bbc7:8946:7387::200b";
