@@ -93,6 +93,7 @@
           aaaa.data = "fde6:bbc7:8946:7387::200b";
         };
         "fritzbox".cname.data = "pm50yyz373t4yr6i.myfritz.net";
+        "upptime".cname.data = "peterablehmann.github.io";
       };
     };
 }
