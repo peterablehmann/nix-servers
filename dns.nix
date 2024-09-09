@@ -72,6 +72,10 @@
       };
       "xnee.de" = lib.recursiveUpdate defaults { };
       "xnee.net" = lib.recursiveUpdate defaults {
+        "cloudron" = {
+          a.data = "78.47.198.250";
+          aaaa.data = "2a01:4f8:1c1b:7799::1";
+        };
         "ip.heptifili".aaaa = {
           data = "fde6:bbc7:8946:7387::2101";
           ttl = 1;
