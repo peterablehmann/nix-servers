@@ -17,6 +17,7 @@ in
   security.acme.certs.${domain} = { };
   services.nginx.virtualHosts."${domain}" = {
     useACMEHost = domain;
+    kTLS = true;
     forceSSL = true;
     locations."/" = {
       proxyPass = "https://[${config.services.keycloak.settings.http-host}]:${toString config.services.keycloak.settings.https-port}";

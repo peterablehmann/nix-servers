@@ -10,6 +10,7 @@ in
   security.acme.certs.${domain} = { };
   services.nginx.virtualHosts."${domain}" = {
     useACMEHost = domain;
+    kTLS = true;
     forceSSL = true;
     locations."/" = {
       proxyPass = "https://${config.services.kanidm.serverSettings.bindaddress}";

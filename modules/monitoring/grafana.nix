@@ -17,6 +17,7 @@ in
 
   services.nginx.virtualHosts."${domain}" = {
     useACMEHost = domain;
+    kTLS = true;
     forceSSL = true;
     locations."/" = {
       proxyPass = "http://${config.services.grafana.settings.server.http_addr}:${builtins.toString config.services.grafana.settings.server.http_port }";

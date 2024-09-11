@@ -23,6 +23,7 @@
   security.acme.certs.${"map.${config.networking.fqdn}"} = { };
   services.nginx.virtualHosts."map.${config.networking.fqdn}" = {
     useACMEHost = "map.${config.networking.fqdn}";
+    kTLS = true;
     forceSSL = true;
     locations."/" = {
       proxyPass = "http://127.0.0.1:8080";

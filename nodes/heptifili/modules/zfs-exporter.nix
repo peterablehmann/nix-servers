@@ -21,6 +21,7 @@ in
   security.acme.certs."${domain}" = { webroot = null; dnsProvider = "hetzner"; };
   services.nginx.virtualHosts."${domain}" = {
     useACMEHost = domain;
+    kTLS = true;
     forceSSL = true;
     locations."/" = {
       proxyPass = "https://${config.services.prometheus.exporters.zfs.listenAddress}:${builtins.toString config.services.prometheus.exporters.zfs.port }";

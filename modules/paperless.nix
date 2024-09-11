@@ -40,6 +40,7 @@ in
   security.acme.certs.${domain} = { };
   services.nginx.virtualHosts."${domain}" = {
     useACMEHost = domain;
+    kTLS = true;
     forceSSL = true;
     locations."/" = {
       proxyPass = "http://${config.services.paperless.address}:${builtins.toString config.services.paperless.port}";

@@ -23,6 +23,7 @@ in
     user = "netbox";
     virtualHosts."${domain}" = {
       useACMEHost = domain;
+      kTLS = true;
       forceSSL = true;
       locations = {
         "/" = {

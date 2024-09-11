@@ -29,6 +29,7 @@ in
   services = {
     nginx.virtualHosts."${domain}" = {
       useACMEHost = domain;
+      kTLS = true;
       forceSSL = true;
     };
 

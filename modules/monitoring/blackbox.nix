@@ -21,6 +21,7 @@ in
   networking.domains.subDomains."${domain}" = { };
   services.nginx.virtualHosts."${domain}" = {
     useACMEHost = domain;
+    kTLS = true;
     forceSSL = true;
     locations."/" = {
       proxyPass = "https://localhost:${builtins.toString config.services.prometheus.exporters.blackbox.port }";

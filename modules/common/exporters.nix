@@ -22,6 +22,7 @@ in
   services.nginx.virtualHosts."${domain}" = {
     useACMEHost = domain;
     forceSSL = true;
+    kTLS = true;
     locations."/" = {
       proxyPass = "https://localhost:${builtins.toString config.services.prometheus.exporters.node.port }";
     };
