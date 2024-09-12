@@ -94,10 +94,6 @@
         };
         "fritzbox".cname.data = "pm50yyz373t4yr6i.myfritz.net";
         "upptime".cname.data = "peterablehmann.github.io";
-        "truenas-test" = {
-          a.data = "78.47.198.250";
-          aaaa.data = "2a01:4f8:1c1b:7799::1";
-        };
       };
     };
 }
