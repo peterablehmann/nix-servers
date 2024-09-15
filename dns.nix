@@ -94,6 +94,7 @@
         };
         "fritzbox".cname.data = "pm50yyz373t4yr6i.myfritz.net";
         "upptime".cname.data = "peterablehmann.github.io";
+        "truenas".a.data = "192.168.32.10";
       };
     };
 }
