@@ -92,7 +92,10 @@
           a.data = "192.168.32.10";
           aaaa.data = "fde6:bbc7:8946:7387::200a";
         };
-        "fritzbox".cname.data = "pm50yyz373t4yr6i.myfritz.net";
+        "fritzbox" = {
+          a.data = "192.168.32.1";
+          aaaa.data = "fde6:bbc7:8946:7387:6b4:feff:feca:b60b";
+        };
         "upptime".cname.data = "peterablehmann.github.io";
       };
     };
