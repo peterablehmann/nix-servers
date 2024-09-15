@@ -80,6 +80,10 @@
           a.data = "192.168.32.10";
           aaaa.data = "fde6:bbc7:8946:7387::200a";
         };
+        "proxmox" = {
+          a.data = [ "192.168.32.10" ];
+          aaaa.data = [ "fde6:bbc7:8946:7387::200a" ];
+        };
         "fritzbox" = {
           a.data = "192.168.32.1";
           aaaa.data = "fde6:bbc7:8946:7387:6b4:feff:feca:b60b";
