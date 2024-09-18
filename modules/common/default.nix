@@ -21,7 +21,7 @@
   ];
 
   deployment = {
-    targetHost = config.networking.fqdn;
+    targetHost = config.networking.hostName;
   };
 
   networking.domains.defaultTTL = 60;
