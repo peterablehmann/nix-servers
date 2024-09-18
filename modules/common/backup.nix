@@ -10,9 +10,9 @@ let
     initialize = true;
     inherit repository environmentFile paths exclude;
     timerConfig = {
-      OnCalendar = "daily";
+      OnCalendar = "*:00,30:00";
       Persistent = true;
-      RandomizedDelaySec = "2h";
+      RandomizedDelaySec = "5m";
     };
     passwordFile = config.sops.secrets."backup/password".path;
   };
