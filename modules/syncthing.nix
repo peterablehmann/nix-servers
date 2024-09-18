@@ -60,4 +60,6 @@ in
       };
     };
   };
+
+  backup.paths = [ config.services.syncthing.dataDir ];
 }
