@@ -24,12 +24,13 @@ in
     kTLS = true;
     forceSSL = true;
     locations."/" = {
-      proxyPass = "https://localhost:${builtins.toString config.services.prometheus.exporters.blackbox.port }";
+      proxyPass = "https://${config.services.prometheus.exporters.blackbox.listenAddress}:${builtins.toString config.services.prometheus.exporters.blackbox.port }";
     };
   };
 
   services.prometheus.exporters.blackbox = {
     enable = true;
+    listenAddress = "[::1]";
     port = 3044;
     extraFlags = [
       "--web.config.file=${webConfig}"

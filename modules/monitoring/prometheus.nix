@@ -12,6 +12,7 @@
   services = {
     prometheus = {
       enable = true;
+      listenAddress = "[::1]";
       port = 9001;
       checkConfig = "syntax-only";
       retentionTime = "90d";

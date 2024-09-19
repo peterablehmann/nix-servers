@@ -60,6 +60,8 @@ in
   services.paperless = {
     enable = true;
     passwordFile = config.sops.secrets."paperless/password".path;
+    address = "[::1]";
+    port = 28981;
     settings = {
       PAPERLESS_ADMIN_USER = "peter";
       PAPERLESS_PRE_CONSUME_SCRIPT = pre_consume_script.outPath;

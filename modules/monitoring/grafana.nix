@@ -20,7 +20,7 @@ in
     kTLS = true;
     forceSSL = true;
     locations."/" = {
-      proxyPass = "http://${config.services.grafana.settings.server.http_addr}:${builtins.toString config.services.grafana.settings.server.http_port }";
+      proxyPass = "http://[${config.services.grafana.settings.server.http_addr}]:${builtins.toString config.services.grafana.settings.server.http_port }";
       proxyWebsockets = true;
     };
   };
@@ -34,7 +34,7 @@ in
     enable = true;
     settings = {
       server = {
-        http_addr = "127.0.0.1";
+        http_addr = "::1";
         http_port = 3312;
         root_url = "https://${domain}";
         inherit domain;
@@ -62,7 +62,7 @@ in
       datasources.settings.datasources = [
         {
           name = "prometheus";
-          url = "http://localhost:9001";
+          url = "http://${config.services.prometheus.listenAddress}:${builtins.toString config.services.prometheus.port}";
           type = "prometheus";
           editable = false;
         }

@@ -24,12 +24,13 @@ in
     forceSSL = true;
     kTLS = true;
     locations."/" = {
-      proxyPass = "https://localhost:${builtins.toString config.services.prometheus.exporters.node.port }";
+      proxyPass = "https://${config.services.prometheus.exporters.node.listenAddress}:${builtins.toString config.services.prometheus.exporters.node.port }";
     };
   };
 
   services.prometheus.exporters.node = {
     enable = true;
+    listenAddress = "[::1]";
     port = 3043;
     enabledCollectors = [
       "systemd"
