@@ -37,6 +37,7 @@ in
       "--tls"
       "--tls-cert=${tls-dir}/fullchain.pem"
       "--tls-key=${tls-dir}/key.pem"
-      ];
+      "--prometheus"
+    ];
   };
 }

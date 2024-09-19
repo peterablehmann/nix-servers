@@ -75,6 +75,20 @@
           ];
         }
         {
+          job_name = "restic";
+          scrape_interval = "5s";
+          scheme = "https";
+          basic_auth = {
+            username = "metrics";
+            password_file = config.sops.secrets."prometheus/basic_auth".path;
+          };
+          static_configs = [{
+            targets = lib.mapAttrsToList (name: host: "restic.${host.config.networking.fqdn}") (
+              lib.filterAttrs (name: host: host.config.services.restic.server.enable) inputs.self.nixosConfigurations
+            );
+          }];
+        }
+        {
           job_name = "blackbox_exporter";
           scrape_interval = "1m";
           basic_auth = {
