@@ -84,6 +84,15 @@ in
             hash = "sha256-iu1huuK9ebEgcf8A3qM92N0rq7rr7uM6oynzDY/wv7M=";
           };
         }
+
+        {
+          name = "Restic REST Server";
+          type = "file";
+          options.path = pkgs.fetchurl {
+            url = "https://raw.githubusercontent.com/peterablehmann/grafana-dashboards/refs/heads/main/restic-rest-server-dashboard.json";
+            hash = "sha256-SiX1E2d8+FQhiqFzog435ImkuiLgONXusKTN3s+UzIc=";
+          };
+        }
       ];
     };
   };
