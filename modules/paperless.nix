@@ -67,6 +67,8 @@ in
     address = "[::1]";
     port = 28981;
     settings = {
+      PAPERLESS_URL = "https://paperless.xnee.net";
+      PAPERLESS_TIME_ZONE = "Europe/Berlin";
       PAPERLESS_ADMIN_USER = "peter";
       PAPERLESS_PRE_CONSUME_SCRIPT = pre_consume_script.outPath;
       PAPERLESS_OCR_LANGUAGE = "deu";
