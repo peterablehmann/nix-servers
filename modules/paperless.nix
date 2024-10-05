@@ -55,6 +55,10 @@ in
       sopsFile = "${inputs.self}/secrets/ymir.yaml";
       owner = "paperless";
     };
+    "paperless/backupPassword" = {
+      sopsFile = "${inputs.self}/secrets/ymir.yaml";
+      owner = "paperless";
+    };
   };
 
   services.paperless = {
@@ -68,6 +72,23 @@ in
       PAPERLESS_OCR_LANGUAGE="deu";
       PAPERLESS_OCR_USER_ARGS = {
         "invalidate_digital_signatures" = true;
+      };
+    };
+  };
+
+  systemd = {
+    timers.paperless-export = {
+      wantedBy = [ "timers.target" ];
+      timerConfig = {
+        OnCalendar = "23:50";
+        Unit = "paperless-export.service";
+      };
+    };
+    services.paperless-export = {
+      script = "${config.services.paperless.dataDir}/paperless-manage document_exporter -cd --passphrase \"$(cat ${config.sops.secrets."paperless/backupPassword".path})\" --no-progress-bar ${config.services.paperless.dataDir}/backup";
+      serviceConfig = {
+        Type = "oneshot";
+        User = "paperless";
       };
     };
   };
