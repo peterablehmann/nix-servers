@@ -85,7 +85,10 @@ in
       };
     };
     services.paperless-export = {
-      script = "${config.services.paperless.dataDir}/paperless-manage document_exporter -cd --passphrase \"$(cat ${config.sops.secrets."paperless/backupPassword".path})\" --no-progress-bar ${config.services.paperless.dataDir}/backup";
+      script = ''
+        [[ -d ${config.services.paperless.dataDir}/backup ]] || mkdir ${config.services.paperless.dataDir}/backup
+        ${config.services.paperless.dataDir}/paperless-manage document_exporter -cd --passphrase \"$(cat ${config.sops.secrets."paperless/backupPassword".path})\" --no-progress-bar ${config.services.paperless.dataDir}/backup
+      '';
       serviceConfig = {
         Type = "oneshot";
         User = "paperless";
