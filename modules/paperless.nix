@@ -69,7 +69,7 @@ in
     settings = {
       PAPERLESS_ADMIN_USER = "peter";
       PAPERLESS_PRE_CONSUME_SCRIPT = pre_consume_script.outPath;
-      PAPERLESS_OCR_LANGUAGE="deu";
+      PAPERLESS_OCR_LANGUAGE = "deu";
       PAPERLESS_OCR_USER_ARGS = {
         "invalidate_digital_signatures" = true;
       };
