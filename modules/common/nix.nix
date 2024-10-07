@@ -1,7 +1,11 @@
+{ pkgs
+, ...
+}:
 {
   nixpkgs.config.allowUnfree = true;
 
   nix = {
+    package = pkgs.lix;
     settings = {
       trusted-users = [
         "root"
