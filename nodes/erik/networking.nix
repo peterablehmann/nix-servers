@@ -41,7 +41,7 @@ in
     networks = {
       "10-wan" = {
         networkConfig.DHCP = "ipv6";
-        matchConfig.Name = "eth0";
+        matchConfig.MACAddress = "d8:5e:d3:12:3f:31";
         address = [
           "${IPv4}/22"
           "${IPv6}/64"

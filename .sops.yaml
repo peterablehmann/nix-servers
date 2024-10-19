@@ -3,7 +3,7 @@ keys:
   - &system_mns age1s7xs405mkw2gagclktekz27lxhh38se7adrkdfc0x2l28j9xsvdqcdrsyr
   - &system_ymir age183wgf8xp46chqk049ekyg7vsan2p50zh4lqfllcllzwuekeywdzqn7pz0q
   - &system_heptifili age1nany90gu4anl7vez3nw7fy0y32vrnp4075dqnc4j9797p44765vsuqzfl5
-  - &system_erik age1t0jhu8e23xn6qmye9ghrt0m49l86a8u08wwe0cjulkvytj5gqgdqhh8wtm
+  - &system_erik age1p6fu4sdzganl8058d8zfecyd8eldjyg4ea2p8xspzpkm5ag8pv5s4rngr7
 
 creation_rules:
   - path_regex: secrets/common.(yaml|json|env|ini)$
