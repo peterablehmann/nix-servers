@@ -33,6 +33,7 @@ in
     listenAddress = "[::1]";
     port = 3043;
     enabledCollectors = [
+      "ethtool"
       "systemd"
     ];
     extraFlags = [
