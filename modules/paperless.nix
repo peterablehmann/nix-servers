@@ -28,6 +28,7 @@ let
         echo "[PRE] Password correct. Removing password..."
             ${pkgs.qpdf}/bin/qpdf --decrypt --replace-input --password=$(cat ${config.sops.secrets."paperless/taxID".path}) "''${DOCUMENT_WORKING_PATH}"
             echo "[PRE] Successfully removed password"
+            [[ -f "$DOCUMENT_WORKING_PATH.~qpdf-orig" ]] && printf '[PRE] Remove .~qpdf-orig' && rm $DOCUMENT_WORKING_PATH.~qpdf-orig
             exit 0
     fi
 
