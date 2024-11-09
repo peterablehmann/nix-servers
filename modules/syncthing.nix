@@ -26,7 +26,7 @@ in
       devices = {
         kleeblatt = {
           name = "kleeblatt.xnee.net";
-          id = "5UXRXPX-IC4KO4H-E5KFHRI-ROKQBI4-IORXZZN-S5HHRP2-QSVNN3I-MTQIEAU";
+          id = "XBJODIF-CN5ISJI-3VW6NE4-6EVH6US-3633SA4-EPNVHMI-O3KDIQU-ZL4YDAZ";
         };
         hasenpfote = {
           name = "hasenpfote.xnee.net";
