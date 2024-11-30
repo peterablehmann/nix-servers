@@ -89,6 +89,16 @@
           aaaa.data = "fde6:bbc7:8946:7387:6b4:feff:feca:b60b";
         };
         "upptime".cname.data = "peterablehmann.github.io";
+        "factorio" = {
+          a.data = [ "213.133.102.102" ];
+          aaaa.data = [ "2a01:4f8:a0:841d::2" ];
+        };
+        "_factorio._udp.walistinkt".srv.data = {
+          priority = 10;
+          weight = 10;
+          target = "factorio.xnee.net";
+          port = 20108;
+        };
       };
     };
 }
