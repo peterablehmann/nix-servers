@@ -35,5 +35,7 @@
 
   services.fwupd.enable = true;
 
+  programs.tmux.enable = true;
+
   system.stateVersion = "23.11";
 }
