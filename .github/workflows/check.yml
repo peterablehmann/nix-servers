@@ -53,3 +53,16 @@ jobs:
         run: nix develop --command bash -c 'octodns-sync --config-file result'
         env:
           HETZNER_DNS_API: ${{ secrets.HETZNER_DNS_API }}
+  
+  Build:
+    needs: [Check, Lint]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v4
+      - name: Setup Nix
+        uses: DeterminateSystems/nix-installer-action@main
+        with:
+          diagnostic-endpoint: ""
+      - name: "Build system configurations"
+        run: nix develop --command bash -c 'colmena apply build'
