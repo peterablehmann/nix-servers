@@ -72,6 +72,10 @@
       };
       "xnee.de" = lib.recursiveUpdate defaults { };
       "xnee.net" = lib.recursiveUpdate defaults {
+        "vyos1" = {
+          a.data = "192.168.33.3";
+          aaaa.data = "fde6:bbc7:8946:7387::2103";
+        };
         "ip.heptifili".aaaa = {
           data = "fde6:bbc7:8946:7387::2101";
           ttl = 1;
