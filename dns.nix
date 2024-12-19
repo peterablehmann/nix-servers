@@ -76,6 +76,10 @@
           a.data = "192.168.33.3";
           aaaa.data = "fde6:bbc7:8946:7387::2103";
         };
+        "pdm" = {
+          a.data = "192.168.33.4";
+          aaaa.data = "fde6:bbc7:8946:7387::2104";
+        };
         "ip.heptifili".aaaa = {
           data = "fde6:bbc7:8946:7387::2101";
           ttl = 1;
