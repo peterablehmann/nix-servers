@@ -72,6 +72,11 @@
       };
       "xnee.de" = lib.recursiveUpdate defaults { };
       "xnee.net" = lib.recursiveUpdate defaults {
+        "" = {
+          a.data = "78.46.0.148";
+          aaaa.data = "2a01:4f8:d0a:2160::2";
+        };
+        "www".cname.data = "xnee.net";
         "vyos1" = {
           a.data = "192.168.33.3";
           aaaa.data = "fde6:bbc7:8946:7387::2103";
