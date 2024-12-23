@@ -11,7 +11,7 @@
             exchange = "www208.your-server.de";
             preference = 10;
           };
-          txt.data = "v=spf1 mx -all";
+          txt.data = [ "v=spf1 mx -all" ];
           ns.data = [
             "hydrogen.ns.hetzner.com"
             "oxygen.ns.hetzner.com"
@@ -75,6 +75,7 @@
         "" = {
           a.data = "78.46.0.148";
           aaaa.data = "2a01:4f8:d0a:2160::2";
+          txt.data = [ "TAILSCALE-fMbKHU9GGi8WDXsYeZxJ" ] ++ defaults."".txt.data;
         };
         "www".cname.data = "xnee.net";
         "vyos1" = {
