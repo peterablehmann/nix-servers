@@ -75,6 +75,7 @@
         "" = {
           a.data = "78.46.0.148";
           aaaa.data = "2a01:4f8:d0a:2160::2";
+          txt.data = "TAILSCALE-fMbKHU9GGi8WDXsYeZxJ";
         };
         "www".cname.data = "xnee.net";
         "vyos1" = {
