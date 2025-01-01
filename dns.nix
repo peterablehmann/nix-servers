@@ -78,18 +78,6 @@
           txt.data = [ "TAILSCALE-fMbKHU9GGi8WDXsYeZxJ" ] ++ defaults."".txt.data;
         };
         "www".cname.data = "xnee.net";
-        "vyos1" = {
-          a.data = "192.168.33.3";
-          aaaa.data = "fde6:bbc7:8946:7387::2103";
-        };
-        "vyos2" = {
-          a.data = "192.168.33.5";
-          aaaa.data = "fde6:bbc7:8946:7387::2105";
-        };
-        "vyos3" = {
-          a.data = "192.168.33.6";
-          aaaa.data = "fde6:bbc7:8946:7387::2106";
-        };
         "pdm" = {
           a.data = "192.168.33.4";
           aaaa.data = "fde6:bbc7:8946:7387::2104";
