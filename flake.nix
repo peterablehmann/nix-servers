@@ -142,6 +142,7 @@
         kanidm = ./modules/kanidm.nix;
         keycloak = ./modules/keycloak.nix;
         paperless = ./modules/paperless.nix;
+        pdns-recursor = ./modules/pdns-recursor.nix;
         syncthing = ./modules/syncthing.nix;
         uptime-kuma = ./modules/uptime-kuma.nix;
         unbound = ./modules/unbound.nix;
