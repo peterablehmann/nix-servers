@@ -48,18 +48,22 @@ in
       ];
     };
     api.address = "::1";
-    settings = {
-      webserver = true;
-      webserver-password = "$scrypt$ln=10,p=1,r=8$LHDOmP4OhG7E86Z6QtsXqQ==$cZlgiI+Y1gFqKh9pvNbJPm74oCs9Wsaqd0JyliSAPQE=";
-      forward-zones = [
-        "bigdriver.net=213.133.100.98;2a01:4f8:0:1::add:1098;88.198.229.192;2a01:4f8:0:1::add:2992;193.47.99.5;2001:67c:192c::add:5"
-        "hainsacker.de=213.133.100.98;2a01:4f8:0:1::add:1098;88.198.229.192;2a01:4f8:0:1::add:2992;193.47.99.5;2001:67c:192c::add:5"
-        "lehmann.ing=213.133.100.98;2a01:4f8:0:1::add:1098;88.198.229.192;2a01:4f8:0:1::add:2992;193.47.99.5;2001:67c:192c::add:5"
-        "lehmann.zone=213.133.100.98;2a01:4f8:0:1::add:1098;88.198.229.192;2a01:4f8:0:1::add:2992;193.47.99.5;2001:67c:192c::add:5"
-        "uic-fahrzeugnummer.de=213.133.100.98;2a01:4f8:0:1::add:1098;88.198.229.192;2a01:4f8:0:1::add:2992;193.47.99.5;2001:67c:192c::add:5"
-        "xnee.de=213.133.100.98;2a01:4f8:0:1::add:1098;88.198.229.192;2a01:4f8:0:1::add:2992;193.47.99.5;2001:67c:192c::add:5"
-        "xnee.net=213.133.100.98;2a01:4f8:0:1::add:1098;88.198.229.192;2a01:4f8:0:1::add:2992;193.47.99.5;2001:67c:192c::add:5"
-      ];
-    };
+    settings =
+      let
+        hetzner-nameserver = "213.133.100.98;2a01:4f8:0:1::add:1098;88.198.229.192;2a01:4f8:0:1::add:2992;193.47.99.5;2001:67c:192c::add:5";
+      in
+      {
+        webserver = true;
+        webserver-password = "$scrypt$ln=10,p=1,r=8$LHDOmP4OhG7E86Z6QtsXqQ==$cZlgiI+Y1gFqKh9pvNbJPm74oCs9Wsaqd0JyliSAPQE=";
+        forward-zones = [
+          "bigdriver.net=${hetzner-nameserver}"
+          "hainsacker.de=${hetzner-nameserver}"
+          "lehmann.ing=${hetzner-nameserver}"
+          "lehmann.zone=${hetzner-nameserver}"
+          "uic-fahrzeugnummer.de=${hetzner-nameserver}"
+          "xnee.de=${hetzner-nameserver}"
+          "xnee.net=${hetzner-nameserver}"
+        ];
+      };
   };
 }
