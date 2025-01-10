@@ -17,6 +17,7 @@
     ./nix.nix
     ./ssh.nix
     ./tailscale.nix
+    ./timesyncd.nix
     ./users.nix
   ];
 
