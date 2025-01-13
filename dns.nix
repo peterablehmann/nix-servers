@@ -71,6 +71,7 @@
         "www".cname.data = "uic-fahrzeugnummer.de";
       };
       "xnee.de" = lib.recursiveUpdate defaults {
+        proxy.a.data = "192.168.10.1";
         prometheus.a.data = "192.168.10.1";
         grafana.a.data = "192.168.10.1";
         mon1.a.data = "192.168.10.2";
