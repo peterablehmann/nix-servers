@@ -70,7 +70,12 @@
         };
         "www".cname.data = "uic-fahrzeugnummer.de";
       };
-      "xnee.de" = lib.recursiveUpdate defaults { };
+      "xnee.de" = lib.recursiveUpdate defaults {
+        grafana.a.data = "192.168.10.1";
+        mon1.a.data = "192.168.10.2";
+        mon2.a.data = "192.168.10.3";
+        mon3.a.data = "192.168.10.4";
+      };
       "xnee.net" = lib.recursiveUpdate defaults {
         "" = {
           a.data = "78.46.0.148";
