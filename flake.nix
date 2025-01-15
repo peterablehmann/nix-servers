@@ -137,6 +137,7 @@
 
       nixosModules = {
         common = ./modules/common;
+        fah = ./modules/fah.nix;
         immich = ./modules/immich.nix;
         monitoring = ./modules/monitoring;
         netbox = ./modules/netbox.nix;
