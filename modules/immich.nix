@@ -13,7 +13,7 @@ in
     kTLS = true;
     forceSSL = true;
     locations."/" = {
-      proxyPass = "http://${config.services.immich.host}:${builtins.toString config.services.immich.port}";
+      proxyPass = "http://[${config.services.immich.host}]:${builtins.toString config.services.immich.port}";
     };
   };
 
