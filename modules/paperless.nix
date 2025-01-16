@@ -60,6 +60,9 @@ in
       sopsFile = "${inputs.self}/secrets/ymir.yaml";
       owner = "paperless";
     };
+    "paperless/environment" = {
+      sopsFile = "${inputs.self}/secrets/ymir.yaml";
+    };
   };
 
   services.paperless = {
@@ -76,7 +79,10 @@ in
       PAPERLESS_OCR_USER_ARGS = {
         "invalidate_digital_signatures" = true;
       };
+      PAPERLESS_APPS = "allauth.socialaccount.providers.openid_connect";
+      # PAPERLESS_SOCIALACCOUNT_PROVIDERS is set via secret environment
     };
+    environmentFile = config.sops.secrets."paperless/environment".path;
   };
 
   systemd = {
