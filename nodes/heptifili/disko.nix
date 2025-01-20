@@ -68,24 +68,6 @@
           };
         };
       };
-      immich = {
-        device = "/dev/vdd";
-        type = "disk";
-        content = {
-          type = "gpt";
-          partitions = {
-            data = {
-              label = "IMMICH";
-              size = "100%";
-              content = {
-                type = "filesystem";
-                format = "ext4";
-                mountpoint = config.services.immich.mediaLocation;
-              };
-            };
-          };
-        };
-      };
     };
   };
 }
