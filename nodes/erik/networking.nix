@@ -14,6 +14,7 @@ in
   };
 
   networking = {
+    hostId = "53d52352";
     domains = {
       enable = true;
       subDomains = {
