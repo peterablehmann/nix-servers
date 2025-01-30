@@ -11,7 +11,7 @@
     ./acme.nix
     ./backup.nix
     ./boot.nix
-    ./exporters.nix
+    ./exporters
     ./fail2ban.nix
     ./nginx.nix
     ./nix.nix

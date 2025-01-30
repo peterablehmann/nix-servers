@@ -32,6 +32,20 @@
           }];
         }
         {
+          job_name = "smartctl-exporter";
+          scrape_interval = "5m";
+          scheme = "https";
+          basic_auth = {
+            username = "prometheus";
+            password_file = config.sops.secrets."prometheus/basic_auth".path;
+          };
+          static_configs = [{
+            targets = lib.mapAttrsToList (name: host: "smartctl-exporter.${host.config.networking.fqdn}") (
+              lib.filterAttrs (name: host: host.config.services.prometheus.exporters.smartctl.enable) inputs.self.nixosConfigurations
+            );
+          }];
+        }
+        {
           job_name = "zfs-exporter";
           scrape_interval = "30s";
           scheme = "https";
