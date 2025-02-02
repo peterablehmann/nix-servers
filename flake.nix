@@ -147,6 +147,7 @@
 
       nixosModules = {
         common = ./modules/common;
+        dyndns = ./modules/dyndns;
         immich = ./modules/immich.nix;
         monitoring = ./modules/monitoring;
         netbox = ./modules/netbox.nix;

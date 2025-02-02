@@ -13,6 +13,13 @@ in
     physicalConnections = [ (mkConnectionRev "Fritz!Box" "*") ];
   };
 
+  dyndns = {
+    enable = true;
+    IPv6 = true;
+    hostname = "ip.heptifili";
+    zone = "xnee.net";
+  };
+
   networking = {
     domains = {
       enable = true;
