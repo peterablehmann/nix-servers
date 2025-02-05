@@ -36,8 +36,8 @@ in
     usePredictableInterfaceNames = lib.mkDefault false;
     domain = "xnee.net";
     nameservers = [
-      "192.168.32.1"
-      "fde6:bbc7:8946:7387:6b4:feff:feca:b60b"
+      "192.168.32.11"
+      "fde6:bbc7:8946:7387::200b"
     ];
     timeServers = [ "fde6:bbc7:8946:7387:6b4:feff:feca:b60b" ];
     dhcpcd.enable = false;
