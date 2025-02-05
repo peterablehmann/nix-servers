@@ -133,6 +133,16 @@
             nix-topology.nixosModules.default
           ];
         };
+        router-1 = nixpkgs.lib.nixosSystem {
+          specialArgs = { inherit inputs outputs; };
+          system = "x86_64-linux";
+          extraModules = [ inputs.colmena.nixosModules.deploymentOptions ];
+          modules = [
+            ./nodes/router-1
+            self.nixosModules.common
+            nix-topology.nixosModules.default
+          ];
+        };
         ymir = nixpkgs.lib.nixosSystem {
           specialArgs = { inherit inputs outputs; };
           system = "x86_64-linux";
@@ -150,6 +160,7 @@
         dyndns = ./modules/dyndns;
         immich = ./modules/immich.nix;
         monitoring = ./modules/monitoring;
+        pathvector = ./modules/pathvector;
         netbox = ./modules/netbox.nix;
         kanidm = ./modules/kanidm.nix;
         keycloak = ./modules/keycloak.nix;
