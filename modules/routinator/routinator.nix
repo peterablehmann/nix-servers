@@ -49,7 +49,7 @@ in
       after = [ "network.target" ];
       path = with pkgs; [ rsync ];
       serviceConfig = {
-        ExecStart = "${lib.getExe cfg.package} server ";
+        ExecStart = "${lib.getExe cfg.package} --config ${cfg.configFile} server";
         User = "routinator";
         Group = "routinator";
       };
