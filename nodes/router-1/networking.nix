@@ -48,6 +48,4 @@ in
       linkConfig.RequiredForOnline = "routable";
     };
   };
-
-  services.tailscale.extraUpFlags = [ "--accept-routes" ];
 }
