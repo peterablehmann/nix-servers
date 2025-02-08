@@ -31,7 +31,6 @@ in
   services.routinator = {
     enable = true;
     settings = {
-      repository-dir = "/var/lib/routinator/rpki-cache";
       http-tls-listen = [ "[::1]:8323" ];
       http-tls-key = "${tls-dir}/key.pem";
       http-tls-cert = "${tls-dir}/fullchain.pem";
