@@ -50,17 +50,9 @@ in
       path = with pkgs; [ rsync ];
       serviceConfig = {
         ExecStart = "${lib.getExe cfg.package} --config ${cfg.configFile} server";
-        User = "routinator";
-        Group = "routinator";
+        DynamicUser = true;
+        StateDirectory = "routinator";
       };
     };
-
-    users.users.routinator = {
-      createHome = true;
-      isSystemUser = true;
-      home = "/var/lib/routinator";
-      group = "routinator";
-    };
-    users.groups.routinator = { };
   };
 }
