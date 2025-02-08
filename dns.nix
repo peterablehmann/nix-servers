@@ -78,14 +78,11 @@
           txt.data = [ "TAILSCALE-fMbKHU9GGi8WDXsYeZxJ" ] ++ defaults."".txt.data;
         };
         "www".cname.data = "xnee.net";
-        "pdm" = {
-          a.data = "192.168.33.4";
-          aaaa.data = "fde6:bbc7:8946:7387::2104";
-        };
         "ip.heptifili".aaaa = {
           data = "fde6:bbc7:8946:7387::2101";
           ttl = 1;
         };
+        "kvm1".cname.data = "jetkvm1.tail8b1339.ts.net";
         "yrsa" = {
           a.data = "192.168.32.10";
           aaaa.data = "fde6:bbc7:8946:7387::200a";
