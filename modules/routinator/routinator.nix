@@ -7,6 +7,7 @@
 let
   inherit (lib)
     getExe
+    maintainers
     mkEnableOption
     mkPackageOption
     mkOption
@@ -18,13 +19,13 @@ let
 in
 {
   options.services.routinator = {
-    enable = mkEnableOption "Enable Routinator 3000";
+    enable = mkEnableOption "Routinator 3000";
 
     package = mkPackageOption pkgs "routinator" { };
 
     extraArgs = mkOption {
       description = ''
-        Extra arguments to passed to routinator, see <https://routinator.docs.nlnetlabs.nl/en/stable/manual-page.html#options> for options.";
+        Extra arguments passed to routinator, see <https://routinator.docs.nlnetlabs.nl/en/stable/manual-page.html#options> for options.";
       '';
       type = types.listOf types.str;
       default = [ ];
@@ -33,7 +34,7 @@ in
 
     extraServerArgs = mkOption {
       description = ''
-        Extra arguments to passed to the server subcommand, see <https://routinator.docs.nlnetlabs.nl/en/stable/manual-page.html#subcmd-server> for options.";
+        Extra arguments passed to the server subcommand, see <https://routinator.docs.nlnetlabs.nl/en/stable/manual-page.html#subcmd-server> for options.";
       '';
       type = types.listOf types.str;
       default = [ ];
@@ -46,7 +47,65 @@ in
         options = {
           repository-dir = mkOption {
             type = types.path;
+            description = ''
+              The path where the collected RPKI data is stored.
+            '';
             default = "/var/lib/routinator/rpki-cache";
+          };
+          log-level = mkOption {
+            type = types.oneOf [ "error" "warn" "info" "debug" ];
+            description = ''
+              A string value specifying the maximum log level for which log messages should be emitted.
+              See, <https://routinator.docs.nlnetlabs.nl/en/stable/manual-page.html#logging>
+            '';
+            default = "warn";
+          };
+          log = mkOption {
+            type = types.oneOf [ "default" "stderr" "syslog" "file" ];
+            description = ''
+              A string specifying where to send log messages to.
+              See, <https://routinator.docs.nlnetlabs.nl/en/stable/manual-page.html#term-log>
+            '';
+            default = "default";
+          };
+          log-file = mkOption {
+            type = types.path;
+            description = ''
+              A string value containing the path to a file to which log messages will be appended if the log configuration value is set to file. In this case, the value is mandatory.
+            '';
+          };
+          http-listen = mkOption {
+            type = types.listOf types.string;
+            description = ''
+              An array of string values each providing an address and port on which the HTTP server should listen. Address and port should be separated by a colon. IPv6 address should be enclosed in square brackets.
+            '';
+          };
+          rtr-listen = mkOption {
+            type = types.listOf types.string;
+            description = ''
+              An array of string values each providing an address and port on which the RTR server should listen in TCP mode. Address and port should be separated by a colon. IPv6 address should be enclosed in square brackets.
+            '';
+          };
+          refresh = mkOption {
+            type = types.int;
+            description = ''
+              An integer value specifying the number of seconds Routinator should wait between consecutive validation runs in server mode. The next validation run will happen earlier, if objects expire earlier.
+            '';
+            default = 600;
+          };
+          retry = mkOption {
+            type = types.int;
+            description = ''
+              An integer value specifying the number of seconds an RTR client is requested to wait after it failed to receive a data set.
+            '';
+            default = 600;
+          };
+          expire = mkOption {
+            type = types.int;
+            description = ''
+              An integer value specifying the number of seconds an RTR client is requested to use a data set if it cannot get an update before throwing it away and continuing with no data at all.
+            '';
+            default = 7200;
           };
         };
       };
@@ -100,4 +159,6 @@ in
       };
     };
   };
+
+  meta.maintainers = with maintainers; [ xgwq ];
 }
