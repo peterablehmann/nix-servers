@@ -127,6 +127,7 @@ in
       description = "Routinator 3000 is free, open-source RPKI Relying Party software made by NLnet Labs.";
       wantedBy = [ "multi-user.target" ];
       after = [ "network.target" ];
+      restartTriggers = [ config.environment.etc."routinator.conf".source ];
       path = with pkgs; [ rsync ];
       serviceConfig = {
         Type = "exec";
