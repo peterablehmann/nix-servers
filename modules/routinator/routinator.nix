@@ -148,8 +148,10 @@ in
         NoNewPrivileges = true;
         PrivateDevices = true;
         PrivateTmp = true;
+        ProtectClock = true;
         ProtectControlGroups = true;
         ProtectHome = true;
+        ProtectHostname = true;
         ProtectKernelModules = true;
         ProtectKernelTunables = true;
         ProtectSystem = "strict";
