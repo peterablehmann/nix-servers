@@ -54,7 +54,14 @@ in
             default = "/var/lib/routinator/rpki-cache";
           };
           log-level = mkOption {
-            type = types.nullOr (types.enum [ "error" "warn" "info" "debug" ]);
+            type = types.nullOr (
+              types.enum [
+                "error"
+                "warn"
+                "info"
+                "debug"
+              ]
+            );
             description = ''
               A string value specifying the maximum log level for which log messages should be emitted.
               See, <https://routinator.docs.nlnetlabs.nl/en/stable/manual-page.html#logging>
@@ -62,7 +69,14 @@ in
             default = "warn";
           };
           log = mkOption {
-            type = types.nullOr (types.enum [ "default" "stderr" "syslog" "file" ]);
+            type = types.nullOr (
+              types.enum [
+                "default"
+                "stderr"
+                "syslog"
+                "file"
+              ]
+            );
             description = ''
               A string specifying where to send log messages to.
               See, <https://routinator.docs.nlnetlabs.nl/en/stable/manual-page.html#term-log>
@@ -121,20 +135,19 @@ in
   };
 
   config = {
-    environment.etc."routinator.conf".source = settingsFormat.generate "routinator.conf" (filterAttrsRecursive (n: v: v != null) cfg.settings);
-
     systemd.services.routinator = {
       description = "Routinator 3000 is free, open-source RPKI Relying Party software made by NLnet Labs.";
       wantedBy = [ "multi-user.target" ];
       after = [ "network.target" ];
-      restartTriggers = [ config.environment.etc."routinator.conf".source ];
       path = with pkgs; [ rsync ];
       serviceConfig = {
         Type = "exec";
         ExecStart = escapeSystemdExecArgs (
           [
             (getExe cfg.package)
-            "--config=/etc/routinator.conf"
+            "--config=${
+              settingsFormat.generate "routinator.conf" (filterAttrsRecursive (n: v: v != null) cfg.settings)
+            }"
           ]
           ++ cfg.extraArgs
           ++ [
