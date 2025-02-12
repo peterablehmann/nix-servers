@@ -8,4 +8,6 @@
     ./hardware-configuration.nix
     ./networking.nix
   ];
+
+  boot.plymouth.enable = true;
 }
