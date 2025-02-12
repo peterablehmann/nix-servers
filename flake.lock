@@ -10,11 +10,11 @@
         "nixpkgs-stable": "nixpkgs-stable"
       },
       "locked": {
-        "lastModified": 1731270564,
-        "narHash": "sha256-6KMC/NH/VWP5Eb+hA56hz0urel3jP6Y6cF2PX6xaTkk=",
+        "lastModified": 1738524606,
+        "narHash": "sha256-hPYEJ4juK3ph7kbjbvv7PlU1D9pAkkhl+pwx8fZY53U=",
         "owner": "zhaofengli",
         "repo": "attic",
-        "rev": "47752427561f1c34debb16728a210d378f0ece36",
+        "rev": "ff8a897d1f4408ebbf4d45fa9049c06b3e1e3f4e",
         "type": "github"
       },
       "original": {
@@ -97,11 +97,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1737038063,
-        "narHash": "sha256-rMEuiK69MDhjz1JgbaeQ9mBDXMJ2/P8vmOYRbFndXsk=",
+        "lastModified": 1739353546,
+        "narHash": "sha256-YTqXhBZvCdZLMBupWlCDvRFaTEhaHa2/Xc/p1sUdSZU=",
         "owner": "nix-community",
         "repo": "disko",
-        "rev": "bf0abfde48f469c256f2b0f481c6281ff04a5db2",
+        "rev": "26ade1005191e0602a78b0f141970648445bafd9",
         "type": "github"
       },
       "original": {
@@ -304,11 +304,11 @@
     "lix": {
       "flake": false,
       "locked": {
-        "lastModified": 1737234286,
-        "narHash": "sha256-pgDJZjj4jpzkFxsqBTI/9Yb0n3gW+DvDtuv9SwQZZcs=",
-        "rev": "079528098f5998ba13c88821a2eca1005c1695de",
+        "lastModified": 1738174211,
+        "narHash": "sha256-eYmp1mKM4kULV1W+EBtCPk6LmKWl2REivaYfGRl+AWo=",
+        "rev": "64e33a7e09a0d1faacf2fd3f6ebd647fe4d8346a",
         "type": "tarball",
-        "url": "https://git.lix.systems/api/v1/repos/lix-project/lix/archive/079528098f5998ba13c88821a2eca1005c1695de.tar.gz?rev=079528098f5998ba13c88821a2eca1005c1695de"
+        "url": "https://git.lix.systems/api/v1/repos/lix-project/lix/archive/64e33a7e09a0d1faacf2fd3f6ebd647fe4d8346a.tar.gz?rev=64e33a7e09a0d1faacf2fd3f6ebd647fe4d8346a"
       },
       "original": {
         "type": "tarball",
@@ -325,11 +325,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1737675503,
-        "narHash": "sha256-FUWpqPOsEJwK8oomffat+lgKnoxJHArRlWo2j17EhxQ=",
+        "lastModified": 1738176840,
+        "narHash": "sha256-NG3IRvRs3u3btVCN861FqHvgOwqcNT/Oy6PBG86F5/E=",
         "ref": "refs/heads/main",
-        "rev": "3e18a1ceec7df4514f5a045441e5f98dd003db09",
-        "revCount": 131,
+        "rev": "621aae0f3cceaffa6d73a4fb0f89c08d338d729e",
+        "revCount": 133,
         "type": "git",
         "url": "https://git.lix.systems/lix-project/nixos-module"
       },
@@ -388,11 +388,11 @@
         "pre-commit-hooks": "pre-commit-hooks"
       },
       "locked": {
-        "lastModified": 1737379892,
-        "narHash": "sha256-M5FfyuvKAd5K8H0IZedlXaN04IvJesmWRhE9sviQNCQ=",
+        "lastModified": 1738246091,
+        "narHash": "sha256-2+KkZsRO+XlOFbXbRgMZbRtlqn5MBNYj4HNmZ/2Tojg=",
         "owner": "oddlama",
         "repo": "nix-topology",
-        "rev": "21dceaf1a116f648a286a66516612c7e2b726306",
+        "rev": "5526269fa3eedf4f4bc00c0bf7a03db31d24b029",
         "type": "github"
       },
       "original": {
@@ -474,11 +474,11 @@
     },
     "nixpkgs_3": {
       "locked": {
-        "lastModified": 1737885589,
-        "narHash": "sha256-Zf0hSrtzaM1DEz8//+Xs51k/wdSajticVrATqDrfQjg=",
+        "lastModified": 1739214665,
+        "narHash": "sha256-26L8VAu3/1YRxS8MHgBOyOM8xALdo6N0I04PgorE7UM=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "852ff1d9e153d8875a83602e03fdef8a63f0ecf8",
+        "rev": "64e75cd44acf21c7933d61d7721e812eac1b5a0a",
         "type": "github"
       },
       "original": {
@@ -549,11 +549,11 @@
         "nixpkgs": "nixpkgs_4"
       },
       "locked": {
-        "lastModified": 1737411508,
-        "narHash": "sha256-j9IdflJwRtqo9WpM0OfAZml47eBblUHGNQTe62OUqTw=",
+        "lastModified": 1739262228,
+        "narHash": "sha256-7JAGezJ0Dn5qIyA2+T4Dt/xQgAbhCglh6lzCekTVMeU=",
         "owner": "Mic92",
         "repo": "sops-nix",
-        "rev": "015d461c16678fc02a2f405eb453abb509d4e1d4",
+        "rev": "07af005bb7d60c7f118d9d9f5530485da5d1e975",
         "type": "github"
       },
       "original": {
