@@ -156,6 +156,7 @@ in
           ++ cfg.extraServerArgs
         );
         Restart = "on-failure";
+        CapabilityBoundingSet = [ "" ];
         DynamicUser = true;
         LockPersonality = true;
         MemoryDenyWriteExecute = true;
@@ -166,16 +167,22 @@ in
         ProtectControlGroups = true;
         ProtectHome = true;
         ProtectHostname = true;
+        ProtectKernelLogs = true;
         ProtectKernelModules = true;
         ProtectKernelTunables = true;
         ProtectSystem = "strict";
-        RestrictAddressFamilies = "AF_UNIX AF_INET AF_INET6";
+        RestrictAddressFamilies = [
+          "AF_INET"
+          "AF_INET6"
+          "AF_UNIX"
+        ];
         RestrictNamespaces = true;
         RestrictRealtime = true;
         StateDirectory = "routinator";
         SystemCallArchitectures = "native";
         SystemCallErrorNumber = "EPERM";
         SystemCallFilter = "@system-service";
+        UMask = "0027";
       };
     };
   };
