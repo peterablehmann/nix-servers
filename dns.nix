@@ -52,6 +52,7 @@
       };
     in
     {
+      "as213422.net" = lib.recursiveUpdate defaults { };
       "bigdriver.net" = lib.recursiveUpdate defaults { };
       "hainsacker.de" = lib.recursiveUpdate defaults { };
       "lehmann.ing" = lib.recursiveUpdate defaults { };
