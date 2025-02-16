@@ -1,4 +1,5 @@
 { config
+, inputs
 , lib
 , ...
 }:
@@ -37,18 +38,15 @@ in
   };
   systemd.network = {
     enable = true;
-    netdevs."212895-route64" = {
-      netdevConfig = {
-        Name = "gre-212895";
-        Kind = "gre";
-        MTUBytes = 1480;
-      };
-      tunnelConfig = {
-        Remote = "2a11:6c7:4::1";
-        Local = "fde6:bbc7:8946:7387::200b";
-      };
-    };
     networks = {
+      "01-lo" = {
+        matchConfig.Name = "lo";
+        address = [
+          "::1/128"
+          "127.0.0.1/8"
+          "2a0f:85c1:b7a::c0:1/128"
+        ];
+      };
       "10-wan" = {
         networkConfig.DHCP = "ipv6";
         matchConfig.MACAddress = "BC:24:11:7F:87:15";
@@ -59,12 +57,26 @@ in
         routes = [{ Gateway = "192.168.32.1"; }];
         linkConfig.RequiredForOnline = "routable";
       };
-      "212895-route64" = {
-        matchConfig.Name = config.systemd.network.netdevs."212895-route64".netdevConfig.Name;
-        address = [
-          "100.64.202.174/30"
-          "2a11:6c7:f00:b8::2/64"
-        ];
+    };
+  };
+
+  sops.secrets."wireguard/wg212895".sopsFile = "${inputs.self}/secrets/router-1.yaml";
+
+  networking.wireguard = {
+    enable = true;
+    interfaces = {
+      "wg212895" = {
+        allowedIPsAsRoutes = false;
+        privateKeyFile = config.sops.secrets."wireguard/wg212895".path;
+        table = "off";
+        ips = [ "2a11:6c7:f00:b8::2/64" ];
+        peers = [{
+          name = "peer";
+          publicKey = "NQwTxxs3pvF5yQUDPTR8rw3fr58Zy6Cxw59l8ya1Jyo=";
+          endpoint = "2a11:6c7:4::1:44325";
+          persistentKeepalive = 30;
+          allowedIPs = [ "::/0" ];
+        }];
       };
     };
   };
