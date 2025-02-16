@@ -13,8 +13,8 @@
     enable = true;
     config = ''
       define OWNAS = 213422;
-      define OWNIPv6 = fdeb:d925:32e2::c0:1;
-      define OWNNETSETv6 = [2a0f:85c1:b7a::/48];
+      define OWNIPv6 = 2a0f:85c1:b7a::c0:1;
+      define OWNNETSETv6 = [ 2a0f:85c1:b7a::/48 ];
 
       router id 255.255.255.255;
 
@@ -26,13 +26,21 @@
           scan time 30;
 
           ipv6 {
-              import none;
-              export filter {
-                  if source = RTS_STATIC then reject;
-                  krt_prefsrc = OWNIPv6;
-                  accept;
-              };
+              import all;
+              export none;
           };
+      }
+
+      function should_announce_prefix() {
+        if net ~ [ 2a0f:85c1:b7a::/49+, 2a0f:85c1:b7a::/128+ ] then return true;
+        return false;
+      }
+
+      # Define the Aggregator
+      protocol static {
+        if should_announce_prefix() then {
+          route 2a0f:85c1:b7a::/48 reject;
+        }
       }
 
       template bgp upstream {
@@ -42,9 +50,8 @@
         ipv6 {
           import all;
           export filter {
-            if ( net ~ OWNNETSETv6 )
-            then accept;
-            else reject;          
+            if ( net ~ OWNNETSETv6 ) then accept;
+            reject;
           };
         };
       }
