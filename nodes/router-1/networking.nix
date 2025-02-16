@@ -13,6 +13,9 @@ in
     network = "Internet";
     physicalConnections = [ (mkConnectionRev "Fritz!Box" "*") ];
   };
+
+  boot.kernel.sysctl."net.ipv6.conf.all.forwarding" = 1;
+
   networking = {
     hostId = "8d51f3b3";
     domains = {
