@@ -77,20 +77,35 @@ in
           };
         }
         {
-          name = "TLS";
+          name = "PowerDNS Recursor";
           type = "file";
           options.path = pkgs.fetchurl {
-            url = "https://raw.githubusercontent.com/peterablehmann/grafana-dashboards/main/tls-cert-dashboard.json";
-            hash = "sha256-iu1huuK9ebEgcf8A3qM92N0rq7rr7uM6oynzDY/wv7M=";
+            url = "https://raw.githubusercontent.com/peterablehmann/grafana-dashboards/refs/heads/main/pdns-recursor-dashboard.json";
+            hash = "sha256-Np3JbE+hXXk6S0XnSd7qx6cpDM7OxyPVwQFQpibi7No=";
           };
         }
-
         {
           name = "Restic REST Server";
           type = "file";
           options.path = pkgs.fetchurl {
             url = "https://raw.githubusercontent.com/peterablehmann/grafana-dashboards/refs/heads/main/restic-rest-server-dashboard.json";
             hash = "sha256-SiX1E2d8+FQhiqFzog435ImkuiLgONXusKTN3s+UzIc=";
+          };
+        }
+        {
+          name = "Routinator";
+          type = "file";
+          options.path = pkgs.fetchurl {
+            url = "https://raw.githubusercontent.com/peterablehmann/grafana-dashboards/refs/heads/main/routinator-dashboard.json";
+            hash = "sha256-Vskb+0hNWznXs3PYJXNJQkoJWbRLJOnpJYAtORuP+V0=";
+          };
+        }
+        {
+          name = "TLS";
+          type = "file";
+          options.path = pkgs.fetchurl {
+            url = "https://raw.githubusercontent.com/peterablehmann/grafana-dashboards/main/tls-cert-dashboard.json";
+            hash = "sha256-iu1huuK9ebEgcf8A3qM92N0rq7rr7uM6oynzDY/wv7M=";
           };
         }
       ];
