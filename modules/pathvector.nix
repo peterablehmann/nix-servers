@@ -2,7 +2,6 @@
 , ...
 }:
 {
-
   services.bird = {
     enable = true;
     config = ''
@@ -57,5 +56,13 @@
       }
     '';
   };
+
+  environment.etc."bird/bird.conf" = {
+    mode = "0600";
+    user = "bird";
+    group = "bird";
+  };
+
   environment.defaultPackages = with pkgs; [ pathvector ];
+
 }
