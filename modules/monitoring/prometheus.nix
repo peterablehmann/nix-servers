@@ -103,6 +103,14 @@
           }];
         }
         {
+          job_name = "routinator";
+          scrape_interval = "2m";
+          scheme = "https";
+          static_configs = [{
+            targets = [ "routinator.xnee.net" ];
+          }];
+        }
+        {
           job_name = "pdns-recursor";
           scrape_interval = "5s";
           scheme = "https";
