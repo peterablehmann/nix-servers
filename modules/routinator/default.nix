@@ -28,12 +28,15 @@ in
     };
   };
 
+  networking.firewall.allowedTCPPorts = [ 8282 ];
+
   services.routinator = {
     enable = true;
     settings = {
       http-tls-listen = [ "[::1]:8323" ];
       http-tls-key = "${tls-dir}/key.pem";
       http-tls-cert = "${tls-dir}/fullchain.pem";
+      rtr-listen = [ "[::1]:8282" ];
     };
   };
 }
