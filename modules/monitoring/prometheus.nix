@@ -18,6 +18,15 @@
       retentionTime = "90d";
       scrapeConfigs = [
         {
+          job_name = "bgp-tools";
+          scrape_interval = "10s";
+          scheme = "https";
+          metrics_path = "/prom/e0906115-d67d-4769-89e5-bf95748fa348";
+          static_configs = [{
+            targets = [ "bgp.tools" ];
+          }];
+        }
+        {
           job_name = "node-exporter";
           scrape_interval = "5s";
           scheme = "https";
