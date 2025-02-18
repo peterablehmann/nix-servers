@@ -69,6 +69,14 @@ in
       ];
       dashboards.settings.providers = [
         {
+          name = "BGP.tools";
+          type = "file";
+          options.path = pkgs.fetchurl {
+            url = "https://raw.githubusercontent.com/peterablehmann/grafana-dashboards/refs/heads/main/bgp-tools-dashboard.json";
+            hash = "sha256-chGyjnsP/tt2EciahWAiqYAepTDJtYG+YrFwHsVXf6k=";
+          };
+        }
+        {
           name = "Node-Exporter";
           type = "file";
           options.path = pkgs.fetchurl {
