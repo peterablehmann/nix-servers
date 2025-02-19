@@ -69,6 +69,7 @@ in
   };
 
   sops.secrets."wireguard/wg212895".sopsFile = "${inputs.self}/secrets/router-1.yaml";
+  sops.secrets."wireguard/wg213416".sopsFile = "${inputs.self}/secrets/router-1.yaml";
 
   networking.wireguard = {
     enable = true;
@@ -85,6 +86,23 @@ in
           name = "peer";
           publicKey = "lgxXREeixNDJ0zdTTSvTgKI1hZuTAxyGvM0NVAad5TI=";
           endpoint = "2a11:6c7:4::1:44393";
+          persistentKeepalive = 30;
+          allowedIPs = [ "::/0" ];
+        }];
+      };
+      "wg213416" = {
+        listenPort = 60000;
+        allowedIPsAsRoutes = false;
+        privateKeyFile = config.sops.secrets."wireguard/wg213416".path;
+        table = "off";
+        ips = [
+          "fe80::21:3416/64"
+          "2a0f:85c1:b7a::c1:0/127"
+        ];
+        peers = [{
+          name = "peer";
+          publicKey = "tBisp7mr50xOpdaIO9PoYoYpU+HaRaWF2b8o0+BrmCs=";
+          endpoint = "[2a01:4f8:221:3401::100]:60000";
           persistentKeepalive = 30;
           allowedIPs = [ "::/0" ];
         }];
