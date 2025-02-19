@@ -72,7 +72,10 @@ in
         allowedIPsAsRoutes = false;
         privateKeyFile = config.sops.secrets."wireguard/wg212895".path;
         table = "off";
-        ips = [ "2a11:6c7:f00:b8::2/64" ];
+        ips = [
+          "fe80::21:2895/64"
+          "2a11:6c7:f00:b8::2/64"
+        ];
         peers = [{
           name = "peer";
           publicKey = "NQwTxxs3pvF5yQUDPTR8rw3fr58Zy6Cxw59l8ya1Jyo=";
