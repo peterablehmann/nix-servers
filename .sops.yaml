@@ -5,8 +5,7 @@ keys:
   - &system_ymir age183wgf8xp46chqk049ekyg7vsan2p50zh4lqfllcllzwuekeywdzqn7pz0q
   - &system_heptifili age1nany90gu4anl7vez3nw7fy0y32vrnp4075dqnc4j9797p44765vsuqzfl5
   - &system_erik age109jz3m5ct9xz5ywefv7kh26vtep6qucp2msuvxd4jcl0crgqa9dqtml92j
-  - &system_docker-1 age1q64h5llqtcwr9l0pqqm0puyn738hewk9d0rqccy0262pyggk49xquw3l7n
-  - &system_router-1 age1qt4m4rgjr6r3ej070uwcd73dg89xnx4q6sk9j2mna7ckfe8gqahscem8q5
+  - &system_router-1 age17lvcj8em2vfn7exr3lwgcr5wrqnq20g3gy2l8l8nxdufw9j879ds2pckw7
 
 creation_rules:
   - path_regex: secrets/common.(yaml|json|env|ini)$
@@ -18,7 +17,6 @@ creation_rules:
       - *system_ymir
       - *system_heptifili
       - *system_erik
-      - *system_docker-1
       - *system_router-1
   
   - path_regex: secrets/mns.(yaml|json|env|ini)$
@@ -48,13 +46,6 @@ creation_rules:
       - *peter_kleeblatt
       - *peter_sleipnir
       - *system_erik
-  
-  - path_regex: secrets/docker-1.(yaml|json|env|ini)$
-    key_groups:
-    - age:
-      - *peter_kleeblatt
-      - *peter_sleipnir
-      - *system_docker-1
   
   - path_regex: secrets/router-1.(yaml|json|env|ini)$
     key_groups:

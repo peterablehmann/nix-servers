@@ -16,8 +16,6 @@
     config = ''
       hostname router-1
       log syslog
-      service password-encryption
-      service integrated-vtysh-config
       !
       hostname router-1
       log syslog warn

@@ -5,13 +5,13 @@
 }:
 let
   inherit (config.lib.topology) mkConnectionRev;
-  IPv4 = "192.168.33.2";
-  IPv6 = "fde6:bbc7:8946:7387::2102";
+  IPv4 = "188.245.209.125";
+  IPv6 = "2a01:4f8:1c1e:8464::1";
 in
 {
   topology.self.interfaces.eth0 = {
     network = "Internet";
-    physicalConnections = [ (mkConnectionRev "Fritz!Box" "*") ];
+    physicalConnections = [ (mkConnectionRev "Internet" "*") ];
   };
 
   boot.kernel.sysctl."net.ipv6.conf.all.forwarding" = 1;
@@ -31,12 +31,14 @@ in
     useDHCP = false;
     hostName = "router-1";
     usePredictableInterfaceNames = lib.mkDefault false;
-    domain = "xnee.net";
+    domain = "as213422.net";
     nameservers = [
-      "192.168.32.11"
-      "fde6:bbc7:8946:7387::200b"
+      "185.12.64.1"
+      "185.12.64.2"
+      "2a01:4ff:ff00::add:1"
+      "2a01:4ff:ff00::add:2"
     ];
-    timeServers = [ "fde6:bbc7:8946:7387:6b4:feff:feca:b60b" ];
+    timeServers = [ "ntp.hetzner.com" ];
     dhcpcd.enable = false;
   };
   systemd.network = {
@@ -44,20 +46,23 @@ in
     networks = {
       "01-lo" = {
         matchConfig.Name = "lo";
-        address = [
-          "::1/128"
-          "127.0.0.1/8"
-          "2a0f:85c1:b7a::c0:1/128"
-        ];
+        address = [ "2a0f:85c1:b7a::c0:1/128" ];
       };
       "10-wan" = {
-        networkConfig.DHCP = "ipv6";
-        matchConfig.MACAddress = "BC:24:11:7F:87:15";
+        networkConfig.DHCP = "no";
+        matchConfig.Name = "eth0";
         address = [
-          "${IPv4}/22"
-          "${IPv6}/64"
+          "${IPv4}/32"
+          "${IPv6}/128"
         ];
-        routes = [{ Gateway = "192.168.32.1"; }];
+        routes = [
+          { Gateway = "fe80::1"; }
+          { Destination = "172.31.1.1"; }
+          {
+            Gateway = "172.31.1.1";
+            GatewayOnLink = true;
+          }
+        ];
         linkConfig.RequiredForOnline = "routable";
       };
     };
@@ -78,8 +83,8 @@ in
         ];
         peers = [{
           name = "peer";
-          publicKey = "NQwTxxs3pvF5yQUDPTR8rw3fr58Zy6Cxw59l8ya1Jyo=";
-          endpoint = "2a11:6c7:4::1:44325";
+          publicKey = "lgxXREeixNDJ0zdTTSvTgKI1hZuTAxyGvM0NVAad5TI=";
+          endpoint = "2a11:6c7:4::1:44393";
           persistentKeepalive = 30;
           allowedIPs = [ "::/0" ];
         }];
