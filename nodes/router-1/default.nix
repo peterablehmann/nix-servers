@@ -11,14 +11,12 @@
   services.frr = {
     bgpd = {
       enable = true;
-      extraOptions = [ "--no_kernel" ];
+      extraOptions = [
+        "--no_kernel"
+        "-M rpki"
+      ];
     };
     config = ''
-      hostname router-1
-      log syslog
-      !
-      hostname router-1
-      log syslog warn
       router bgp 213422
         no bgp default ipv4-unicast
 
@@ -68,6 +66,8 @@
           match large-community cm-learnt-downstream
 
         route-map rm-upstream-in permit 10
+          call rm-rpki
+        route-map rm-upstream-in permit 20
           description tag imported routes with community
           set large-community 213422:0:1 additive
         
@@ -77,7 +77,21 @@
           match large-community cm-learnt-downstream
         
         route-map rm-peer-in permit 10
+          call rm-rpki
+        route-map rm-peer-in permit 20
           set large-community 213422:0:3
+
+        ! ##################################################
+        ! RPKI
+        route-map rm-rpki permit 10
+          match rpki notfound
+          set local-preference 10
+        route-map rm-rpki permit 20
+          match rpki valid
+          set local-preference 20
+      
+      rpki
+        rpki cache tcp routinator.xnee.net 8282 preference 1
     '';
   };
 }
