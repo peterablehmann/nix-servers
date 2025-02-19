@@ -57,7 +57,13 @@ in
           "${IPv4}/22"
           "${IPv6}/64"
         ];
-        routes = [{ Gateway = "192.168.32.1"; }];
+        routes = [
+          { Gateway = "192.168.32.1"; }
+          {
+            Destination = "2a11:6c7:4::1/128";
+            Gateway = "fde6:bbc7:8946:7387:6b4:feff:feca:b60b";
+          }
+        ];
         linkConfig.RequiredForOnline = "routable";
       };
     };

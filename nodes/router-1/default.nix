@@ -11,7 +11,6 @@
   services.frr = {
     bgpd = {
       enable = true;
-      extraOptions = [ "--no_kernel" ];
     };
     config = ''
       hostname router-1
