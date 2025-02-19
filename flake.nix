@@ -93,16 +93,6 @@
             ./installers/home
           ];
         };
-        docker-1 = nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit inputs outputs; };
-          system = "x86_64-linux";
-          extraModules = [ inputs.colmena.nixosModules.deploymentOptions ];
-          modules = [
-            ./nodes/docker-1
-            self.nixosModules.common
-            nix-topology.nixosModules.default
-          ];
-        };
         erik = nixpkgs.lib.nixosSystem {
           specialArgs = { inherit inputs outputs; };
           system = "x86_64-linux";
