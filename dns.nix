@@ -53,7 +53,7 @@
     in
     {
       "as213422.net" = lib.recursiveUpdate defaults {
-        "r1.nbg".aaaa.data = "2a01:4f8:1c1e:8464::1";
+        "r1.nbg".aaaa.data = "2a0f:85c1:b7a::c0:1";
       };
       "bigdriver.net" = lib.recursiveUpdate defaults { };
       "hainsacker.de" = lib.recursiveUpdate defaults { };
