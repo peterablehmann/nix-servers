@@ -53,6 +53,10 @@
     in
     {
       "as213422.net" = lib.recursiveUpdate defaults {
+        "" = {
+          a.data = "78.46.0.148";
+          aaaa.data = "2a01:4f8:d0a:2160::2";
+        };
         "r1.nbg".aaaa.data = "2a0f:85c1:b7a::c0:1";
       };
       "bigdriver.net" = lib.recursiveUpdate defaults { };
