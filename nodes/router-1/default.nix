@@ -14,11 +14,6 @@
       extraOptions = [ "--no_kernel" ];
     };
     config = ''
-      hostname router-1
-      log syslog
-      !
-      hostname router-1
-      log syslog warn
       router bgp 213422
         no bgp default ipv4-unicast
 
