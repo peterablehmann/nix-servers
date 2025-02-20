@@ -52,7 +52,9 @@
       };
     in
     {
-      "as213422.net" = lib.recursiveUpdate defaults { };
+      "as213422.net" = lib.recursiveUpdate defaults {
+        "r1.nbg".aaaa.data = "2a01:4f8:1c1e:8464::1";
+      };
       "bigdriver.net" = lib.recursiveUpdate defaults { };
       "hainsacker.de" = lib.recursiveUpdate defaults { };
       "lehmann.ing" = lib.recursiveUpdate defaults { };
