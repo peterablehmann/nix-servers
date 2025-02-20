@@ -36,7 +36,7 @@ in
       http-tls-listen = [ "[::1]:8323" ];
       http-tls-key = "${tls-dir}/key.pem";
       http-tls-cert = "${tls-dir}/fullchain.pem";
-      rtr-listen = [ "[::1]:8282" ];
+      rtr-listen = [ "[::]:8282" ];
     };
   };
 }
