@@ -89,7 +89,7 @@ in
           type = "file";
           options.path = pkgs.fetchurl {
             url = "https://raw.githubusercontent.com/peterablehmann/grafana-dashboards/refs/heads/main/pdns-recursor-dashboard.json";
-            hash = "sha256-vgIY/WrNwbXjGtcKyjLvbMJpqHvvIQdcVk0a8HhqmxU=";
+            hash = "sha256-4Cff+t6uP+ifn+BEruFWn52ER2bs93uepr3EGj4TGCM=";
           };
         }
         {
