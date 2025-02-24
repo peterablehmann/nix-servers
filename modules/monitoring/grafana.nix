@@ -89,7 +89,7 @@ in
           type = "file";
           options.path = pkgs.fetchurl {
             url = "https://raw.githubusercontent.com/peterablehmann/grafana-dashboards/refs/heads/main/pdns-recursor-dashboard.json";
-            hash = "sha256-8lgo+A3dnFLanhGJWCKAo/iPYSMiove17xvMolgq9nI=";
+            hash = "sha256-vgIY/WrNwbXjGtcKyjLvbMJpqHvvIQdcVk0a8HhqmxU=";
           };
         }
         {
@@ -105,7 +105,7 @@ in
           type = "file";
           options.path = pkgs.fetchurl {
             url = "https://raw.githubusercontent.com/peterablehmann/grafana-dashboards/refs/heads/main/routinator-dashboard.json";
-            hash = "sha256-8heTr7soiTagvq4fAwod1QogVgxCLNsT7k5oL4nHLnU=";
+            hash = "sha256-l/LAUKZEr4n8shq4FX51LQnHNsKpytEmmQhAcvYrioU=";
           };
         }
         {
