@@ -162,7 +162,7 @@
         restic-server = ./modules/restic-server;
         nextcloud = ./modules/nextcloud.nix;
         radicale = ./modules/radicale;
-        routinator = ./modules/routinator;
+        routinator = ./modules/routinator.nix;
       };
 
       dns = (nixos-dns.utils.generate nixpkgs.legacyPackages.x86_64-linux).octodnsConfig {

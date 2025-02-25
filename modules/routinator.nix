@@ -8,8 +8,6 @@ let
   tls-dir = config.security.acme.certs.${domain}.directory;
 in
 {
-  imports = [ ./routinator.nix ];
-
   networking.domains.subDomains.${domain} = { };
   security.acme.certs.${domain} = { };
   services.nginx.virtualHosts."${domain}" = {
