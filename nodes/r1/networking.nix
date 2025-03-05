@@ -5,7 +5,7 @@
 }:
 let
   inherit (config.lib.topology) mkConnectionRev;
-  IPv4 = "188.245.209.125";
+  IPv4 = "78.46.210.123";
   IPv6 = "2a01:4f8:1c1e:8464::1";
 in
 {
@@ -21,15 +21,12 @@ in
     domains = {
       enable = true;
       subDomains."${config.networking.fqdn}" = { };
-      baseDomains."${config.networking.domain}" = {
-        a.data = IPv4;
-        aaaa.data = IPv6;
-      };
+      baseDomains."${config.networking.domain}".aaaa.data = "2a0f:85c1:b7a::c0:1";
     };
 
     useNetworkd = true;
     useDHCP = false;
-    hostName = "router-1";
+    hostName = "r1";
     usePredictableInterfaceNames = lib.mkDefault false;
     domain = "as213422.net";
     nameservers = [
@@ -43,6 +40,12 @@ in
   };
   systemd.network = {
     enable = true;
+    config = {
+      addRouteTablesToIPRoute2 = true;
+      routeTables = {
+        host = 10;
+      };
+    };
     networks = {
       "01-lo" = {
         matchConfig.Name = "lo";
@@ -56,11 +59,32 @@ in
           "${IPv6}/128"
         ];
         routes = [
-          { Gateway = "fe80::1"; }
-          { Destination = "172.31.1.1"; }
+          {
+            Gateway = "fe80::1";
+            PreferredSource = IPv6;
+            Table = "host";
+          }
           {
             Gateway = "172.31.1.1";
+            PreferredSource = IPv4;
             GatewayOnLink = true;
+            Table = "host";
+          }
+        ];
+        routingPolicyRules = [
+          {
+            To = "${IPv6}";
+            Table = "host";
+            Priority = 50;
+          }
+          {
+            From = "${IPv6}";
+            Table = "host";
+            Priority = 50;
+          }
+          {
+            FirewallMark = "0x80";
+            Table = "host";
           }
         ];
         linkConfig.RequiredForOnline = "routable";
@@ -68,16 +92,17 @@ in
     };
   };
 
-  sops.secrets."wireguard/wg212895".sopsFile = "${inputs.self}/secrets/router-1.yaml";
-  sops.secrets."wireguard/wg213416".sopsFile = "${inputs.self}/secrets/router-1.yaml";
+  sops.secrets."wireguard/wg212895".sopsFile = "${inputs.self}/secrets/r1.yaml";
+  sops.secrets."wireguard/wg213416".sopsFile = "${inputs.self}/secrets/r1.yaml";
 
   networking.wireguard = {
     enable = true;
     interfaces = {
       "wg212895" = {
         allowedIPsAsRoutes = false;
-        privateKeyFile = config.sops.secrets."wireguard/wg212895".path;
         table = "off";
+        #fwMark = "80";
+        privateKeyFile = config.sops.secrets."wireguard/wg212895".path;
         ips = [
           "fe80::21:2895/64"
           "2a11:6c7:f00:b8::2/64"
@@ -85,16 +110,17 @@ in
         peers = [{
           name = "peer";
           publicKey = "lgxXREeixNDJ0zdTTSvTgKI1hZuTAxyGvM0NVAad5TI=";
-          endpoint = "2a11:6c7:4::1:44393";
+          endpoint = "[2a11:6c7:4::1]:44393";
           persistentKeepalive = 30;
           allowedIPs = [ "::/0" ];
         }];
       };
       "wg213416" = {
-        listenPort = 60000;
         allowedIPsAsRoutes = false;
-        privateKeyFile = config.sops.secrets."wireguard/wg213416".path;
         table = "off";
+        #fwMark = "80";
+        listenPort = 60000;
+        privateKeyFile = config.sops.secrets."wireguard/wg213416".path;
         ips = [
           "fe80::21:3416/64"
           "2a0f:85c1:b7a::c1:0/127"

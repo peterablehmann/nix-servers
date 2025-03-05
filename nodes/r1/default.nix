@@ -1,4 +1,5 @@
 { inputs
+, lib
 , ...
 }:
 {
@@ -8,10 +9,12 @@
     ./networking.nix
   ];
 
+  users.users.root.hashedPassword = "$y$j9T$qcP/OrWwKl62J92MeMrHJ/$VD.z5C7Hzyun2yUEiKw6zGk2f1QKJ/HhH/6vKi/BfqC";
+
   services.frr = {
     bgpd = {
       enable = true;
-      extraOptions = [ "--no_kernel" ];
+      # extraOptions = [ "--no_kernel" ];
     };
     config = ''
       router bgp 213422

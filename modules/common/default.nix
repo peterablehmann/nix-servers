@@ -25,6 +25,8 @@
     targetHost = config.networking.hostName;
   };
 
+  console.keyMap = "de";
+
   networking.domains.defaultTTL = 60;
   systemd.network.wait-online.ignoredInterfaces = [ "tailscale0" ];
   time.timeZone = "Europe/Berlin";
