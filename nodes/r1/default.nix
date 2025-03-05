@@ -14,7 +14,7 @@
   services.frr = {
     bgpd = {
       enable = true;
-      # extraOptions = [ "--no_kernel" ];
+      extraOptions = [ "-M rpki" ];
     };
     config = ''
       router bgp 213422
@@ -68,7 +68,7 @@
           match large-community cm-learnt-downstream
 
         route-map rm-upstream-in permit 10
-          description tag imported routes with community
+          call rm-internet-in
           set large-community 213422:0:1 additive
         
         ! ##################################################
@@ -77,7 +77,40 @@
           match large-community cm-learnt-downstream
         
         route-map rm-peer-in permit 10
+          call rm-internet-in
           set large-community 213422:0:3
+
+        ! ##################################################
+
+        rpki
+          rpki cache routinator.xnee.net 8282 preference 1
+
+        bgp as-path access-list acl-bogon-asns deny 23456
+        bgp as-path access-list acl-bogon-asns deny 64496-131071
+        bgp as-path access-list acl-bogon-asns deny 4200000000-4294967295
+
+        ipv6 prefix-list pl-bogons-v6 deny ::/8 le 128
+        ipv6 prefix-list pl-bogons-v6 deny 100::/64 le 128
+        ipv6 prefix-list pl-bogons-v6 deny 2001:2::/48 le 128
+        ipv6 prefix-list pl-bogons-v6 deny 2001:10::/28 le 128
+        ipv6 prefix-list pl-bogons-v6 deny 2001:db8::/32 le 128
+        ipv6 prefix-list pl-bogons-v6 deny 3fff::/20 le 128
+        ipv6 prefix-list pl-bogons-v6 deny 2002::/16 le 128
+        ipv6 prefix-list pl-bogons-v6 deny 3ffe::/16 le 128
+        ipv6 prefix-list pl-bogons-v6 deny 5f00::/16 le 128
+        ipv6 prefix-list pl-bogons-v6 deny fc00::/7 le 128
+        ipv6 prefix-list pl-bogons-v6 deny fe80::/10 le 128
+        ipv6 prefix-list pl-bogons-v6 deny fec0::/10 le 128
+        ipv6 prefix-list pl-bogons-v6 deny ff00::/8 le 128
+        ipv6 prefix-list pl-bogons-v6 deny ::/0 ge 49 le 128
+        
+        route-map rm-internet-in deny 1
+          match rpki invalid
+        route-map rm-internet-in deny 2
+          match as-path acl-bogon-asns
+        route-map rm-internet-in deny 3
+          match ipv6 address prefix-list pl-bogons-v6
+        route-map rm-internet-in permit 65535
     '';
   };
 }
