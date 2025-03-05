@@ -70,6 +70,14 @@ in
             GatewayOnLink = true;
             Table = "host";
           }
+          {
+            Destination = "2a11:6c7:4::1/128";
+            Gateway = "fe80::1";
+          }
+          {
+            Destination = "2a01:4f8:221:3401::100/128";
+            Gateway = "fe80::1";
+          }
         ];
         routingPolicyRules = [
           {
