@@ -28,10 +28,12 @@
 
         ! Route64
         neighbor 2a11:6c7:f00:b8::1 remote-as 212895
+        neighbor 2a11:6c7:f00:b8::1 local-role customer
         neighbor 2a11:6c7:f00:b8::1 peer-group upstream
 
         ! Timo
         neighbor 2a0f:85c1:b7a::c1:1 remote-as 213416
+        neighbor 2a0f:85c1:b7a::c1:1 local-role peer strict-mode
         neighbor 2a0f:85c1:b7a::c1:1 peer-group peer
         neighbor 2a0f:85c1:b7a::c1:1 maximum-prefix 5
 
