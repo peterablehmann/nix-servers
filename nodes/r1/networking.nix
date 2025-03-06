@@ -75,6 +75,10 @@ in
             Gateway = "fe80::1";
           }
           {
+            Destination = "2a01:4f8:1c1b:f904::1/128";
+            Gateway = "fe80::1";
+          }
+          {
             Destination = "2a01:4f8:221:3401::100/128";
             Gateway = "fe80::1";
           }
@@ -100,47 +104,67 @@ in
     };
   };
 
-  sops.secrets."wireguard/wg212895".sopsFile = "${inputs.self}/secrets/r1.yaml";
-  sops.secrets."wireguard/wg213416".sopsFile = "${inputs.self}/secrets/r1.yaml";
+  sops.secrets = {
+    "wireguard/wg212895".sopsFile = "${inputs.self}/secrets/r1.yaml";
+    "wireguard/wg213408".sopsFile = "${inputs.self}/secrets/r1.yaml";
+    "wireguard/wg213416".sopsFile = "${inputs.self}/secrets/r1.yaml";
+  };
 
   networking.wireguard = {
     enable = true;
-    interfaces = {
-      "wg212895" = {
+    interfaces =
+      let
         allowedIPsAsRoutes = false;
         table = "off";
-        #fwMark = "80";
-        privateKeyFile = config.sops.secrets."wireguard/wg212895".path;
-        ips = [
-          "fe80::21:2895/64"
-          "2a11:6c7:f00:b8::2/64"
-        ];
-        peers = [{
-          name = "peer";
-          publicKey = "lgxXREeixNDJ0zdTTSvTgKI1hZuTAxyGvM0NVAad5TI=";
-          endpoint = "[2a11:6c7:4::1]:44393";
-          persistentKeepalive = 30;
-          allowedIPs = [ "::/0" ];
-        }];
+      in
+      {
+        "wg212895" = {
+          inherit allowedIPsAsRoutes table;
+          privateKeyFile = config.sops.secrets."wireguard/wg212895".path;
+          ips = [
+            "fe80::21:2895/64"
+            "2a11:6c7:f00:b8::2/64"
+          ];
+          peers = [{
+            name = "peer";
+            publicKey = "lgxXREeixNDJ0zdTTSvTgKI1hZuTAxyGvM0NVAad5TI=";
+            endpoint = "[2a11:6c7:4::1]:44393";
+            persistentKeepalive = 30;
+            allowedIPs = [ "::/0" ];
+          }];
+        };
+        "wg213408" = {
+          inherit allowedIPsAsRoutes table;
+          listenPort = 60001;
+          privateKeyFile = config.sops.secrets."wireguard/wg213408".path;
+          ips = [
+            "fe80::21:3408/64"
+            "2a0f:85c1:b7a::c1:2/127"
+          ];
+          peers = [{
+            name = "peer";
+            publicKey = "tBisp7mr50xOpdaIO9PoYoYpU+HaRaWF2b8o0+BrmCs=";
+            endpoint = "[2a01:4f8:1c1b:f904::1]:60002";
+            persistentKeepalive = 30;
+            allowedIPs = [ "::/0" ];
+          }];
+        };
+        "wg213416" = {
+          inherit allowedIPsAsRoutes table;
+          listenPort = 60000;
+          privateKeyFile = config.sops.secrets."wireguard/wg213416".path;
+          ips = [
+            "fe80::21:3416/64"
+            "2a0f:85c1:b7a::c1:0/127"
+          ];
+          peers = [{
+            name = "peer";
+            publicKey = "tBisp7mr50xOpdaIO9PoYoYpU+HaRaWF2b8o0+BrmCs=";
+            endpoint = "[2a01:4f8:221:3401::100]:60000";
+            persistentKeepalive = 30;
+            allowedIPs = [ "::/0" ];
+          }];
+        };
       };
-      "wg213416" = {
-        allowedIPsAsRoutes = false;
-        table = "off";
-        #fwMark = "80";
-        listenPort = 60000;
-        privateKeyFile = config.sops.secrets."wireguard/wg213416".path;
-        ips = [
-          "fe80::21:3416/64"
-          "2a0f:85c1:b7a::c1:0/127"
-        ];
-        peers = [{
-          name = "peer";
-          publicKey = "tBisp7mr50xOpdaIO9PoYoYpU+HaRaWF2b8o0+BrmCs=";
-          endpoint = "[2a01:4f8:221:3401::100]:60000";
-          persistentKeepalive = 30;
-          allowedIPs = [ "::/0" ];
-        }];
-      };
-    };
   };
 }

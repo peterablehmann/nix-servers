@@ -31,6 +31,12 @@
         neighbor 2a11:6c7:f00:b8::1 local-role customer
         neighbor 2a11:6c7:f00:b8::1 peer-group upstream
 
+        ! Lars
+        neighbor 2a0f:85c1:b7a::c1:3 remote-as 213408
+        neighbor 2a0f:85c1:b7a::c1:3 local-role peer
+        neighbor 2a0f:85c1:b7a::c1:3 peer-group peer
+        neighbor 2a0f:85c1:b7a::c1:3 maximum-prefix 5
+
         ! Timo
         neighbor 2a0f:85c1:b7a::c1:1 remote-as 213416
         neighbor 2a0f:85c1:b7a::c1:1 local-role peer strict-mode
@@ -82,9 +88,6 @@
 
         ! ##################################################
 
-        rpki
-          rpki cache routinator.xnee.net 8282 preference 1
-
         bgp as-path access-list acl-bogon-asns deny 23456
         bgp as-path access-list acl-bogon-asns deny 64496-131071
         bgp as-path access-list acl-bogon-asns deny 4200000000-4294967295
@@ -111,6 +114,10 @@
         route-map rm-internet-in deny 3
           match ipv6 address prefix-list pl-bogons-v6
         route-map rm-internet-in permit 65535
+      
+      rpki
+        rpki cache tcp routinator.xnee.net 8282 preference 1
+        exit
     '';
   };
 }
