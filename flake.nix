@@ -10,10 +10,10 @@
     #   url = "git+https://git.lix.systems/lix-project/lix?ref=refs/tags/2.90-beta.1";
     #   flake = false;
     # };
-    lix-module = {
-      url = "git+https://git.lix.systems/lix-project/nixos-module";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # lix-module = {
+    #   url = "git+https://git.lix.systems/lix-project/nixos-module";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
 
     # Disko
     disko.url = "github:nix-community/disko";
@@ -44,7 +44,7 @@
   outputs =
     { self
     , nixpkgs
-    , lix-module
+    # , lix-module
     , disko
     , sops-nix
     , flake-utils
