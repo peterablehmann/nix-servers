@@ -81,7 +81,10 @@
           data = "fde6:bbc7:8946:7387::2101";
           ttl = 1;
         };
-        "kvm1".cname.data = "jetkvm1.tail8b1339.ts.net";
+        "kvm1" = {
+          a.data = "100.85.70.7";
+          aaaa.data = "fd7a:115c:a1e0::f701:4607";
+        };
         "yrsa" = {
           a.data = "192.168.32.10";
           aaaa.data = "fde6:bbc7:8946:7387::200a";
