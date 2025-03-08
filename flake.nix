@@ -44,7 +44,7 @@
   outputs =
     { self
     , nixpkgs
-    # , lix-module
+      # , lix-module
     , disko
     , sops-nix
     , flake-utils
@@ -119,16 +119,6 @@
           extraModules = [ inputs.colmena.nixosModules.deploymentOptions ];
           modules = [
             ./nodes/mns
-            self.nixosModules.common
-            nix-topology.nixosModules.default
-          ];
-        };
-        r1 = nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit inputs outputs; };
-          system = "x86_64-linux";
-          extraModules = [ inputs.colmena.nixosModules.deploymentOptions ];
-          modules = [
-            ./nodes/r1
             self.nixosModules.common
             nix-topology.nixosModules.default
           ];
