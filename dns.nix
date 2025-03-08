@@ -50,40 +50,32 @@
           target = "mail.your-server.de";
         };
       };
+      www208 = {
+        a.data = "78.46.0.148";
+        aaaa.data = "2a01:4f8:d0a:2160::2";
+      };
     in
     {
       "as213422.net" = lib.recursiveUpdate defaults {
-        "" = {
-          a.data = "78.46.0.148";
-          aaaa.data = "2a01:4f8:d0a:2160::2";
-        };
-        "r1.nbg".aaaa.data = "2a0f:85c1:b7a::c0:1";
+        "" = www208;
+        "r1".aaaa.data = "2a0f:85c1:b7a::c0:1";
+        "mgmt.r1".a.data = "78.46.210.123";
       };
       "bigdriver.net" = lib.recursiveUpdate defaults { };
       "hainsacker.de" = lib.recursiveUpdate defaults { };
       "lehmann.ing" = lib.recursiveUpdate defaults { };
       "lehmann.zone" = lib.recursiveUpdate defaults {
-        "" = {
-          a.data = "78.46.0.148";
-          aaaa.data = "2a01:4f8:d0a:2160::2";
-        };
+        "" = www208;
         "www".cname.data = "lehmann.zone";
         "cloud".cname.data = "nx24177.your-storageshare.de";
       };
       "uic-fahrzeugnummer.de" = lib.recursiveUpdate defaults {
-        "" = {
-          a.data = "78.46.0.148";
-          aaaa.data = "2a01:4f8:d0a:2160::2";
-        };
+        "" = www208;
         "www".cname.data = "uic-fahrzeugnummer.de";
       };
       "xnee.de" = lib.recursiveUpdate defaults { };
       "xnee.net" = lib.recursiveUpdate defaults {
-        "" = {
-          a.data = "78.46.0.148";
-          aaaa.data = "2a01:4f8:d0a:2160::2";
-          txt.data = [ "TAILSCALE-fMbKHU9GGi8WDXsYeZxJ" ] ++ defaults."".txt.data;
-        };
+        "" = www208 // { txt.data = [ "TAILSCALE-fMbKHU9GGi8WDXsYeZxJ" ] ++ defaults."".txt.data; };
         "www".cname.data = "xnee.net";
         "ip.heptifili".aaaa = {
           data = "fde6:bbc7:8946:7387::2101";
