@@ -60,6 +60,8 @@
         "" = www208;
         "r1".aaaa.data = "2a0f:85c1:b7a::c0:1";
         "mgmt.r1".a.data = "78.46.210.123";
+        "r2".aaaa.data = "2a0f:85c1:b7a::c0:2";
+        "mgmt.r2".a.data = "168.119.118.205";
       };
       "bigdriver.net" = lib.recursiveUpdate defaults { };
       "hainsacker.de" = lib.recursiveUpdate defaults { };
