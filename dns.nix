@@ -59,9 +59,15 @@
       "as213422.net" = lib.recursiveUpdate defaults {
         "" = www208;
         "r1".aaaa.data = "2a0f:85c1:b7a::c0:1";
-        "mgmt.r1".a.data = "78.46.210.123";
+        "mgmt.r1" = {
+          a.data = "78.46.210.123";
+          aaaa.data = "2a01:4f8:1c1e:8464::1";
+        };
         "r2".aaaa.data = "2a0f:85c1:b7a::c0:2";
-        "mgmt.r2".a.data = "168.119.118.205";
+        "mgmt.r2" = {
+          a.data = "168.119.118.205";
+          aaaa.data = "2a01:4f8:1c1b:fec6::1";
+        };
       };
       "bigdriver.net" = lib.recursiveUpdate defaults { };
       "hainsacker.de" = lib.recursiveUpdate defaults { };
