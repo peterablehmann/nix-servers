@@ -85,6 +85,7 @@
       "xnee.net" = lib.recursiveUpdate defaults {
         "" = www208 // { txt.data = [ "TAILSCALE-fMbKHU9GGi8WDXsYeZxJ" ] ++ defaults."".txt.data; };
         "www".cname.data = "xnee.net";
+        "incus-test".a.data = "192.168.35.31";
         "ip.heptifili".aaaa = {
           data = "fde6:bbc7:8946:7387::2101";
           ttl = 1;
