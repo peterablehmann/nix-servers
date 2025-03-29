@@ -68,6 +68,13 @@
           a.data = "168.119.118.205";
           aaaa.data = "2a01:4f8:1c1b:fec6::1";
         };
+        "r3".aaaa.data = "2a0f:85c1:b7a::c0:3";
+        "mgmt.r3" = {
+          a.data = "192.168.33.2";
+          aaaa.data = "fde6:bbc7:8946:7387::2101";
+        };
+        "r4".aaaa.data = "2a0f:85c1:b7a::c0:4";
+        "mgmt.r4".aaaa.data = "2a0c:b640:10::2:35";
       };
       "bigdriver.net" = lib.recursiveUpdate defaults { };
       "hainsacker.de" = lib.recursiveUpdate defaults { };
