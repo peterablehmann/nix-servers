@@ -75,6 +75,7 @@
         };
         "r4".aaaa.data = "2a0f:85c1:b7a::c0:4";
         "mgmt.r4".aaaa.data = "2a0c:b640:10::2:38";
+        "ripe-atlas-1".aaaa.data = "2a0f:85c1:b7a:a56f:be24:11ff:fe8e:60b8";
       };
       "bigdriver.net" = lib.recursiveUpdate defaults { };
       "hainsacker.de" = lib.recursiveUpdate defaults { };
