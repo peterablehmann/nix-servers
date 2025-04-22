@@ -1,17 +1,14 @@
 { config
 , inputs
+, pkgs
 , ...
 }:
 let
   domain = "netbox.xnee.net";
 in
 {
-  nixpkgs.config.permittedInsecurePackages = [
-    "netbox-3.6.9"
-  ];
-
-  sops.secrets."netbox/secret-key" = {
-    sopsFile = "${inputs.self}/secrets/ymir.yaml";
+  sops.secrets."netbox/secret_key" = {
+    sopsFile = "${inputs.self}/secrets/erik.yaml";
     owner = "netbox";
     group = "netbox";
   };
@@ -20,7 +17,6 @@ in
 
   services.nginx = {
     enable = true;
-    user = "netbox";
     virtualHosts."${domain}" = {
       useACMEHost = domain;
       kTLS = true;
@@ -34,9 +30,17 @@ in
     };
   };
 
+  systemd.services.nginx = {
+    serviceConfig = {
+      SupplementaryGroups = [ config.systemd.services.netbox.serviceConfig.Group ];
+      BindReadOnlyPaths = [ config.services.netbox.dataDir ];
+    };
+  };
+
   services.netbox = {
     enable = true;
-    secretKeyFile = config.sops.secrets."netbox/secret-key".path;
+    package = pkgs.netbox;
+    secretKeyFile = config.sops.secrets."netbox/secret_key".path;
     settings.ALLOWED_HOSTS = [ domain ];
   };
 
