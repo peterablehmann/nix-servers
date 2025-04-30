@@ -79,6 +79,7 @@
       };
       "bigdriver.net" = lib.recursiveUpdate defaults { };
       "hainsacker.de" = lib.recursiveUpdate defaults { };
+      "hetzner-offline.de" = lib.recursiveUpdate defaults { };
       "lehmann.ing" = lib.recursiveUpdate defaults { };
       "lehmann.zone" = lib.recursiveUpdate defaults {
         "" = www208;

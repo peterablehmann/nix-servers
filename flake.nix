@@ -172,6 +172,7 @@
           "as213422.net." = nixos-dns.utils.octodns.generateZoneAttrs [ "hetzner" ];
           "bigdriver.net." = nixos-dns.utils.octodns.generateZoneAttrs [ "hetzner" ];
           "hainsacker.de." = nixos-dns.utils.octodns.generateZoneAttrs [ "hetzner" ];
+          "hetzner-offline.de." = nixos-dns.utils.octodns.generateZoneAttrs [ "hetzner" ];
           "lehmann.ing." = nixos-dns.utils.octodns.generateZoneAttrs [ "hetzner" ];
           "lehmann.zone." = nixos-dns.utils.octodns.generateZoneAttrs [ "hetzner" ];
           "uic-fahrzeugnummer.de." = nixos-dns.utils.octodns.generateZoneAttrs [ "hetzner" ];
