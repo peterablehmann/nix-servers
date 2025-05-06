@@ -23,7 +23,7 @@
           scheme = "https";
           metrics_path = "/prom/e0906115-d67d-4769-89e5-bf95748fa348";
           static_configs = [{
-            targets = [ "bgp.tools" ];
+            targets = [ "prometheus.bgp.tools" ];
           }];
         }
         {
