@@ -58,6 +58,7 @@
     {
       "as213422.net" = lib.recursiveUpdate defaults {
         "" = www208;
+        "lg".cname.data = "managed-lg.bgp.tools";
         "r1".aaaa.data = "2a0f:85c1:b7a::c0:1";
         "mgmt.r1" = {
           a.data = "78.46.210.123";
