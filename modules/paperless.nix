@@ -68,7 +68,7 @@ in
   services.paperless = {
     enable = true;
     passwordFile = config.sops.secrets."paperless/password".path;
-    address = "[::1]";
+    address = "::1";
     port = 28981;
     settings = {
       PAPERLESS_URL = "https://paperless.xnee.net";
