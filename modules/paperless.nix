@@ -44,7 +44,7 @@ in
     kTLS = true;
     forceSSL = true;
     locations."/" = {
-      proxyPass = "http://${config.services.paperless.address}:${builtins.toString config.services.paperless.port}";
+      proxyPass = "http://[${config.services.paperless.address}]:${builtins.toString config.services.paperless.port}";
     };
   };
 
