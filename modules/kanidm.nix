@@ -33,6 +33,7 @@ in
     };
     enableServer = true;
     serverSettings = {
+      version = "2";
       bindaddress = "[::]:8443";
       ldapbindaddress = "[::]:3636";
       tls_chain = "${tls-dir}/fullchain.pem";
