@@ -5,19 +5,12 @@
 let
   inherit (config.lib.topology) mkConnectionRev;
   IPv4 = "192.168.33.1";
-  IPv6 = "fde6:bbc7:8946:7387::2101";
+  IPv6 = "2003:a:173b:1000::2101";
 in
 {
   topology.self.interfaces.eth0 = {
     network = "Internet";
     physicalConnections = [ (mkConnectionRev "Fritz!Box" "*") ];
-  };
-
-  dyndns = {
-    enable = true;
-    IPv6 = true;
-    hostname = "ip.heptifili";
-    zone = "xnee.net";
   };
 
   networking = {
@@ -27,7 +20,7 @@ in
         "${config.networking.fqdn}" = { };
       };
       baseDomains."${config.networking.domain}" = {
-        cname.data = "ip.heptifili.xnee.net";
+        aaaa.data = IPv6;
       };
     };
     useNetworkd = true;
@@ -46,13 +39,16 @@ in
     enable = true;
     networks = {
       "10-wan" = {
-        networkConfig.DHCP = "ipv6";
+        networkConfig.DHCP = "no";
         matchConfig.Name = "eth0";
         address = [
           "${IPv4}/22"
           "${IPv6}/64"
         ];
-        routes = [{ Gateway = "192.168.32.1"; }];
+        routes = [
+          { Gateway = "192.168.32.1"; }
+          { Gateway = "fe80::6b4:feff:feca:b60b"; }
+        ];
         linkConfig.RequiredForOnline = "routable";
       };
     };
