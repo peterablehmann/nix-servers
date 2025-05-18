@@ -30,7 +30,7 @@ in
     domain = "xnee.net";
     nameservers = [
       "192.168.32.11"
-      "fde6:bbc7:8946:7387::200b"
+      "2003:a:173b:1000::200b"
     ];
     timeServers = [ "fde6:bbc7:8946:7387:6b4:feff:feca:b60b" ];
     dhcpcd.enable = false;
