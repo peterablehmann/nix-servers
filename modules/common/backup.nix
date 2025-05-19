@@ -66,8 +66,8 @@ in
         "${config.networking.hostName}-wasabi" = mkResticConfig { repository = "s3:https://s3.eu-central-2.wasabisys.com/backup-xnee-net"; environmentFile = config.sops.secrets."backup/wasabi".path; inherit (cfg) paths exclude; };
         "${config.networking.hostName}-hetzner-s3" = mkResticConfig { repository = "s3:https://nbg1.your-objectstorage.com/backup-xnee-net"; environmentFile = config.sops.secrets."backup/hetzner-s3".path; inherit (cfg) paths exclude; };
       }
-      // lib.attrsets.optionalAttrs (config.networking.fqdn != "heptifili.xnee.net") {
-        "${config.networking.hostName}-heptifili" = mkResticConfig { repository = "rest:https://restic.heptifili.xnee.net/nix-servers"; environmentFile = config.sops.secrets."backup/heptifili".path; inherit (cfg) paths exclude; };
-      };
+      # // lib.attrsets.optionalAttrs (config.networking.fqdn != "heptifili.xnee.net") {
+      #   "${config.networking.hostName}-heptifili" = mkResticConfig { repository = "rest:https://restic.heptifili.xnee.net/nix-servers"; environmentFile = config.sops.secrets."backup/heptifili".path; inherit (cfg) paths exclude; };
+      # };
     };
 }
