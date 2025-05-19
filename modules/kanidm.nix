@@ -1,4 +1,5 @@
 { config
+, pkgs
 , ...
 }:
 let
@@ -21,10 +22,12 @@ in
     serviceConfig = {
       SupplementaryGroups = [ config.security.acme.certs.${domain}.group ];
       BindReadOnlyPaths = [ tls-dir ];
+      BindPaths = [ "/run/kanidm:/run/kanidm" ];
     };
   };
 
   services.kanidm = {
+    package = pkgs.kanidm_1_6;
     enableClient = true;
     clientSettings = {
       uri = "https://${domain}";
