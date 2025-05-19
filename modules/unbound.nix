@@ -11,7 +11,7 @@
         interface = [ "eth0" ];
         access-control = [
           "192.168.32.0/22 allow"
-          "fde6:bbc7:8946::/48 allow"
+          "2003:a:173b:1000::/56 allow"
         ];
         use-syslog = true;
       };

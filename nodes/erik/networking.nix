@@ -34,7 +34,7 @@ in
       "192.168.32.11"
       "2003:a:173b:1000::200b"
     ];
-    timeServers = [ "fde6:bbc7:8946:7387:6b4:feff:feca:b60b" ];
+    timeServers = [ "2003:a:173b:1000:6b4:feff:feca:b60b" ];
     dhcpcd.enable = false;
   };
   systemd.network = {
@@ -52,5 +52,5 @@ in
       };
     };
   };
-  services.tailscale.extraUpFlags = [ "--advertise-routes=192.168.32.0/22,fde6:bbc7:8946:7387::/64" ];
+  services.tailscale.extraUpFlags = [ "--advertise-routes=192.168.32.0/22,2003:a:173b:1000::/64" ];
 }
