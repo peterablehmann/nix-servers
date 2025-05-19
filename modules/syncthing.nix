@@ -22,19 +22,15 @@ in
     dataDir = "/var/lib/syncthing";
     guiAddress = "[::1]:8384";
     settings = {
-      gui.insecureSkipHostcheck = true;
+      # gui.insecureSkipHostcheck = true;
       devices = {
         kleeblatt = {
           name = "kleeblatt.xnee.net";
-          id = "ZLNUEPL-K3LAMV4-VYHDRPI-W3V42DP-3ZMLSZA-2AHPWWW-J7VC55X-YJ7XFAW";
+          id = "JU2V7WD-BSQUJC5-XIUPXWX-PFIXRTM-QWZQFXD-XPES5IX-2TDKPOH-YVDNOAB";
         };
         hasenpfote = {
           name = "hasenpfote.xnee.net";
           id = "LAXQGRV-P7YOQLX-OACH3ZD-RHOQHFI-T233PKG-FKVKOMM-HQHM2FT-E7P6FAV";
-        };
-        durin = {
-          name = "durin.xnee.net";
-          id = "TWRW63W-65RC4D4-76XRSPS-RCLMBF2-4W3GLAV-4M2DN36-R3BHNZM-ZXDLQAB";
         };
         sleipnir = {
           name = "sleipnir.xnee.net";
@@ -45,17 +41,17 @@ in
         keepass = {
           id = "56n2x-jhoz6";
           path = "~/keepass";
-          devices = [ "kleeblatt" "hasenpfote" "durin" "sleipnir" ];
+          devices = [ "kleeblatt" "hasenpfote" "sleipnir" ];
         };
         obsidianvault = {
           id = "esczl-qkfaz";
           path = "~/obsidianvault";
-          devices = [ "kleeblatt" "hasenpfote" "durin" "sleipnir" ];
+          devices = [ "kleeblatt" "hasenpfote" "sleipnir" ];
         };
         dcim = {
           id = "vpehd-xcue1";
           path = "~/dcim";
-          devices = [ "kleeblatt" "hasenpfote" "durin" "sleipnir" ];
+          devices = [ "kleeblatt" "hasenpfote" "sleipnir" ];
         };
       };
     };
