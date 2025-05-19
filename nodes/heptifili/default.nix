@@ -3,7 +3,6 @@
 }:
 {
   imports = [
-    inputs.self.nixosModules.restic-server
     ./disko.nix
     ./hardware-configuration.nix
     ./networking.nix
