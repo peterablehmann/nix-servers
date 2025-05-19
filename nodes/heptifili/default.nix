@@ -3,7 +3,6 @@
 }:
 {
   imports = [
-    inputs.self.nixosModules.dyndns
     inputs.self.nixosModules.syncthing
     inputs.self.nixosModules.restic-server
     ./disko.nix
