@@ -94,7 +94,6 @@
       "xnee.net" = lib.recursiveUpdate defaults {
         "" = www208 // { txt.data = [ "TAILSCALE-fMbKHU9GGi8WDXsYeZxJ" ] ++ defaults."".txt.data; };
         "www".cname.data = "xnee.net";
-        "incus-test".a.data = "192.168.35.31";
         "kvm1" = {
           a.data = "100.85.70.7";
           aaaa.data = "fd7a:115c:a1e0::f701:4607";
@@ -110,17 +109,6 @@
         "fritzbox" = {
           a.data = "192.168.32.1";
           aaaa.data = "2003:a:173b:1000:6b4:feff:feca:b60b";
-        };
-        "upptime".cname.data = "peterablehmann.github.io";
-        "factorio" = {
-          a.data = [ "213.133.102.102" ];
-          aaaa.data = [ "2a01:4f8:a0:841d::2" ];
-        };
-        "_factorio._udp.walistinkt".srv.data = {
-          priority = 10;
-          weight = 10;
-          target = "factorio.xnee.net";
-          port = 20108;
         };
         "switch1" = {
           a.data = "192.168.32.13";
