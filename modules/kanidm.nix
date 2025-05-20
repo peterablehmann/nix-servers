@@ -22,6 +22,7 @@ in
     serviceConfig = {
       SupplementaryGroups = [ config.security.acme.certs.${domain}.group ];
       BindReadOnlyPaths = [ tls-dir ];
+      RuntimeDirectory = [ "kanidm" ];
     };
   };
 
