@@ -1,44 +1,33 @@
 {
   disko.devices = {
     disk = {
-      x = {
+      sda = {
+        device = "/dev/sda";
         type = "disk";
-        device = "/dev/nvme0n1";
         content = {
           type = "gpt";
           partitions = {
             ESP = {
-              size = "200M";
+              label = "EFI";
               type = "EF00";
+              size = "500M";
               content = {
                 type = "filesystem";
                 format = "vfat";
                 mountpoint = "/boot";
-                mountOptions = [ "umask=0077" ];
               };
             };
-            zfs = {
+            root = {
+              label = "NIXOS";
               size = "100%";
               content = {
-                type = "zfs";
-                pool = "zroot";
+                type = "filesystem";
+                format = "ext4";
+                mountpoint = "/";
               };
             };
           };
         };
-      };
-    };
-    zpool = {
-      zroot = {
-        type = "zpool";
-        mode = "";
-        # Workaround: cannot import 'zroot': I/O error in disko tests
-        options.cachefile = "none";
-        rootFsOptions = {
-          compression = "zstd";
-          "com.sun:auto-snapshot" = "false";
-        };
-        mountpoint = "/";
       };
     };
   };

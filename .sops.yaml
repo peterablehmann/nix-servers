@@ -4,7 +4,7 @@ keys:
   - &system_mns age1s7xs405mkw2gagclktekz27lxhh38se7adrkdfc0x2l28j9xsvdqcdrsyr
   - &system_ymir age183wgf8xp46chqk049ekyg7vsan2p50zh4lqfllcllzwuekeywdzqn7pz0q
   - &system_heptifili age1nany90gu4anl7vez3nw7fy0y32vrnp4075dqnc4j9797p44765vsuqzfl5
-  - &system_erik age109jz3m5ct9xz5ywefv7kh26vtep6qucp2msuvxd4jcl0crgqa9dqtml92j
+  - &system_erik age1cehhjm3px22wdjps6ax4gxfdu2vkqpl8kq4cfaa524xsxqhpu5zs0lhz8q
   - &system_r1 age1fs2zta9mz3vwgthkz74mgs6gng6qcf48ta3vjxlqdrlw5f3u4sks266u46
 
 creation_rules:

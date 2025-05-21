@@ -4,8 +4,8 @@
 }:
 let
   inherit (config.lib.topology) mkConnectionRev;
-  IPv4 = "192.168.32.11";
-  IPv6 = "2003:a:173b:1000::200b";
+  IPv4 = "192.168.33.1";
+  IPv6 = "2003:a:173b:1000::2101";
 in
 {
   topology.self.interfaces.eth0 = {
@@ -31,8 +31,8 @@ in
     usePredictableInterfaceNames = lib.mkDefault false;
     domain = "xnee.net";
     nameservers = [
-      "192.168.32.11"
-      "2003:a:173b:1000::200b"
+      "192.168.33.1"
+      "2003:a:173b:1000::2101"
     ];
     timeServers = [ "2003:a:173b:1000:6b4:feff:feca:b60b" ];
     dhcpcd.enable = false;
@@ -41,13 +41,15 @@ in
     enable = true;
     networks = {
       "10-wan" = {
-        networkConfig.DHCP = "ipv6";
-        matchConfig.MACAddress = "d8:5e:d3:12:3f:31";
+        matchConfig.Name = "eth0";
         address = [
           "${IPv4}/22"
           "${IPv6}/64"
         ];
-        routes = [{ Gateway = "192.168.32.1"; }];
+        routes = [
+          { Gateway = "192.168.32.1"; }
+          { Gateway = "fe80::6b4:feff:feca:b60b"; }
+        ];
         linkConfig.RequiredForOnline = "routable";
       };
     };
