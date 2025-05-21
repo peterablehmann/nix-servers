@@ -1,7 +1,8 @@
-{ config
-, inputs
-, pkgs
-, ...
+{
+  config,
+  inputs,
+  pkgs,
+  ...
 }:
 let
   domain = "netbox.xnee.net";
@@ -25,7 +26,9 @@ in
         "/" = {
           proxyPass = "http://${config.services.netbox.listenAddress}:${builtins.toString config.services.netbox.port}";
         };
-        "/static/" = { alias = "${config.services.netbox.dataDir}/static/"; };
+        "/static/" = {
+          alias = "${config.services.netbox.dataDir}/static/";
+        };
       };
     };
   };

@@ -1,5 +1,6 @@
-{ pkgs
-, ...
+{
+  pkgs,
+  ...
 }:
 {
   nixpkgs.config.allowUnfree = true;
@@ -11,7 +12,10 @@
         "root"
         "@wheel"
       ];
-      experimental-features = [ "nix-command" "flakes" ];
+      experimental-features = [
+        "nix-command"
+        "flakes"
+      ];
       substituters = [
         "https://cache.lix.systems"
       ];

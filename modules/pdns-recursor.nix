@@ -1,5 +1,6 @@
-{ config
-, ...
+{
+  config,
+  ...
 }:
 let
   domain = "dns-rec.${config.networking.hostName}.xnee.net";

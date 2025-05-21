@@ -1,7 +1,8 @@
-{ config
-, inputs
-, lib
-, ...
+{
+  config,
+  inputs,
+  lib,
+  ...
 }:
 {
   sops.secrets."prometheus/basic_auth" = {
@@ -22,9 +23,11 @@
           scrape_interval = "10s";
           scheme = "https";
           metrics_path = "/prom/e0906115-d67d-4769-89e5-bf95748fa348";
-          static_configs = [{
-            targets = [ "prometheus.bgp.tools" ];
-          }];
+          static_configs = [
+            {
+              targets = [ "prometheus.bgp.tools" ];
+            }
+          ];
         }
         {
           job_name = "node-exporter";
@@ -34,11 +37,15 @@
             username = "prometheus";
             password_file = config.sops.secrets."prometheus/basic_auth".path;
           };
-          static_configs = [{
-            targets = lib.mapAttrsToList (name: host: "node-exporter.${host.config.networking.fqdn}") (
-              lib.filterAttrs (name: host: host.config.services.prometheus.exporters.node.enable) inputs.self.nixosConfigurations
-            );
-          }];
+          static_configs = [
+            {
+              targets = lib.mapAttrsToList (name: host: "node-exporter.${host.config.networking.fqdn}") (
+                lib.filterAttrs (
+                  name: host: host.config.services.prometheus.exporters.node.enable
+                ) inputs.self.nixosConfigurations
+              );
+            }
+          ];
         }
         {
           job_name = "smartctl-exporter";
@@ -48,11 +55,15 @@
             username = "prometheus";
             password_file = config.sops.secrets."prometheus/basic_auth".path;
           };
-          static_configs = [{
-            targets = lib.mapAttrsToList (name: host: "smartctl-exporter.${host.config.networking.fqdn}") (
-              lib.filterAttrs (name: host: host.config.services.prometheus.exporters.smartctl.enable) inputs.self.nixosConfigurations
-            );
-          }];
+          static_configs = [
+            {
+              targets = lib.mapAttrsToList (name: host: "smartctl-exporter.${host.config.networking.fqdn}") (
+                lib.filterAttrs (
+                  name: host: host.config.services.prometheus.exporters.smartctl.enable
+                ) inputs.self.nixosConfigurations
+              );
+            }
+          ];
         }
         {
           job_name = "zfs-exporter";
@@ -62,11 +73,15 @@
             username = "prometheus";
             password_file = config.sops.secrets."prometheus/basic_auth".path;
           };
-          static_configs = [{
-            targets = lib.mapAttrsToList (name: host: "zfs-exporter.${host.config.networking.fqdn}") (
-              lib.filterAttrs (name: host: host.config.services.prometheus.exporters.zfs.enable) inputs.self.nixosConfigurations
-            );
-          }];
+          static_configs = [
+            {
+              targets = lib.mapAttrsToList (name: host: "zfs-exporter.${host.config.networking.fqdn}") (
+                lib.filterAttrs (
+                  name: host: host.config.services.prometheus.exporters.zfs.enable
+                ) inputs.self.nixosConfigurations
+              );
+            }
+          ];
         }
         {
           job_name = "certs";
@@ -79,9 +94,15 @@
           params = {
             module = [ "certs" ];
           };
-          static_configs = [{
-            targets = lib.flatten (lib.mapAttrsToList (n: v: builtins.attrNames v.config.security.acme.certs) inputs.self.nixosConfigurations);
-          }];
+          static_configs = [
+            {
+              targets = lib.flatten (
+                lib.mapAttrsToList (
+                  n: v: builtins.attrNames v.config.security.acme.certs
+                ) inputs.self.nixosConfigurations
+              );
+            }
+          ];
           relabel_configs = [
             {
               source_labels = [ "__address__" ];
@@ -105,19 +126,25 @@
             username = "metrics";
             password_file = config.sops.secrets."prometheus/basic_auth".path;
           };
-          static_configs = [{
-            targets = lib.mapAttrsToList (name: host: "restic.${host.config.networking.fqdn}") (
-              lib.filterAttrs (name: host: host.config.services.restic.server.enable) inputs.self.nixosConfigurations
-            );
-          }];
+          static_configs = [
+            {
+              targets = lib.mapAttrsToList (name: host: "restic.${host.config.networking.fqdn}") (
+                lib.filterAttrs (
+                  name: host: host.config.services.restic.server.enable
+                ) inputs.self.nixosConfigurations
+              );
+            }
+          ];
         }
         {
           job_name = "routinator";
           scrape_interval = "2m";
           scheme = "https";
-          static_configs = [{
-            targets = [ "routinator.xnee.net" ];
-          }];
+          static_configs = [
+            {
+              targets = [ "routinator.xnee.net" ];
+            }
+          ];
         }
         {
           job_name = "pdns-recursor";
@@ -127,11 +154,15 @@
             username = "#";
             password_file = config.sops.secrets."prometheus/basic_auth".path;
           };
-          static_configs = [{
-            targets = lib.mapAttrsToList (name: host: "dns-rec.${host.config.networking.fqdn}") (
-              lib.filterAttrs (name: host: host.config.services.pdns-recursor.enable) inputs.self.nixosConfigurations
-            );
-          }];
+          static_configs = [
+            {
+              targets = lib.mapAttrsToList (name: host: "dns-rec.${host.config.networking.fqdn}") (
+                lib.filterAttrs (
+                  name: host: host.config.services.pdns-recursor.enable
+                ) inputs.self.nixosConfigurations
+              );
+            }
+          ];
         }
         {
           job_name = "blackbox_exporter";
@@ -140,19 +171,23 @@
             username = "prometheus";
             password_file = config.sops.secrets."prometheus/basic_auth".path;
           };
-          static_configs = [{
-            targets = [ "blackbox.xnee.net" ];
-          }];
+          static_configs = [
+            {
+              targets = [ "blackbox.xnee.net" ];
+            }
+          ];
         }
         {
           job_name = "prometheus";
           scrape_interval = "5s";
           scheme = "http";
-          static_configs = [{
-            targets = [
-              "monitoring.xnee.net:9001"
-            ];
-          }];
+          static_configs = [
+            {
+              targets = [
+                "monitoring.xnee.net:9001"
+              ];
+            }
+          ];
         }
       ];
     };

@@ -1,6 +1,7 @@
-{ config
-, inputs
-, ...
+{
+  config,
+  inputs,
+  ...
 }:
 {
   sops.secrets."acme/environment" = {

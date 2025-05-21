@@ -1,6 +1,7 @@
-{ pkgs
-, config
-, ...
+{
+  pkgs,
+  config,
+  ...
 }:
 let
   domain = "blackbox.xnee.net";
@@ -24,7 +25,7 @@ in
     kTLS = true;
     forceSSL = true;
     locations."/" = {
-      proxyPass = "https://${config.services.prometheus.exporters.blackbox.listenAddress}:${builtins.toString config.services.prometheus.exporters.blackbox.port }";
+      proxyPass = "https://${config.services.prometheus.exporters.blackbox.listenAddress}:${builtins.toString config.services.prometheus.exporters.blackbox.port}";
     };
   };
 

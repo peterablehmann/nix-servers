@@ -1,6 +1,7 @@
-{ pkgs
-, config
-, ...
+{
+  pkgs,
+  config,
+  ...
 }:
 let
   domain = "smartctl-exporter.${config.networking.fqdn}";
@@ -24,7 +25,7 @@ in
     forceSSL = true;
     kTLS = true;
     locations."/" = {
-      proxyPass = "https://${config.services.prometheus.exporters.smartctl.listenAddress}:${builtins.toString config.services.prometheus.exporters.smartctl.port }";
+      proxyPass = "https://${config.services.prometheus.exporters.smartctl.listenAddress}:${builtins.toString config.services.prometheus.exporters.smartctl.port}";
     };
   };
 

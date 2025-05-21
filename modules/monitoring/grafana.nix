@@ -1,7 +1,8 @@
-{ config
-, pkgs
-, inputs
-, ...
+{
+  config,
+  pkgs,
+  inputs,
+  ...
 }:
 let
   domain = "monitoring.xnee.net";
@@ -20,7 +21,7 @@ in
     kTLS = true;
     forceSSL = true;
     locations."/" = {
-      proxyPass = "http://[${config.services.grafana.settings.server.http_addr}]:${builtins.toString config.services.grafana.settings.server.http_port }";
+      proxyPass = "http://[${config.services.grafana.settings.server.http_addr}]:${builtins.toString config.services.grafana.settings.server.http_port}";
       proxyWebsockets = true;
     };
   };

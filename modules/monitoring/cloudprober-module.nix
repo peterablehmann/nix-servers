@@ -1,8 +1,9 @@
-{ config
-, lib
-, pkgs
-, utils
-, ...
+{
+  config,
+  lib,
+  pkgs,
+  utils,
+  ...
 }:
 let
   inherit (lib)
@@ -57,8 +58,8 @@ in
           [
             (getExe cfg.package)
             "--config_file=${
-            settingsFormat.generate "cloudprober.json" (filterAttrsRecursive (n: v: v != null) cfg.settings)
-          }"
+              settingsFormat.generate "cloudprober.json" (filterAttrsRecursive (n: v: v != null) cfg.settings)
+            }"
           ]
           ++ cfg.extraArgs
         );

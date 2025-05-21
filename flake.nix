@@ -42,41 +42,45 @@
   };
 
   outputs =
-    { self
-    , nixpkgs
+    {
+      self,
+      nixpkgs,
       # , lix-module
-    , disko
-    , sops-nix
-    , flake-utils
-    , colmena
-    , attic
-    , nix-topology
-    , nixos-dns
-    , ...
-    } @ inputs:
+      disko,
+      sops-nix,
+      flake-utils,
+      colmena,
+      attic,
+      nix-topology,
+      nixos-dns,
+      ...
+    }@inputs:
     let
       inherit (self) outputs;
       # let's filter the installer configuration since we don't want to deploy it with colmena
       conf = builtins.removeAttrs self.nixosConfigurations [ "home-installer" ];
     in
-    (flake-utils.lib.eachDefaultSystem (system:
-    let
-      pkgs = nixpkgs.legacyPackages.${system};
-    in
-    {
-      devShells.default = pkgs.mkShell {
-        packages = with pkgs; [
-          # pkgs is needed here because colmena would otherwise be in the scope two times
-          pkgs.colmena
-          sops
-          jq
-          octodns
-          octodns-providers.bind
-          octodns-providers.hetzner
-        ];
-      };
-    })) //
-    {
+    (flake-utils.lib.eachDefaultSystem (
+      system:
+      let
+        pkgs = nixpkgs.legacyPackages.${system};
+      in
+      {
+        devShells.default = pkgs.mkShell {
+          packages = with pkgs; [
+            # pkgs is needed here because colmena would otherwise be in the scope two times
+            pkgs.colmena
+            sops
+            jq
+            octodns
+            octodns-providers.bind
+            octodns-providers.hetzner
+            nixfmt-tree
+          ];
+        };
+      }
+    ))
+    // {
       colmena = {
         # see for details:
         # https://github.com/zhaofengli/colmena/issues/60#issuecomment-1510496861
@@ -171,12 +175,15 @@
           "lehmann.zone." = nixos-dns.utils.octodns.generateZoneAttrs [ "hetzner" ];
           "uic-fahrzeugnummer.de." = nixos-dns.utils.octodns.generateZoneAttrs [ "hetzner" ];
           "xnee.de." = nixos-dns.utils.octodns.generateZoneAttrs [ "hetzner" ];
-          "xnee.net." = nixos-dns.utils.octodns.generateZoneAttrs [ "hetzner" ];
+          "xnee.net." = nixos-dns.utils.octodns.generateZoneAttrs [
+            "hetzner"
+          ];
         };
       };
 
-      formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixpkgs-fmt;
-    } // flake-utils.lib.eachDefaultSystem (system: rec {
+      formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixfmt-tree;
+    }
+    // flake-utils.lib.eachDefaultSystem (system: rec {
       pkgs = import nixpkgs {
         inherit system;
         overlays = [ nix-topology.overlays.default ];

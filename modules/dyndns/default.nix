@@ -1,8 +1,9 @@
-{ inputs
-, config
-, pkgs
-, lib
-, ...
+{
+  inputs,
+  config,
+  pkgs,
+  lib,
+  ...
 }:
 let
   cfg = config.dyndns;
@@ -45,7 +46,10 @@ in
         let
           script = pkgs.writeShellApplication {
             name = "dyndns";
-            runtimeInputs = with pkgs; [ curl jq ];
+            runtimeInputs = with pkgs; [
+              curl
+              jq
+            ];
             bashOptions = [
               "errexit"
               "pipefail"

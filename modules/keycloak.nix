@@ -1,6 +1,7 @@
-{ inputs
-, config
-, ...
+{
+  inputs,
+  config,
+  ...
 }:
 let
   domain = "sso.xnee.net";

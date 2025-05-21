@@ -1,6 +1,7 @@
-{ pkgs
-, config
-, ...
+{
+  pkgs,
+  config,
+  ...
 }:
 let
   domain = "node-exporter.${config.networking.fqdn}";
@@ -24,7 +25,7 @@ in
     forceSSL = true;
     kTLS = true;
     locations."/" = {
-      proxyPass = "https://${config.services.prometheus.exporters.node.listenAddress}:${builtins.toString config.services.prometheus.exporters.node.port }";
+      proxyPass = "https://${config.services.prometheus.exporters.node.listenAddress}:${builtins.toString config.services.prometheus.exporters.node.port}";
     };
   };
 

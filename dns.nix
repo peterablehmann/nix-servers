@@ -1,5 +1,6 @@
-{ lib
-, ...
+{
+  lib,
+  ...
 }:
 {
   defaultTTL = 60;
@@ -92,7 +93,9 @@
       };
       "xnee.de" = lib.recursiveUpdate defaults { };
       "xnee.net" = lib.recursiveUpdate defaults {
-        "" = www208 // { txt.data = [ "TAILSCALE-fMbKHU9GGi8WDXsYeZxJ" ] ++ defaults."".txt.data; };
+        "" = www208 // {
+          txt.data = [ "TAILSCALE-fMbKHU9GGi8WDXsYeZxJ" ] ++ defaults."".txt.data;
+        };
         "www".cname.data = "xnee.net";
         "kvm1" = {
           a.data = "100.85.70.7";

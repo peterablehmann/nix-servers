@@ -1,5 +1,6 @@
-{ config
-, ...
+{
+  config,
+  ...
 }:
 let
   domain = "sync.xnee.net";
@@ -41,17 +42,29 @@ in
         keepass = {
           id = "56n2x-jhoz6";
           path = "~/keepass";
-          devices = [ "kleeblatt" "hasenpfote" "sleipnir" ];
+          devices = [
+            "kleeblatt"
+            "hasenpfote"
+            "sleipnir"
+          ];
         };
         obsidianvault = {
           id = "esczl-qkfaz";
           path = "~/obsidianvault";
-          devices = [ "kleeblatt" "hasenpfote" "sleipnir" ];
+          devices = [
+            "kleeblatt"
+            "hasenpfote"
+            "sleipnir"
+          ];
         };
         dcim = {
           id = "vpehd-xcue1";
           path = "~/dcim";
-          devices = [ "kleeblatt" "hasenpfote" "sleipnir" ];
+          devices = [
+            "kleeblatt"
+            "hasenpfote"
+            "sleipnir"
+          ];
         };
       };
     };

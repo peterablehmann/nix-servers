@@ -1,7 +1,8 @@
-{ config
-, inputs
-, pkgs
-, ...
+{
+  config,
+  inputs,
+  pkgs,
+  ...
 }:
 let
   domain = "paperless.xnee.net";
@@ -22,11 +23,15 @@ let
     echo "[PRE] File requires password"
 
     echo "[PRE] Try Tax-ID"
-    ${pkgs.qpdf}/bin/qpdf --requires-password --password=$(cat ${config.sops.secrets."paperless/taxID".path}) "''${DOCUMENT_WORKING_PATH}"
+    ${pkgs.qpdf}/bin/qpdf --requires-password --password=$(cat ${
+      config.sops.secrets."paperless/taxID".path
+    }) "''${DOCUMENT_WORKING_PATH}"
     exit_status=$?
     if [ $exit_status -eq 3 ]; then
         echo "[PRE] Password correct. Removing password..."
-            ${pkgs.qpdf}/bin/qpdf --decrypt --replace-input --password=$(cat ${config.sops.secrets."paperless/taxID".path}) "''${DOCUMENT_WORKING_PATH}"
+            ${pkgs.qpdf}/bin/qpdf --decrypt --replace-input --password=$(cat ${
+              config.sops.secrets."paperless/taxID".path
+            }) "''${DOCUMENT_WORKING_PATH}"
             echo "[PRE] Successfully removed password"
             [[ -f "$DOCUMENT_WORKING_PATH.~qpdf-orig" ]] && printf '[PRE] Remove .~qpdf-orig' && rm $DOCUMENT_WORKING_PATH.~qpdf-orig
             exit 0
@@ -98,7 +103,9 @@ in
     services.paperless-export = {
       script = ''
         [[ -d ${config.services.paperless.dataDir}/backup ]] || mkdir ${config.services.paperless.dataDir}/backup
-        ${config.services.paperless.dataDir}/paperless-manage document_exporter -cd --passphrase \"$(cat ${config.sops.secrets."paperless/backupPassword".path})\" --no-progress-bar ${config.services.paperless.dataDir}/backup
+        ${config.services.paperless.dataDir}/paperless-manage document_exporter -cd --passphrase \"$(cat ${
+          config.sops.secrets."paperless/backupPassword".path
+        })\" --no-progress-bar ${config.services.paperless.dataDir}/backup
       '';
       serviceConfig = {
         Type = "oneshot";

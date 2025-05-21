@@ -30,7 +30,7 @@ jobs:
         with:
           diagnostic-endpoint: ""
       - name: Check format
-        run: nix fmt -- --check .
+        run: nix develop --command bash -c 'treefmt --ci'
       - name: Lint using Statix
         run: nix run nixpkgs#statix -- check .
   

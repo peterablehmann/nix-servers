@@ -1,16 +1,23 @@
-{ lib
-, modulesPath
-, ...
+{
+  lib,
+  modulesPath,
+  ...
 }:
 {
-  imports =
-    [
-      (modulesPath + "/profiles/qemu-guest.nix")
-    ];
+  imports = [
+    (modulesPath + "/profiles/qemu-guest.nix")
+  ];
 
   boot = {
     initrd = {
-      availableKernelModules = [ "ata_piix" "uhci_hcd" "virtio_pci" "virtio_scsi" "sd_mod" "sr_mod" ];
+      availableKernelModules = [
+        "ata_piix"
+        "uhci_hcd"
+        "virtio_pci"
+        "virtio_scsi"
+        "sd_mod"
+        "sr_mod"
+      ];
       kernelModules = [ ];
     };
     kernelModules = [ "kvm-amd" ];

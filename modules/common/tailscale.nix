@@ -1,6 +1,7 @@
-{ config
-, inputs
-, ...
+{
+  config,
+  inputs,
+  ...
 }:
 {
   topology.self.interfaces.tailscale0.network = "tailnet";
@@ -19,5 +20,7 @@
     ];
   };
 
-  systemd.services.tailscaled.environment = { TS_DEBUG_FIREWALL_MODE = "nftables"; };
+  systemd.services.tailscaled.environment = {
+    TS_DEBUG_FIREWALL_MODE = "nftables";
+  };
 }

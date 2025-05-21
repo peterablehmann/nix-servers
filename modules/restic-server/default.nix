@@ -1,5 +1,6 @@
-{ config
-, ...
+{
+  config,
+  ...
 }:
 let
   domain = "restic.${config.networking.hostName}.xnee.net";
