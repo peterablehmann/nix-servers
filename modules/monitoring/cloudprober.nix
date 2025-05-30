@@ -1,4 +1,10 @@
-{ config, pkgs, ... }:
+{
+  config,
+  inputs,
+  lib,
+  pkgs,
+  ...
+}:
 let
   domain = "cloudprober.${config.networking.hostName}.xnee.net";
   cloudprober = pkgs.callPackage ./cloudprober-pkgs.nix { };
@@ -28,7 +34,11 @@ in
         {
           name = "ping";
           type = "PING";
-          targets.host_names = "1.1.1.1,9.9.9.9,hetzner.com";
+          targets.host_names = lib.strings.concatStrings (
+            lib.strings.intersperse "," (
+              lib.mapAttrsToList (name: host: "${host.config.networking.fqdn}") inputs.self.nixosConfigurations
+            )
+          );
         }
         {
           name = "cert";
