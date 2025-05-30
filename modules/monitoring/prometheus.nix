@@ -48,6 +48,20 @@
           ];
         }
         {
+          job_name = "cloudprober";
+          scrape_interval = "5s";
+          scheme = "https";
+          static_configs = [
+            {
+              targets = lib.mapAttrsToList (name: host: "cloudprober.${host.config.networking.fqdn}") (
+                lib.filterAttrs (
+                  name: host: host.config.services.cloudprober.enable
+                ) inputs.self.nixosConfigurations
+              );
+            }
+          ];
+        }
+        {
           job_name = "smartctl-exporter";
           scrape_interval = "5m";
           scheme = "https";
