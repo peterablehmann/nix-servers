@@ -51,7 +51,16 @@ in
             scheme = "HTTPS";
             method = "GET";
           };
-          targets.host_names = "hetzner.com";
+          targets.host_names = lib.strings.concatStrings (
+            lib.strings.intersperse "," (
+              [ "hetzner.com" ]
+              ++ lib.flatten (
+                lib.mapAttrsToList (
+                  n: v: builtins.attrNames v.config.security.acme.certs
+                ) inputs.self.nixosConfigurations
+              )
+            )
+          );
         }
       ];
     };

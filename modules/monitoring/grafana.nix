@@ -82,7 +82,7 @@ in
           type = "file";
           options.path = pkgs.fetchurl {
             url = "https://raw.githubusercontent.com/peterablehmann/grafana-dashboards/refs/heads/main/cloudprober.json";
-            hash = "sha256-9wwg6xBj3mzSss4T0Gz4CUXAIyCIMrsGJfkb0fKvEuA=";
+            hash = "sha256-PeQYIPYLo0vSJoOii9fDZfnRfe01MNEdm3SJThGzaDI=";
           };
         }
         {
@@ -122,7 +122,7 @@ in
           type = "file";
           options.path = pkgs.fetchurl {
             url = "https://raw.githubusercontent.com/peterablehmann/grafana-dashboards/main/tls-cert-dashboard.json";
-            hash = "sha256-iu1huuK9ebEgcf8A3qM92N0rq7rr7uM6oynzDY/wv7M=";
+            hash = "sha256-900X5o5OMc/lIyE4ztb/jJTZoP9XEq//m9Hmks6RZro=";
           };
         }
       ];

@@ -98,41 +98,6 @@
           ];
         }
         {
-          job_name = "certs";
-          scrape_interval = "5m";
-          basic_auth = {
-            username = "prometheus";
-            password_file = config.sops.secrets."prometheus/basic_auth".path;
-          };
-          metrics_path = "/probe";
-          params = {
-            module = [ "certs" ];
-          };
-          static_configs = [
-            {
-              targets = lib.flatten (
-                lib.mapAttrsToList (
-                  n: v: builtins.attrNames v.config.security.acme.certs
-                ) inputs.self.nixosConfigurations
-              );
-            }
-          ];
-          relabel_configs = [
-            {
-              source_labels = [ "__address__" ];
-              target_label = "__param_target";
-            }
-            {
-              source_labels = [ "__param_target" ];
-              target_label = "instance";
-            }
-            {
-              target_label = "__address__";
-              replacement = "blackbox.xnee.net";
-            }
-          ];
-        }
-        {
           job_name = "restic";
           scrape_interval = "5s";
           scheme = "https";
