@@ -36,7 +36,11 @@ in
           type = "PING";
           targets.host_names = lib.strings.concatStrings (
             lib.strings.intersperse "," (
-              lib.mapAttrsToList (name: host: "${host.config.networking.fqdn}") inputs.self.nixosConfigurations
+              lib.mapAttrsToList (name: host: "${host.config.networking.fqdn}") (
+                lib.filterAttrs (
+                  name: host: (host.config.networking.fqdn != config.networking.fqdn)
+                ) inputs.self.nixosConfigurations
+              )
             )
           );
         }
