@@ -78,6 +78,14 @@ in
           };
         }
         {
+          name = "Cloudprober";
+          type = "file";
+          options.path = pkgs.fetchurl {
+            url = "https://raw.githubusercontent.com/peterablehmann/grafana-dashboards/refs/heads/main/cloudprober.json";
+            hash = "sha256-9wwg6xBj3mzSss4T0Gz4CUXAIyCIMrsGJfkb0fKvEuA=";
+          };
+        }
+        {
           name = "Node-Exporter";
           type = "file";
           options.path = pkgs.fetchurl {
