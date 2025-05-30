@@ -21,10 +21,7 @@ in
       subDomains = {
         "${config.networking.fqdn}" = { };
       };
-      baseDomains."${config.networking.domain}" = {
-        a.data = IPv4;
-        aaaa.data = IPv6;
-      };
+      baseDomains."${config.networking.domain}".aaaa.data = IPv6;
     };
     useNetworkd = true;
     useDHCP = false;
