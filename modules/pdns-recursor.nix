@@ -32,7 +32,7 @@ in
         return = "404";
       };
       "/metrics" = {
-        proxyPass = "http://[${config.services.pdns-recursor.yaml-settings.webservice.address}]:8082";
+        proxyPass = "http://[${config.services.pdns-recursor.yaml-settings.webservice.address}]:${builtins.toString config.services.pdns-recursor.yaml-settings.webservice.port}";
       };
     };
   };
@@ -73,7 +73,9 @@ in
         ];
       };
       webservice = {
+        webserver = true;
         address = "::1";
+        port = 8082;
         password = "$scrypt$ln=10,p=1,r=8$LHDOmP4OhG7E86Z6QtsXqQ==$cZlgiI+Y1gFqKh9pvNbJPm74oCs9Wsaqd0JyliSAPQE=";
       };
     };
