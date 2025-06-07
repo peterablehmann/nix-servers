@@ -58,6 +58,10 @@ in
           "2003:a:173b:1000::/56"
         ];
       };
+      outgoing.source_address = [
+        "192.168.33.1"
+        "2003:a:173b:1000::2101"
+      ];
       dnssec.validation = "validate";
       recursor = {
         serve_rfc1918 = true;
