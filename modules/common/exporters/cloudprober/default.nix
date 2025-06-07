@@ -7,7 +7,6 @@
 }:
 let
   domain = "cloudprober.${config.networking.hostName}.xnee.net";
-  cloudprober = pkgs.callPackage ./cloudprober-pkgs.nix { };
 in
 {
   imports = [
@@ -27,7 +26,6 @@ in
 
   services.cloudprober = {
     enable = true;
-    package = cloudprober;
     settings = {
       host = "[::1]";
       probe = [
