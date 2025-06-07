@@ -43,7 +43,9 @@ in
   };
 
   # Workaround until https://github.com/NixOS/nixpkgs/pull/414732 gets merged
-  systemd.services.pdns-recursor.restartTriggers = [ config.environment.etc."/pdns-recursor/recursor.yml" ];
+  systemd.services.pdns-recursor.restartTriggers = [
+    config.environment.etc."/pdns-recursor/recursor.yml".source
+  ];
 
   services.pdns-recursor = {
     enable = true;
