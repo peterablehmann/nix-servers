@@ -10,7 +10,7 @@
     inputs.sops-nix.nixosModules.sops
     inputs.nixos-dns.nixosModules.dns
     ./acme.nix
-    ./backup.nix
+    ./backup
     ./boot.nix
     ./exporters
     ./fail2ban.nix
