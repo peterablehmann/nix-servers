@@ -90,7 +90,7 @@ in
           type = "file";
           options.path = pkgs.fetchurl {
             url = "https://raw.githubusercontent.com/rfmoz/grafana-dashboards/master/prometheus/node-exporter-full.json";
-            hash = "sha256-2VMA/U61pYBvaxLEv/sFlvGSlg5akwxHEoYriAFaz9I=";
+            hash = "sha256-P326XW/h/z4yydUQ0Jm2e+YtDWkh3Rl17ZlANVjS35s=";
           };
         }
         {
