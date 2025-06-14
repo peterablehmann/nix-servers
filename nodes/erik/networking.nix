@@ -40,6 +40,7 @@ in
     networks = {
       "10-wan" = {
         matchConfig.Name = "eth0";
+        networkConfig.IPv6AcceptRA = false;
         address = [
           "${IPv4}/22"
           "${IPv6}/64"
