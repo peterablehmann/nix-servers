@@ -32,15 +32,18 @@ in
         {
           name = "ping";
           type = "PING";
-          targets.host_names = lib.strings.concatStrings (
-            lib.strings.intersperse "," (
-              lib.mapAttrsToList (name: host: "${host.config.networking.fqdn}") (
-                lib.filterAttrs (
-                  name: host: (host.config.networking.fqdn != config.networking.fqdn)
-                ) inputs.self.nixosConfigurations
+          targets = {
+            host_names = lib.strings.concatStrings (
+              lib.strings.intersperse "," (
+                lib.mapAttrsToList (name: host: "${host.config.networking.fqdn}") (
+                  lib.filterAttrs (
+                    name: host: (host.config.networking.fqdn != config.networking.fqdn)
+                  ) inputs.self.nixosConfigurations
+                )
               )
-            )
-          );
+            );
+            server = "127.0.0.53";
+          };
         }
         {
           name = "cert";
