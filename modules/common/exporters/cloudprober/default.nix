@@ -30,8 +30,9 @@ in
       host = "[::1]";
       probe = [
         {
-          name = "ping";
+          name = "pingv4";
           type = "PING";
+          ip_version = "IPV4";
           targets = {
             host_names = lib.strings.concatStrings (
               lib.strings.intersperse "," (
@@ -42,7 +43,22 @@ in
                 )
               )
             );
-            server = "127.0.0.53";
+          };
+        }
+        {
+          name = "pingv6";
+          type = "PING";
+          ip_version = "IPV6";
+          targets = {
+            host_names = lib.strings.concatStrings (
+              lib.strings.intersperse "," (
+                lib.mapAttrsToList (name: host: "${host.config.networking.fqdn}") (
+                  lib.filterAttrs (
+                    name: host: (host.config.networking.fqdn != config.networking.fqdn)
+                  ) inputs.self.nixosConfigurations
+                )
+              )
+            );
           };
         }
         {
