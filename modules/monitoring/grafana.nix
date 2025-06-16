@@ -82,7 +82,7 @@ in
           type = "file";
           options.path = pkgs.fetchurl {
             url = "https://raw.githubusercontent.com/peterablehmann/grafana-dashboards/refs/heads/main/cloudprober.json";
-            hash = "sha256-PeQYIPYLo0vSJoOii9fDZfnRfe01MNEdm3SJThGzaDI=";
+            hash = "sha256-s2+11fWGuaYwq3R0Tpm4jasKM31n7YI1kjqTSpxuYBc=";
           };
         }
         {
