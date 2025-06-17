@@ -138,6 +138,7 @@
         dyndns = ./modules/dyndns;
         immich = ./modules/immich.nix;
         monitoring = ./modules/monitoring;
+        lidarr = ./modules/lidarr.nix;
         pathvector = ./modules/pathvector.nix;
         netbox = ./modules/netbox.nix;
         kanidm = ./modules/kanidm.nix;
