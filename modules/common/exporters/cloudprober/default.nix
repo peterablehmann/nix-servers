@@ -45,6 +45,15 @@ in
           };
         }
         {
+          name = "pinglb";
+          type = "PING";
+          targets = {
+            host_names = lib.strings.concatStrings (
+              lib.strings.intersperse "," (builtins.fromJSON (builtins.readFile ./targets.nbg1.json))
+            );
+          };
+        }
+        {
           name = "pingv6";
           type = "PING";
           ip_version = "IPV6";
