@@ -45,11 +45,6 @@ in
           };
         }
         {
-          name = "pinglb";
-          type = "PING";
-          targets.file_targets.file_path = "${./targets.nbg1.json}";
-        }
-        {
           name = "pingv6";
           type = "PING";
           ip_version = "IPV6";
