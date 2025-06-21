@@ -45,6 +45,7 @@ in
           IPv6AcceptRA = false;
         };
         matchConfig.Name = "eth0";
+        linkConfig.MTUBytes = 9216;
         address = [
           # "${IPv4}/22"
           "${IPv6}/56"
