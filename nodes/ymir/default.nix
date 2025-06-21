@@ -13,4 +13,9 @@
     inputs.self.nixosModules.radicale
     inputs.self.nixosModules.routinator
   ];
+
+  metadata = {
+    ipv4 = true;
+    ipv6 = true;
+  };
 }

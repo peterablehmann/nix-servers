@@ -14,6 +14,7 @@
     ./boot.nix
     ./exporters
     ./fail2ban.nix
+    ./metadata.nix
     ./nginx.nix
     ./nix.nix
     ./ssh.nix

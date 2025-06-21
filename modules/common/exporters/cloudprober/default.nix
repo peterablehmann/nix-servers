@@ -28,7 +28,7 @@ in
     settings = {
       host = "[::1]";
       probe = [
-        {
+        (lib.mkIf config.metadata.ipv4 {
           name = "pingv4";
           type = "PING";
           ip_version = "IPV4";
@@ -37,14 +37,14 @@ in
               lib.strings.intersperse "," (
                 lib.mapAttrsToList (name: host: "${host.config.networking.fqdn}") (
                   lib.filterAttrs (
-                    name: host: (host.config.networking.fqdn != config.networking.fqdn)
+                    name: host: (host.config.networking.fqdn != config.networking.fqdn && host.config.metadata.ipv4)
                   ) inputs.self.nixosConfigurations
                 )
               )
             );
           };
-        }
-        {
+        })
+        (lib.mkIf config.metadata.ipv6 {
           name = "pingv6";
           type = "PING";
           ip_version = "IPV6";
@@ -53,13 +53,13 @@ in
               lib.strings.intersperse "," (
                 lib.mapAttrsToList (name: host: "${host.config.networking.fqdn}") (
                   lib.filterAttrs (
-                    name: host: (host.config.networking.fqdn != config.networking.fqdn)
+                    name: host: (host.config.networking.fqdn != config.networking.fqdn && host.config.metadata.ipv6)
                   ) inputs.self.nixosConfigurations
                 )
               )
             );
           };
-        }
+        })
         {
           name = "cert";
           type = "HTTP";
