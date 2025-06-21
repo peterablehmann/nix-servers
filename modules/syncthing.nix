@@ -6,24 +6,11 @@ let
   domain = "sync.xnee.net";
 in
 {
-  security.acme.certs."${domain}" = { };
-  networking.domains.subDomains.${domain} = { };
-
-  services.nginx.virtualHosts."${domain}" = {
-    useACMEHost = domain;
-    kTLS = true;
-    forceSSL = true;
-    locations."/" = {
-      proxyPass = "http://${config.services.syncthing.guiAddress}";
-    };
-  };
-
   services.syncthing = {
     enable = true;
     dataDir = "/var/lib/syncthing";
     guiAddress = "[::1]:8384";
     settings = {
-      # gui.insecureSkipHostcheck = true;
       devices = {
         kleeblatt = {
           name = "kleeblatt.xnee.net";
