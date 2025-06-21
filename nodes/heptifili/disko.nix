@@ -6,7 +6,7 @@
   disko.devices = {
     disk = {
       root = {
-        device = "/dev/vdb";
+        device = "/dev/sda";
         type = "disk";
         content = {
           type = "gpt";
@@ -14,7 +14,7 @@
             ESP = {
               label = "EFI";
               type = "EF00";
-              size = "200M";
+              size = "500M";
               content = {
                 type = "filesystem";
                 format = "vfat";
@@ -28,42 +28,6 @@
                 type = "filesystem";
                 format = "ext4";
                 mountpoint = "/";
-              };
-            };
-          };
-        };
-      };
-      restic = {
-        device = "/dev/vda";
-        type = "disk";
-        content = {
-          type = "gpt";
-          partitions = {
-            data = {
-              label = "RESTIC";
-              size = "100%";
-              content = {
-                type = "filesystem";
-                format = "ext4";
-                mountpoint = config.services.restic.server.dataDir;
-              };
-            };
-          };
-        };
-      };
-      syncthing = {
-        device = "/dev/vdc";
-        type = "disk";
-        content = {
-          type = "gpt";
-          partitions = {
-            data = {
-              label = "SYNCTHING";
-              size = "100%";
-              content = {
-                type = "filesystem";
-                format = "ext4";
-                mountpoint = config.services.syncthing.dataDir;
               };
             };
           };
