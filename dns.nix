@@ -78,6 +78,8 @@
         "mgmt.r4".aaaa.data = "2a0c:b640:10::2:38";
         "r5".aaaa.data = "2a0f:85c1:b7a::c0:5";
         "mgmt.r5".aaaa.data = "2a14:7c0:7000:312::1";
+        "r6".aaaa.data = "2a0f:85c1:b7a::c0:6";
+        "mgmt.r6".aaaa.data = "2a01:4f8:1b7:730::2";
         "ripe-atlas-1".aaaa.data = "2a0f:85c1:b7a:a56f:be24:11ff:fe8e:60b8";
       };
       "bigdriver.net" = lib.recursiveUpdate defaults { };
