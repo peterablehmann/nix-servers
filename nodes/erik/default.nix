@@ -4,9 +4,7 @@
 }:
 {
   imports = [
-    inputs.self.nixosModules.lidarr
     inputs.self.nixosModules.netbox
-    inputs.self.nixosModules.pdns-recursor
     ./disko.nix
     ./hardware-configuration.nix
     ./networking.nix
