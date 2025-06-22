@@ -40,30 +40,10 @@ in
     settings.ALLOWED_HOSTS = [ domain ];
   };
 
-  systemd = {
-    timers.netbox-export = {
-      wantedBy = [ "timers.target" ];
-      timerConfig = {
-        OnCalendar = "*:55,25:00";
-        Unit = "netbox-export.service";
-      };
+  systemd.services.nginx.serviceConfig = {
+      SupplementaryGroups = [ config.systemd.services.netbox.serviceConfig.Group ];
+      BindReadOnlyPaths = [ config.services.netbox.dataDir ];
     };
-    services.netbox-export = {
-      script = ''
-        netbox-manage dumpdata > ${config.services.netbox.dataDir}/backup.json
-      '';
-      serviceConfig = {
-        Type = "oneshot";
-        User = "netbox";
-      };
-    };
-    services.nginx = {
-      serviceConfig = {
-        SupplementaryGroups = [ config.systemd.services.netbox.serviceConfig.Group ];
-        BindReadOnlyPaths = [ config.services.netbox.dataDir ];
-      };
-    };
-  };
 
   backup.paths = [ config.services.netbox.dataDir ];
 }
