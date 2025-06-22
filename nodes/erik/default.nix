@@ -4,7 +4,6 @@
 }:
 {
   imports = [
-    inputs.self.nixosModules.netbox
     ./disko.nix
     ./hardware-configuration.nix
     ./networking.nix

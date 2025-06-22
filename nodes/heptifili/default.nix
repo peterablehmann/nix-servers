@@ -5,6 +5,7 @@
 {
   imports = [
     inputs.self.nixosModules.syncthing
+    inputs.self.nixosModules.netbox
     ./disko.nix
     ./hardware-configuration.nix
     ./networking.nix
