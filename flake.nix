@@ -91,16 +91,6 @@
       } // builtins.mapAttrs (name: value: { imports = value._module.args.modules; }) conf;
 
       nixosConfigurations = {
-        erik = nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit inputs outputs; };
-          system = "x86_64-linux";
-          extraModules = [ inputs.colmena.nixosModules.deploymentOptions ];
-          modules = [
-            ./nodes/erik
-            self.nixosModules.common
-            nix-topology.nixosModules.default
-          ];
-        };
         heptifili = nixpkgs.lib.nixosSystem {
           specialArgs = { inherit inputs outputs; };
           system = "x86_64-linux";

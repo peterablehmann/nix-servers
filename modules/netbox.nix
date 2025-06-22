@@ -9,7 +9,7 @@ let
 in
 {
   sops.secrets."netbox/secret_key" = {
-    sopsFile = "${inputs.self}/secrets/erik.yaml";
+    sopsFile = "${inputs.self}/secrets/${config.networking.hostName}.yaml";
     owner = "netbox";
     group = "netbox";
   };
@@ -41,9 +41,9 @@ in
   };
 
   systemd.services.nginx.serviceConfig = {
-      SupplementaryGroups = [ config.systemd.services.netbox.serviceConfig.Group ];
-      BindReadOnlyPaths = [ config.services.netbox.dataDir ];
-    };
+    SupplementaryGroups = [ config.systemd.services.netbox.serviceConfig.Group ];
+    BindReadOnlyPaths = [ config.services.netbox.dataDir ];
+  };
 
   backup.paths = [ config.services.netbox.dataDir ];
 }
