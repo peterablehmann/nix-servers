@@ -4,8 +4,9 @@
 }:
 {
   imports = [
-    inputs.self.nixosModules.syncthing
+    inputs.self.nixosModules.fernglas
     inputs.self.nixosModules.netbox
+    inputs.self.nixosModules.syncthing
     ./disko.nix
     ./hardware-configuration.nix
     ./networking.nix

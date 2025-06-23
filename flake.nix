@@ -39,6 +39,12 @@
     # peterablehmann/NixOS-DNS/tree/fix-cnames
     nixos-dns.url = "github:Janik-Haag/NixOS-DNS";
     nixos-dns.inputs.nixpkgs.follows = "nixpkgs";
+
+    fernglas = {
+      type = "github";
+      owner = "wobcom";
+      repo = "fernglas";
+    };
   };
 
   outputs =
@@ -126,6 +132,7 @@
       nixosModules = {
         common = ./modules/common;
         dyndns = ./modules/dyndns;
+        fernglas = ./modules/fernglas.nix;
         immich = ./modules/immich.nix;
         monitoring = ./modules/monitoring;
         lidarr = ./modules/lidarr.nix;
