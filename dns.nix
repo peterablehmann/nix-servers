@@ -102,6 +102,7 @@
           aaaa.data = "fd7a:115c:a1e0::f701:4607";
         };
         "myrkviar".aaaa.data = "2a01:4f8:1b7:730::1";
+        "*.myrkviar".aaaa.data = "2a01:4f8:1b7:730::1";
         "proxmox" = {
           aaaa.data = [ "2a01:4f8:1b7:730::1" ];
         };
