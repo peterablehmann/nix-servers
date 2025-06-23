@@ -70,10 +70,6 @@
           a.data = "168.119.118.205";
           aaaa.data = "2a01:4f8:1c1b:fec6::1";
         };
-        "r3".aaaa.data = "2a0f:85c1:b7a::c0:3";
-        "mgmt.r3" = {
-          aaaa.data = "2003:a:173b:1000::2102";
-        };
         "r4".aaaa.data = "2a0f:85c1:b7a::c0:4";
         "mgmt.r4".aaaa.data = "2a0c:b640:10::2:38";
         "r5".aaaa.data = "2a0f:85c1:b7a::c0:5";
@@ -105,14 +101,9 @@
           a.data = "100.85.70.7";
           aaaa.data = "fd7a:115c:a1e0::f701:4607";
         };
-        "njal" = {
-          a.data = "192.168.32.11";
-          aaaa.data = "2003:a:173b:1000::200b";
-        };
         "myrkviar".aaaa.data = "2a01:4f8:1b7:730::1";
         "proxmox" = {
-          a.data = [ "192.168.32.11" ];
-          aaaa.data = [ "2003:a:173b:1000::200b" ];
+          aaaa.data = [ "2a01:4f8:1b7:730::1" ];
         };
         "fritzbox" = {
           a.data = "192.168.32.1";
@@ -121,10 +112,6 @@
         "switch1" = {
           a.data = "192.168.32.13";
           aaaa.data = "2003:a:173b:1000::200d";
-        };
-        "unifi-controller" = {
-          a.data = "192.168.33.3";
-          aaaa.data = "2003:a:173b:1000::2103";
         };
       };
     };
