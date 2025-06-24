@@ -21,6 +21,7 @@ in
         "${config.networking.fqdn}" = { };
       };
       baseDomains."${config.networking.domain}" = {
+        a.data = IPv4;
         aaaa.data = IPv6;
       };
     };
