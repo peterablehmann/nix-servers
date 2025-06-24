@@ -4,7 +4,6 @@
 }:
 {
   imports = [
-    inputs.self.nixosModules.fernglas
     inputs.self.nixosModules.netbox
     inputs.self.nixosModules.syncthing
     ./disko.nix

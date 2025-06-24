@@ -132,7 +132,6 @@
       nixosModules = {
         common = ./modules/common;
         dyndns = ./modules/dyndns;
-        fernglas = ./modules/fernglas.nix;
         immich = ./modules/immich.nix;
         monitoring = ./modules/monitoring;
         lidarr = ./modules/lidarr.nix;
