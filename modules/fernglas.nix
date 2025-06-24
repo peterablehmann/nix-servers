@@ -1,7 +1,6 @@
 { config, inputs, ... }:
 
 let
-  bmpPort = 11019;
   domain = "fernglas.xnee.net";
 in
 {
@@ -27,24 +26,23 @@ in
       api.bind = "[::1]:3000";
       collectors = {
         default = {
-          collector_type = "Bmp";
-          bind = "[::]:${toString bmpPort}";
+          collector_type = "Bgp";
+          bind = "[::]:179";
+          default_peer_config = {
+            asn = 65000;
+            router_id = "255.255.255.255";
+          };
           peers = {
             "2a0f:85c1:b7a::c0:1" = { };
-            "2a01:4f8:1c1e:8464::1" = { };
             "2a0f:85c1:b7a::c0:2" = { };
-            "2a01:4f8:1c1b:fec6::1" = { };
             "2a0f:85c1:b7a::c0:4" = { };
-            "2a0c:b640:10::2:38" = { };
             "2a0f:85c1:b7a::c0:5" = { };
-            "2a14:7c0:7000:312::1" = { };
             "2a0f:85c1:b7a::c0:6" = { };
-            "2a01:4f8:1b7:730::2" = { };
           };
         };
       };
     };
   };
 
-  networking.firewall.allowedTCPPorts = [ bmpPort ];
+  networking.firewall.allowedTCPPorts = [ 179 ];
 }
