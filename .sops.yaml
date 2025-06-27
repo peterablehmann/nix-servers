@@ -4,6 +4,7 @@ keys:
   - &system_mns age1s7xs405mkw2gagclktekz27lxhh38se7adrkdfc0x2l28j9xsvdqcdrsyr
   - &system_ymir age183wgf8xp46chqk049ekyg7vsan2p50zh4lqfllcllzwuekeywdzqn7pz0q
   - &system_heptifili age1hme485ggszkphmky3y0s59r35zmva8jp4awjq8uj6gxc5e7wcvcsx9rg4h
+  - &system_incus-test age1g6eflmemt0e7urdq64v2qmg2xu0pvsn3lxn3alndyejcz5z8rcqsnn6t2g
 
 creation_rules:
   - path_regex: secrets/common.(yaml|json|env|ini)$
@@ -14,6 +15,7 @@ creation_rules:
       - *system_mns
       - *system_ymir
       - *system_heptifili
+      - *system_incus-test
   
   - path_regex: secrets/mns.(yaml|json|env|ini)$
     key_groups:
