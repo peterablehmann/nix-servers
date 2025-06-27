@@ -13,4 +13,9 @@
     ipv4 = true;
     ipv6 = true;
   };
+
+  virtualisation.incus = {
+    enable = true;
+    ui.enable = true;
+  };
 }
