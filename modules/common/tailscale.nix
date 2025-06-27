@@ -4,8 +4,6 @@
   ...
 }:
 {
-  topology.self.interfaces.tailscale0.network = "tailnet";
-
   sops.secrets."tailscale/authkey" = {
     sopsFile = "${inputs.self}/secrets/common.yaml";
   };

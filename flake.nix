@@ -32,9 +32,6 @@
     # Attic
     attic.url = "github:zhaofengli/attic";
 
-    # Nix-Topology
-    nix-topology.url = "github:oddlama/nix-topology";
-
     # NixOS-DNS
     # peterablehmann/NixOS-DNS/tree/fix-cnames
     nixos-dns.url = "github:Janik-Haag/NixOS-DNS";
@@ -57,7 +54,6 @@
       flake-utils,
       colmena,
       attic,
-      nix-topology,
       nixos-dns,
       ...
     }@inputs:
@@ -104,7 +100,6 @@
           modules = [
             ./nodes/heptifili
             self.nixosModules.common
-            nix-topology.nixosModules.default
           ];
         };
         mns = nixpkgs.lib.nixosSystem {
@@ -114,7 +109,6 @@
           modules = [
             ./nodes/mns
             self.nixosModules.common
-            nix-topology.nixosModules.default
           ];
         };
         ymir = nixpkgs.lib.nixosSystem {
@@ -124,7 +118,6 @@
           modules = [
             ./nodes/ymir
             self.nixosModules.common
-            nix-topology.nixosModules.default
           ];
         };
         incus-test = nixpkgs.lib.nixosSystem {
@@ -188,22 +181,5 @@
       };
 
       formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixfmt-tree;
-    }
-    // flake-utils.lib.eachDefaultSystem (system: rec {
-      pkgs = import nixpkgs {
-        inherit system;
-        overlays = [ nix-topology.overlays.default ];
-      };
-
-      topology = import nix-topology {
-        inherit pkgs;
-        modules = [
-          # Your own file to define global topology. Works in principle like a nixos module but uses different options.
-          # ./topology.nix
-          # Inline module to inform topology of your existing NixOS hosts.
-          ./topology.nix
-          { inherit (self) nixosConfigurations; }
-        ];
-      };
-    });
+    };
 }
