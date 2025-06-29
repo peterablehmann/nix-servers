@@ -103,6 +103,14 @@
         };
         "myrkviar".aaaa.data = "2a01:4f8:1b7:730::1";
         "*.myrkviar".aaaa.data = "2a01:4f8:1b7:730::1";
+        "oob.myrkviar" = {
+          a.data = "172.16.0.2";
+          aaaa.data = "fdc5:0f61:83a0::2";
+        };
+        "idrac.myrkviar" = {
+          a.data = "172.16.0.3";
+          aaaa.data = "fdc5:0f61:83a0::3";
+        };
         "proxmox" = {
           aaaa.data = [ "2a01:4f8:1b7:730::1" ];
         };
