@@ -120,15 +120,6 @@
             self.nixosModules.common
           ];
         };
-        incus-test = nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit inputs outputs; };
-          system = "x86_64-linux";
-          extraModules = [ inputs.colmena.nixosModules.deploymentOptions ];
-          modules = [
-            ./nodes/incus-test
-            self.nixosModules.common
-          ];
-        };
       };
 
       nixosModules = {
