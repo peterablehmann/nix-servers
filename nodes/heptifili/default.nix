@@ -12,7 +12,7 @@
   ];
 
   metadata = {
-    ipv4 = true;
+    ipv4 = false;
     ipv6 = true;
   };
 

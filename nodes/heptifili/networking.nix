@@ -4,7 +4,7 @@
   ...
 }:
 let
-  IPv4 = "49.12.178.245";
+  #IPv4 = "49.12.178.245";
   IPv6 = "2a01:4f8:1b7:730::3";
 in
 {
@@ -15,7 +15,7 @@ in
         "${config.networking.fqdn}" = { };
       };
       baseDomains."${config.networking.domain}" = {
-        a.data = IPv4;
+        #a.data = IPv4;
         aaaa.data = IPv6;
       };
     };
@@ -25,8 +25,8 @@ in
     usePredictableInterfaceNames = lib.mkDefault false;
     domain = "xnee.net";
     nameservers = [
-      "185.12.64.1"
-      "185.12.64.2"
+      # "185.12.64.1"
+      # "185.12.64.2"
       "2a01:4ff:ff00::add:1"
       "2a01:4ff:ff00::add:2"
     ];
@@ -44,7 +44,7 @@ in
         matchConfig.Name = "eth0";
         linkConfig.MTUBytes = 9216;
         address = [
-          "${IPv4}/28"
+          # "${IPv4}/28"
           "${IPv6}/56"
         ];
         routes = [
