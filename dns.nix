@@ -57,27 +57,6 @@
       };
     in
     {
-      "as213422.net" = lib.recursiveUpdate defaults {
-        "" = www208;
-        "lg".cname.data = "managed-lg.bgp.tools";
-        "r1".aaaa.data = "2a0f:85c1:b7a::c0:1";
-        "mgmt.r1" = {
-          a.data = "78.46.210.123";
-          aaaa.data = "2a01:4f8:1c1e:8464::1";
-        };
-        "r2".aaaa.data = "2a0f:85c1:b7a::c0:2";
-        "mgmt.r2" = {
-          a.data = "168.119.118.205";
-          aaaa.data = "2a01:4f8:1c1b:fec6::1";
-        };
-        "r4".aaaa.data = "2a0f:85c1:b7a::c0:4";
-        "mgmt.r4".aaaa.data = "2a0c:b640:10::2:38";
-        "r5".aaaa.data = "2a0f:85c1:b7a::c0:5";
-        "mgmt.r5".aaaa.data = "2a14:7c0:7000:312::1";
-        "r6".aaaa.data = "2a0f:85c1:b7a::c0:6";
-        "mgmt.r6".aaaa.data = "2a01:4f8:1b7:730::2";
-        "ripe-atlas-1".aaaa.data = "2a0f:85c1:b7a:a56f:be24:11ff:fe8e:60b8";
-      };
       "bigdriver.net" = lib.recursiveUpdate defaults { };
       "hainsacker.de" = lib.recursiveUpdate defaults { };
       "hetzner-offline.de" = lib.recursiveUpdate defaults { };
