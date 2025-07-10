@@ -80,8 +80,14 @@
           a.data = "100.85.70.7";
           aaaa.data = "fd7a:115c:a1e0::f701:4607";
         };
-        "myrkviar".aaaa.data = "2a01:4f8:1b7:730::1";
-        "*.myrkviar".aaaa.data = "2a01:4f8:1b7:730::1";
+        "myrkviar" = {
+          a.data = "49.12.178.245";
+          aaaa.data = "2a01:4f8:1b7:730::1";
+        };
+        "*.myrkviar" = {
+          a.data = "49.12.178.245";
+          aaaa.data = "2a01:4f8:1b7:730::1";
+        };
         "oob.myrkviar" = {
           a.data = "172.16.0.2";
           aaaa.data = "fdc5:0f61:83a0::2";
@@ -91,6 +97,7 @@
           aaaa.data = "fdc5:0f61:83a0::3";
         };
         "proxmox" = {
+          a.data = [ "49.12.178.245" ];
           aaaa.data = [ "2a01:4f8:1b7:730::1" ];
         };
         "fritzbox" = {
