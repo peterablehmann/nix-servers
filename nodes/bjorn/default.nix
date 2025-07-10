@@ -1,6 +1,7 @@
 {
   config,
   inputs,
+  pkgs,
   ...
 }:
 {
@@ -26,6 +27,9 @@
       name = "nix-as213422";
       tokenFile = config.sops.secrets."github-runners/nix-as213422".path;
       url = "https://github.com/peterablehmann/nix-as213422";
+      extraPackages = with pkgs; [
+        openssh
+      ];
     };
   };
 }
