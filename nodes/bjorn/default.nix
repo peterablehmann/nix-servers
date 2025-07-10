@@ -1,4 +1,5 @@
 {
+  config,
   inputs,
   ...
 }:
@@ -15,4 +16,16 @@
   };
 
   services.qemuGuest.enable = true;
+
+  sops.secrets."github-runners/nix-as213422".sopsFile =
+    "${inputs.self}/secrets/${config.networking.hostName}.yaml";
+
+  services.github-runners = {
+    nix-as213422 = {
+      enable = true;
+      name = "nix-as213422";
+      tokenFile = config.sops.secrets."github-runners/nix-as213422".path;
+      url = "https://github.com/peterablehmann/nix-as213422";
+    };
+  };
 }
