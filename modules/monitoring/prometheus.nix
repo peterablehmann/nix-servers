@@ -82,6 +82,16 @@
           ];
         }
         {
+          job_name = "transceiver-exporter";
+          scrape_interval = "5s";
+          scheme = "https";
+          basic_auth = {
+            username = "prometheus";
+            password_file = config.sops.secrets."prometheus/basic_auth".path;
+          };
+          static_configs = [ { targets = [ "transceiver-exporter.myrkviar.xnee.net" ]; } ];
+        }
+        {
           job_name = "zfs-exporter";
           scrape_interval = "30s";
           scheme = "https";
