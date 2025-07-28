@@ -28,7 +28,7 @@ in
     settings = {
       host = "[::1]";
       probe = [
-        (lib.mkIf config.metadata.ipv4 {
+        (lib.mkIf (config.metadata.network.ipv4.address != null) {
           name = "pingv4";
           type = "PING";
           ip_version = "IPV4";
@@ -37,14 +37,18 @@ in
               lib.strings.intersperse "," (
                 lib.mapAttrsToList (name: host: "${host.config.networking.fqdn}") (
                   lib.filterAttrs (
-                    name: host: (host.config.networking.fqdn != config.networking.fqdn && host.config.metadata.ipv4)
+                    name: host:
+                    (
+                      host.config.networking.fqdn != config.networking.fqdn
+                      && host.config.metadata.network.ipv4.address != null
+                    )
                   ) inputs.self.nixosConfigurations
                 )
               )
             );
           };
         })
-        (lib.mkIf config.metadata.ipv6 {
+        (lib.mkIf (config.metadata.network.ipv6.address != null) {
           name = "pingv6";
           type = "PING";
           ip_version = "IPV6";
@@ -53,7 +57,11 @@ in
               lib.strings.intersperse "," (
                 lib.mapAttrsToList (name: host: "${host.config.networking.fqdn}") (
                   lib.filterAttrs (
-                    name: host: (host.config.networking.fqdn != config.networking.fqdn && host.config.metadata.ipv6)
+                    name: host:
+                    (
+                      host.config.networking.fqdn != config.networking.fqdn
+                      && host.config.metadata.network.ipv6.address != null
+                    )
                   ) inputs.self.nixosConfigurations
                 )
               )

@@ -6,7 +6,6 @@
   imports = [
     ./disko.nix
     ./hardware-configuration.nix
-    ./networking.nix
     inputs.self.nixosModules.monitoring
     inputs.self.nixosModules.kanidm
     inputs.self.nixosModules.paperless
@@ -15,7 +14,22 @@
   ];
 
   metadata = {
-    ipv4 = true;
-    ipv6 = true;
+    hostName = "ymir";
+    domain = "xnee.net";
+    location = "hetzner-cloud";
+    network = {
+      ipv4 = {
+        address = "128.140.9.158";
+        prefixLength = 32;
+        gateway = "172.31.1.1";
+      };
+      ipv6 = {
+        address = "2a01:4f8:c2c:17c9::1";
+        prefixLength = 64;
+        gateway = "fe80::1";
+      };
+    };
   };
+
+  services.tailscale.extraUpFlags = [ "--accept-routes" ];
 }

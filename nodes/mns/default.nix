@@ -5,15 +5,26 @@
 }:
 {
   imports = [
-    # ./backup.nix
     ./disko.nix
     ./hardware-configuration.nix
-    ./networking.nix
   ];
 
   metadata = {
-    ipv4 = true;
-    ipv6 = true;
+    hostName = "mns";
+    domain = "xnee.net";
+    location = "hetzner-cloud";
+    network = {
+      ipv4 = {
+        address = "168.119.172.8";
+        prefixLength = 32;
+        gateway = "172.31.1.1";
+      };
+      ipv6 = {
+        address = "2a01:4f8:1c1e:ad66::1";
+        prefixLength = 64;
+        gateway = "fe80::1";
+      };
+    };
   };
 
   services.minecraft-server = {

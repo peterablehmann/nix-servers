@@ -15,6 +15,7 @@
     ./exporters
     ./fail2ban.nix
     ./metadata.nix
+    ./networking.nix
     ./nginx.nix
     ./nix.nix
     ./ssh.nix
