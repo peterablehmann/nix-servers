@@ -1,9 +1,6 @@
 name: check
 
 on:
-  push:
-    branches-ignore:
-      - 'main'
   pull_request:
 
 permissions: read-all
