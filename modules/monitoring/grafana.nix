@@ -41,22 +41,22 @@ in
         inherit domain;
         enforce_domain = true;
       };
+      "auth" = {
+        "signout_redirect_url" = "https://sso.xnee.net/application/grafana/signout";
+        "oauth_auto_login" = true;
+      };
       "auth.generic_oauth" = {
         enabled = true;
-        name = "Kanidm";
-        client_id = "grafana";
+        name = "authentik";
+        client_id = "YMPETxBaWRx2ATNMna829I0io2nZtk82yt3HjGNv";
         client_secret = "$__file{${config.sops.secrets."oauth2/grafana/token".path}}";
-        scopes = "openid,profile,email,groups";
-        auth_url = "https://idm.xnee.net/ui/oauth2";
-        token_url = "https://idm.xnee.net/oauth2/token";
-        api_url = "https://idm.xnee.net/oauth2/openid/grafana/userinfo";
-        use_pkce = true;
-        use_refresh_token = true;
-        allow_sign_up = true;
-        login_attribute_path = "preferred_username";
-        groups_attribute_path = "groups";
-        role_attribute_path = "contains(grafana_role[*], 'GrafanaAdmin') && 'GrafanaAdmin' || contains(grafana_role[*], 'Admin') && 'Admin' || contains(grafana_role[*], 'Editor') && 'Editor' || 'Viewer'";
+        scopes = "openid,profile,email";
+        auth_url = "https://sso.xnee.net/application/o/authorize/";
+        token_url = "https://sso.xnee.net/application/o/token/";
+        api_url = "https://sso.xnee.net/application/o/userinfo/";
+        role_attribute_path = "contains(groups, 'Grafana Admins') && 'Admin' || contains(groups, 'Grafana Editors') && 'Editor' || 'Viewer'";
         allow_assign_grafana_admin = true;
+        allow_sign_up = true;
       };
     };
     provision = {
