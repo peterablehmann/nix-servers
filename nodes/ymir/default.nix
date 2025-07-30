@@ -6,7 +6,6 @@
   imports = [
     ./disko.nix
     ./hardware-configuration.nix
-    inputs.self.nixosModules.authentik
     inputs.self.nixosModules.monitoring
     inputs.self.nixosModules.kanidm
     inputs.self.nixosModules.paperless
