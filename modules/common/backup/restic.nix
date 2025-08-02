@@ -76,16 +76,16 @@ in
     };
     services.restic.backups =
       {
-        "restic-backup-hetzner" = mkResticConfig {
+        "hetzner" = mkResticConfig {
           repository = "sftp://u371467-sub2@u371467.your-storagebox.de:22//backup";
           inherit (cfg) paths exclude;
         };
-        "restic-backup-wasabi" = mkResticConfig {
+        "wasabi" = mkResticConfig {
           repository = "s3:https://s3.eu-central-2.wasabisys.com/backup-xnee-net";
           environmentFile = config.sops.secrets."backup/wasabi".path;
           inherit (cfg) paths exclude;
         };
-        "restic-backup-hetzner-s3" = mkResticConfig {
+        "hetzner-s3" = mkResticConfig {
           repository = "s3:https://nbg1.your-objectstorage.com/backup-xnee-net";
           environmentFile = config.sops.secrets."backup/hetzner-s3".path;
           inherit (cfg) paths exclude;
@@ -94,7 +94,7 @@ in
       // (builtins.listToAttrs (
         lib.mapAttrsToList
           (name: host: {
-            name = "restic-backup-${host.config.networking.hostName}";
+            name = "${host.config.networking.hostName}";
             value = mkResticConfig {
               repository = "rest:https://restic.${host.config.networking.fqdn}/nix-servers";
               environmentFile = config.sops.secrets."backup/restic-server".path;
