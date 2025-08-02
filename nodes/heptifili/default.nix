@@ -4,6 +4,7 @@
 }:
 {
   imports = [
+    inputs.self.nixosModules.restic-server
     inputs.self.nixosModules.netbox
     inputs.self.nixosModules.syncthing
     ./disko.nix
