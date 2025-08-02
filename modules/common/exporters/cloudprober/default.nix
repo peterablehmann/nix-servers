@@ -5,7 +5,7 @@
   ...
 }:
 let
-  domain = "cloudprober.${config.networking.hostName}.xnee.net";
+  domain = "cloudprober.${config.networking.fqdn}";
 in
 {
   imports = [

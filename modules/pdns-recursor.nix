@@ -3,7 +3,7 @@
   ...
 }:
 let
-  domain = "dns-rec.${config.networking.hostName}.xnee.net";
+  domain = "dns-rec.${config.networking.fqdn}";
   tls-dir = config.security.acme.certs.${domain}.directory;
   mkForwardZone = zone: {
     inherit zone;

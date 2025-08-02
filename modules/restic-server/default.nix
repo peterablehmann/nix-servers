@@ -3,7 +3,7 @@
   ...
 }:
 let
-  domain = "restic.${config.networking.hostName}.xnee.net";
+  domain = "restic.${config.networking.fqdn}";
   tls-dir = config.security.acme.certs.${domain}.directory;
 in
 {
