@@ -14,7 +14,6 @@
     hostName = "bjorn";
     domain = "xnee.net";
     network = {
-      link.MTUBytes = 9216;
       ipv4 = {
         address = "157.90.190.83";
         prefixLength = 29;
