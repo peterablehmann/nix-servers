@@ -86,7 +86,8 @@
           nixpkgs = import inputs.nixpkgs { system = "x86_64-linux"; };
           nodeSpecialArgs = builtins.mapAttrs (name: value: value._module.specialArgs) conf;
         };
-      } // builtins.mapAttrs (name: value: { imports = value._module.args.modules; }) conf;
+      }
+      // builtins.mapAttrs (name: value: { imports = value._module.args.modules; }) conf;
 
       nixosConfigurations = {
         bjorn = nixpkgs.lib.nixosSystem {

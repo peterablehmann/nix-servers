@@ -39,13 +39,14 @@
           };
           static_configs = [
             {
-              targets =
-                [ "node-exporter.myrkviar.xnee.net" ]
-                ++ lib.mapAttrsToList (name: host: "node-exporter.${host.config.networking.fqdn}") (
-                  lib.filterAttrs (
-                    name: host: host.config.services.prometheus.exporters.node.enable
-                  ) inputs.self.nixosConfigurations
-                );
+              targets = [
+                "node-exporter.myrkviar.xnee.net"
+              ]
+              ++ lib.mapAttrsToList (name: host: "node-exporter.${host.config.networking.fqdn}") (
+                lib.filterAttrs (
+                  name: host: host.config.services.prometheus.exporters.node.enable
+                ) inputs.self.nixosConfigurations
+              );
             }
           ];
         }
