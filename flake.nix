@@ -160,7 +160,7 @@
           "lehmann.ing." = nixos-dns.utils.octodns.generateZoneAttrs [ "hetzner" ];
           "lehmann.zone." = nixos-dns.utils.octodns.generateZoneAttrs [ "hetzner" ];
           "uic-fahrzeugnummer.de." = nixos-dns.utils.octodns.generateZoneAttrs [ "hetzner" ];
-          "xnee.net." = nixos-dns.utils.octodns.generateZoneAttrs [ "hetzner"];
+          "xnee.net." = nixos-dns.utils.octodns.generateZoneAttrs [ "hetzner" ];
         };
       };
 
