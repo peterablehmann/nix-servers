@@ -130,23 +130,15 @@
 
       nixosModules = {
         common = ./modules/common;
-        dyndns = ./modules/dyndns;
-        immich = ./modules/immich.nix;
-        monitoring = ./modules/monitoring;
-        lidarr = ./modules/lidarr.nix;
-        pathvector = ./modules/pathvector.nix;
-        netbox = ./modules/netbox.nix;
         kanidm = ./modules/kanidm.nix;
-        keycloak = ./modules/keycloak.nix;
+        monitoring = ./modules/monitoring;
+        netbox = ./modules/netbox.nix;
         paperless = ./modules/paperless.nix;
         pdns-recursor = ./modules/pdns-recursor.nix;
-        syncthing = ./modules/syncthing.nix;
-        uptime-kuma = ./modules/uptime-kuma.nix;
-        unbound = ./modules/unbound.nix;
-        restic-server = ./modules/restic-server;
-        nextcloud = ./modules/nextcloud.nix;
         radicale = ./modules/radicale;
+        restic-server = ./modules/restic-server;
         routinator = ./modules/routinator.nix;
+        syncthing = ./modules/syncthing.nix;
       };
 
       dns = (nixos-dns.utils.generate nixpkgs.legacyPackages.x86_64-linux).octodnsConfig {
