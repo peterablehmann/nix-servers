@@ -73,10 +73,6 @@
         "" = www208 // {
           txt.data = [ "TAILSCALE-fMbKHU9GGi8WDXsYeZxJ" ] ++ defaults."".txt.data;
         };
-        authentik = {
-          a.data = "157.90.190.84";
-          aaaa.data = "2a01:4f8:1b7:730::5";
-        };
         "www".cname.data = "xnee.net";
         "kvm1" = {
           a.data = "100.85.70.7";
@@ -101,14 +97,6 @@
         "proxmox" = {
           a.data = [ "49.12.178.245" ];
           aaaa.data = [ "2a01:4f8:1b7:730::1" ];
-        };
-        "fritzbox" = {
-          a.data = "192.168.32.1";
-          aaaa.data = "2003:a:173b:1000:6b4:feff:feca:b60b";
-        };
-        "switch1" = {
-          a.data = "192.168.32.13";
-          aaaa.data = "2003:a:173b:1000::200d";
         };
       };
     };
