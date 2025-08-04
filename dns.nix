@@ -59,7 +59,6 @@
     {
       "bigdriver.net" = lib.recursiveUpdate defaults { };
       "hainsacker.de" = lib.recursiveUpdate defaults { };
-      "hetzner-offline.de" = lib.recursiveUpdate defaults { };
       "lehmann.ing" = lib.recursiveUpdate defaults { };
       "lehmann.zone" = lib.recursiveUpdate defaults {
         "" = www208;
@@ -70,7 +69,6 @@
         "" = www208;
         "www".cname.data = "uic-fahrzeugnummer.de";
       };
-      "xnee.de" = lib.recursiveUpdate defaults { };
       "xnee.net" = lib.recursiveUpdate defaults {
         "" = www208 // {
           txt.data = [ "TAILSCALE-fMbKHU9GGi8WDXsYeZxJ" ] ++ defaults."".txt.data;
