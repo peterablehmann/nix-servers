@@ -2,9 +2,6 @@
   config,
   ...
 }:
-let
-  domain = "sync.xnee.net";
-in
 {
   services.syncthing = {
     enable = true;

@@ -1,12 +1,9 @@
 {
   config,
-  pkgs,
-  lib,
   ...
 }:
 let
   domain = "lidarr.xnee.net";
-  tls-dir = config.security.acme.certs.${domain}.directory;
 in
 {
   networking.domains.subDomains.${domain} = { };

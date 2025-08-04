@@ -1,8 +1,4 @@
 {
-  config,
-  ...
-}:
-{
   disko.devices = {
     disk = {
       root = {

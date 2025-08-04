@@ -4,7 +4,6 @@
 }:
 let
   domain = "kuma.xnee.net";
-  tls-dir = config.security.acme.certs."${domain}".directory;
 in
 {
   security.acme.certs."${domain}" = { };

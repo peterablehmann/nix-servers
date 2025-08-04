@@ -95,5 +95,5 @@ in
     };
   };
 
-  # meta.maintainers = with maintainers; [ xgwq ];
+  meta.maintainers = with maintainers; [ xgwq ];
 }
