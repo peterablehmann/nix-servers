@@ -51,6 +51,24 @@
           ];
         }
         {
+          job_name = "node-exporter-as213422";
+          scrape_interval = "5s";
+          scheme = "http";
+          static_configs = [
+            {
+              targets = [
+                "access0.as213422.net:9100"
+                "core0.as213422.net:9100"
+                "core1.as213422.net:9100"
+                "edge0.as213422.net:9100"
+                "edge1.as213422.net:9100"
+                "edge2.as213422.net:9100"
+                "edge3.as213422.net:9100"
+              ];
+            }
+          ];
+        }
+        {
           job_name = "cloudprober";
           scrape_interval = "5s";
           scheme = "https";
