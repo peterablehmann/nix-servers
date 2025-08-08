@@ -86,14 +86,8 @@
           a.data = "49.12.178.245";
           aaaa.data = "2a01:4f8:1b7:730::1";
         };
-        "oob.myrkviar" = {
-          a.data = "172.16.0.2";
-          aaaa.data = "fdc5:0f61:83a0::2";
-        };
-        "idrac.myrkviar" = {
-          a.data = "172.16.0.3";
-          aaaa.data = "fdc5:0f61:83a0::3";
-        };
+        "oob.myrkviar".aaaa.data = "fdc5:0f61:83a0::2";
+        "idrac.myrkviar".aaaa.data = "fdc5:0f61:83a0::3";
         "proxmox" = {
           a.data = [ "49.12.178.245" ];
           aaaa.data = [ "2a01:4f8:1b7:730::1" ];
