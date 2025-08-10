@@ -26,9 +26,15 @@ in
     };
   };
 
-  sops.secrets."oauth2/grafana/token" = {
-    sopsFile = "${inputs.self}/secrets/ymir.yaml";
-    owner = "grafana";
+  sops.secrets = {
+    "grafana/token" = {
+      sopsFile = "${inputs.self}/secrets/${config.networking.hostName}.yaml";
+      owner = "grafana";
+    };
+    "grafana/smtp_password" = {
+      sopsFile = "${inputs.self}/secrets/${config.networking.hostName}.yaml";
+      owner = "grafana";
+    };
   };
 
   services.grafana = {
@@ -41,11 +47,19 @@ in
         inherit domain;
         enforce_domain = true;
       };
+      smtp = {
+        enabled = true;
+        host = "mail.your-server.de:587";
+        user = "monitoring@xnee.net";
+        password = "$__file{${config.sops.secrets."grafana/smtp_password".path}}";
+        from_address = "monitoring@xnee.net";
+        from_name = "monitoring.xnee.net";
+      };
       "auth.generic_oauth" = {
         enabled = true;
         name = "Kanidm";
         client_id = "grafana";
-        client_secret = "$__file{${config.sops.secrets."oauth2/grafana/token".path}}";
+        client_secret = "$__file{${config.sops.secrets."grafana/token".path}}";
         scopes = "openid,profile,email,groups";
         auth_url = "https://idm.xnee.net/ui/oauth2";
         token_url = "https://idm.xnee.net/oauth2/token";
