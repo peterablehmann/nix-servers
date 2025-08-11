@@ -55,18 +55,18 @@ in
 
   sops.secrets = {
     "paperless/password" = {
-      sopsFile = "${inputs.self}/secrets/ymir.yaml";
+      sopsFile = "${inputs.self}/secrets/${config.networking.hostName}.yaml";
     };
     "paperless/taxID" = {
-      sopsFile = "${inputs.self}/secrets/ymir.yaml";
+      sopsFile = "${inputs.self}/secrets/${config.networking.hostName}.yaml";
       owner = "paperless";
     };
     "paperless/backupPassword" = {
-      sopsFile = "${inputs.self}/secrets/ymir.yaml";
+      sopsFile = "${inputs.self}/secrets/${config.networking.hostName}.yaml";
       owner = "paperless";
     };
     "paperless/environment" = {
-      sopsFile = "${inputs.self}/secrets/ymir.yaml";
+      sopsFile = "${inputs.self}/secrets/${config.networking.hostName}.yaml";
     };
   };
 
