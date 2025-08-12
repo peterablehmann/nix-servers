@@ -28,7 +28,7 @@ in
   };
 
   services.kanidm = {
-    package = pkgs.kanidm_1_6;
+    package = pkgs.kanidm_1_7;
     enableClient = true;
     clientSettings = {
       uri = "https://${domain}";
