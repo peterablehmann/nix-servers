@@ -35,7 +35,8 @@ in
           targets = {
             host_names = lib.strings.concatStrings (
               lib.strings.intersperse "," (
-                lib.mapAttrsToList (name: host: "${host.config.networking.fqdn}") (
+                [ "213.133.100.40" ]
+                ++ lib.mapAttrsToList (name: host: "${host.config.networking.fqdn}") (
                   lib.filterAttrs (
                     name: host:
                     (
@@ -55,7 +56,8 @@ in
           targets = {
             host_names = lib.strings.concatStrings (
               lib.strings.intersperse "," (
-                lib.mapAttrsToList (name: host: "${host.config.networking.fqdn}") (
+                [ "2a01:4f8:a0:92a2::2" ]
+                ++ lib.mapAttrsToList (name: host: "${host.config.networking.fqdn}") (
                   lib.filterAttrs (
                     name: host:
                     (
