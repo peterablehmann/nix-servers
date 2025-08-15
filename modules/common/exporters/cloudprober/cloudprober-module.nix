@@ -64,33 +64,32 @@ in
           ++ cfg.extraArgs
         );
         Restart = "on-failure";
-        # CapabilityBoundingSet = [ "" ];
-        # DynamicUser = true;
-        # LockPersonality = true;
-        # MemoryDenyWriteExecute = true;
-        # NoNewPrivileges = true;
-        # PrivateDevices = true;
-        # PrivateTmp = true;
-        # ProtectClock = true;
-        # ProtectControlGroups = true;
-        # ProtectHome = true;
-        # ProtectHostname = true;
-        # ProtectKernelLogs = true;
-        # ProtectKernelModules = true;
-        # ProtectKernelTunables = true;
-        # ProtectSystem = "strict";
-        # RestrictAddressFamilies = [
-        #   "AF_INET"
-        #   "AF_INET6"
-        #   "AF_UNIX"
-        # ];
-        # RestrictNamespaces = true;
-        # RestrictRealtime = true;
-        # StateDirectory = "cloudprober";
-        # SystemCallArchitectures = "native";
-        # SystemCallErrorNumber = "EPERM";
-        # SystemCallFilter = "@system-service";
-        # UMask = "0027";
+        CapabilityBoundingSet = [ "" ];
+        DynamicUser = true;
+        LockPersonality = true;
+        MemoryDenyWriteExecute = true;
+        NoNewPrivileges = true;
+        PrivateDevices = true;
+        PrivateTmp = true;
+        ProtectClock = true;
+        ProtectControlGroups = true;
+        ProtectHome = true;
+        ProtectHostname = true;
+        ProtectKernelLogs = true;
+        ProtectKernelModules = true;
+        ProtectKernelTunables = true;
+        ProtectSystem = "strict";
+        RestrictAddressFamilies = [
+          "AF_INET"
+          "AF_INET6"
+        ];
+        RestrictNamespaces = true;
+        RestrictRealtime = true;
+        StateDirectory = "cloudprober";
+        SystemCallArchitectures = "native";
+        SystemCallErrorNumber = "EPERM";
+        SystemCallFilter = "@system-service";
+        UMask = "0027";
       };
     };
   };
