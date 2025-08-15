@@ -49,7 +49,8 @@ in
 
   config = mkIf cfg.enable {
     systemd.services.cloudprober = {
-      # description = "Routinator 3000 is free, open-source RPKI Relying Party software made by NLnet Labs.";
+      description = "Cloudprober: Reliable System Monitoring, Simplified!";
+      documentation = [ "https://cloudprober.org/docs/" ];
       wantedBy = [ "multi-user.target" ];
       after = [ "network.target" ];
       serviceConfig = {
