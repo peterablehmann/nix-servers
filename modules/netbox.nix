@@ -44,6 +44,7 @@ in
     enable = true;
     package = pkgs.netbox;
     secretKeyFile = config.sops.secrets."netbox/secret_key".path;
+    plugins = python3Packages: with python3Packages; [ netbox-topology-views ];
     settings = {
       ALLOWED_HOSTS = [ domain ];
       REMOTE_AUTH_ENABLED = "True";
