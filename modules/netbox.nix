@@ -44,6 +44,7 @@ in
     enable = true;
     package = pkgs.netbox;
     secretKeyFile = config.sops.secrets."netbox/secret_key".path;
+    plugins = python3Packages: with python3Packages; [ netbox-topology-views ];
     settings = {
       ALLOWED_HOSTS = [ domain ];
       REMOTE_AUTH_ENABLED = "True";
@@ -52,6 +53,7 @@ in
       SOCIAL_AUTH_OIDC_OIDC_ENDPOINT = "https://idm.xnee.net/oauth2/openid/netbox";
       SOCIAL_AUTH_OIDC_KEY = "netbox";
       SOCIAL_AUTH_OIDC_JWT_ALGORITHMS = [ "ES256" ];
+      PLUGINS = [ "netbox_topology_views" ];
     };
     extraConfig = ''
       from os import environ
