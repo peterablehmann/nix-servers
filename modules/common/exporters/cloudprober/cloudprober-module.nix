@@ -38,11 +38,11 @@ in
     settings = mkOption {
       type = types.submodule {
         freeformType = settingsFormat.type;
-        # options = { };
-        # description = ''
-        #   Configuration for cloudprober.
-        # '';
-        # default = { };
+        description = ''
+          Configuration for cloudprober.
+          See the official documentation for details: <https://cloudprober.org/docs/config/latest/overview/>
+          or take a look at the examples at <https://github.com/cloudprober/cloudprober/tree/main/examples>
+        '';
       };
     };
   };
