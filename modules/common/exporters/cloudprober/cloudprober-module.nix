@@ -18,7 +18,7 @@ let
     ;
   inherit (utils) escapeSystemdExecArgs;
   cfg = config.services.cloudprober;
-  settingsFormat = pkgs.formats.json { };
+  settingsFormat = pkgs.formats.yaml { };
 in
 {
   options.services.cloudprober = {
@@ -59,7 +59,7 @@ in
           [
             (getExe cfg.package)
             "--config_file=${
-              settingsFormat.generate "cloudprober.json" (filterAttrsRecursive (n: v: v != null) cfg.settings)
+              settingsFormat.generate "cloudprober.yaml" (filterAttrsRecursive (n: v: v != null) cfg.settings)
             }"
           ]
           ++ cfg.extraArgs
