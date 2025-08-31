@@ -139,6 +139,9 @@
           extraConfig = import ./dns.nix;
         };
         config = {
+          processors = {
+            acme.class = "octodns.processor.acme.AcmeMangingProcessor";
+          };
           providers = {
             hetzner = {
               class = "octodns_hetzner.HetznerProvider";
@@ -147,12 +150,24 @@
           };
         };
         zones = {
-          "bigdriver.net." = nixos-dns.utils.octodns.generateZoneAttrs [ "hetzner" ];
-          "hainsacker.de." = nixos-dns.utils.octodns.generateZoneAttrs [ "hetzner" ];
-          "lehmann.ing." = nixos-dns.utils.octodns.generateZoneAttrs [ "hetzner" ];
-          "lehmann.zone." = nixos-dns.utils.octodns.generateZoneAttrs [ "hetzner" ];
-          "uic-fahrzeugnummer.de." = nixos-dns.utils.octodns.generateZoneAttrs [ "hetzner" ];
-          "xnee.net." = nixos-dns.utils.octodns.generateZoneAttrs [ "hetzner" ];
+          "bigdriver.net." = nixos-dns.utils.octodns.generateZoneAttrs [ "hetzner" ] // {
+            processors = [ "acme" ];
+          };
+          "hainsacker.de." = nixos-dns.utils.octodns.generateZoneAttrs [ "hetzner" ] // {
+            processors = [ "acme" ];
+          };
+          "lehmann.ing." = nixos-dns.utils.octodns.generateZoneAttrs [ "hetzner" ] // {
+            processors = [ "acme" ];
+          };
+          "lehmann.zone." = nixos-dns.utils.octodns.generateZoneAttrs [ "hetzner" ] // {
+            processors = [ "acme" ];
+          };
+          "uic-fahrzeugnummer.de." = nixos-dns.utils.octodns.generateZoneAttrs [ "hetzner" ] // {
+            processors = [ "acme" ];
+          };
+          "xnee.net." = nixos-dns.utils.octodns.generateZoneAttrs [ "hetzner" ] // {
+            processors = [ "acme" ];
+          };
         };
       };
 
