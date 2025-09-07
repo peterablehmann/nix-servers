@@ -103,7 +103,7 @@ in
     services.paperless-export = {
       script = ''
         [[ -d ${config.services.paperless.dataDir}/backup ]] || mkdir ${config.services.paperless.dataDir}/backup
-        ${config.services.paperless.dataDir}/paperless-manage document_exporter -cd --passphrase \"$(cat ${
+        paperless-manage document_exporter -cd --passphrase \"$(cat ${
           config.sops.secrets."paperless/backupPassword".path
         })\" --no-progress-bar ${config.services.paperless.dataDir}/backup
       '';
@@ -111,6 +111,7 @@ in
         Type = "oneshot";
         User = "paperless";
       };
+      path = [ config.services.paperless.manage ];
     };
   };
 
