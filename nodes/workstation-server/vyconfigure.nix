@@ -14,25 +14,25 @@ buildGoModule rec {
   src = fetchFromGitHub {
     owner = "offline-kollektiv";
     repo = "vyconfigure";
-    rev = "v${version}";
-    hash = "sha256-k8xYh8NrGOHT56umXJrr3QJPBXJDw/351Ig1+V13FPI=";
-    leaveDotGit = true;
+    rev = "5d667cab185ee7920bd7cd86506313474a33c823";
+    hash = "sha256-EavGfcey0tGqGU7EFf7HT83JKyTM4SZ21vl+SM/rSNw=";
+    # leaveDotGit = true;
   };
 
   nativeBuildInputs = [
-    gitMinimal
+    # gitMinimal
     installShellFiles
   ];
 
-  vendorHash = "sha256-Ne9DORv3uRj/w/cEH/oMaeeGwYKsBfZWXi2NU/0Tp34=";
+  vendorHash = "sha256-7ZhS3RHIq68q22J5jEjCAVyf7PMLETKM1a0vqyzgHWA=";
 
-  preBuild = ''
-    git config user.email "nixbld@nixbld.nixbld"
-    git config user.name "nixbld"
-    git add .
-    git commit -m "v${version}"
-    git tag v${version}
-  '';
+  # preBuild = ''
+  #   git config user.email "nixbld@nixbld.nixbld"
+  #   git config user.name "nixbld"
+  #   git add .
+  #   git commit -m "v${version}"
+  #   # git tag v${version}
+  # '';
 
   GOFLAGS = [ "-buildvcs=true" ];
 
