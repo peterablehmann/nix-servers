@@ -171,9 +171,9 @@
           "lehmann.zone." = nixos-dns.utils.octodns.generateZoneAttrs [ "hetzner" ] // {
             processors = [ "acme" ];
           };
-          "uic-fahrzeugnummer.de." = nixos-dns.utils.octodns.generateZoneAttrs [ "hetzner" ] // {
-            processors = [ "acme" ];
-          };
+          # "uic-fahrzeugnummer.de." = nixos-dns.utils.octodns.generateZoneAttrs [ "hetzner" ] // {
+          #   processors = [ "acme" ];
+          # };
           "xnee.net." = nixos-dns.utils.octodns.generateZoneAttrs [ "hetzner" ] // {
             processors = [ "acme" ];
           };

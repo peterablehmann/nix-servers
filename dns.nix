@@ -65,10 +65,10 @@
         "www".cname.data = "lehmann.zone";
         "cloud".cname.data = "nx24177.your-storageshare.de";
       };
-      "uic-fahrzeugnummer.de" = lib.recursiveUpdate defaults {
-        "" = www208;
-        "www".cname.data = "uic-fahrzeugnummer.de";
-      };
+      # "uic-fahrzeugnummer.de" = lib.recursiveUpdate defaults {
+      #   "" = www208;
+      #   "www".cname.data = "uic-fahrzeugnummer.de";
+      # };
       "xnee.net" = lib.recursiveUpdate defaults {
         "" = www208 // {
           txt.data = [ "TAILSCALE-fMbKHU9GGi8WDXsYeZxJ" ] ++ defaults."".txt.data;
