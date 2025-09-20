@@ -20,13 +20,13 @@ in
     useACMEHost = domain;
     kTLS = true;
     forceSSL = true;
-    locations."/".proxyPass = "http://${config.services.cloudprober.settings.host}:9313";
+    locations."/".proxyPass = "http://[${config.services.cloudprober.settings.host}]:9313";
   };
 
   services.cloudprober = {
     enable = true;
     settings = {
-      host = "[::1]";
+      host = "::1";
       probe = [
         (lib.mkIf (config.metadata.network.ipv4.address != null) {
           name = "pingv4";
