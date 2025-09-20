@@ -83,6 +83,24 @@
           ];
         }
         {
+          job_name = "frr-exporter";
+          scrape_interval = "5s";
+          scheme = "http";
+          static_configs = [
+            {
+              targets = [
+                "access0.mgmt.as213422.net:9342"
+                "core0.mgmt.as213422.net:9342"
+                "core1.mgmt.as213422.net:9342"
+                "edge0.mgmt.as213422.net:9342"
+                "edge1.mgmt.as213422.net:9342"
+                "edge2.mgmt.as213422.net:9342"
+                "edge3.mgmt.as213422.net:9342"
+              ];
+            }
+          ];
+        }
+        {
           job_name = "smartctl-exporter";
           scrape_interval = "5m";
           scheme = "https";
