@@ -57,13 +57,13 @@
           static_configs = [
             {
               targets = [
-                "access0.as213422.net:9100"
-                "core0.as213422.net:9100"
-                "core1.as213422.net:9100"
-                "edge0.as213422.net:9100"
-                "edge1.as213422.net:9100"
-                "edge2.as213422.net:9100"
-                "edge3.as213422.net:9100"
+                "access0.mgmt.as213422.net:9100"
+                "core0.mgmt.as213422.net:9100"
+                "core1.mgmt.as213422.net:9100"
+                "edge0.mgmt.as213422.net:9100"
+                "edge1.mgmt.as213422.net:9100"
+                "edge2.mgmt.as213422.net:9100"
+                "edge3.mgmt.as213422.net:9100"
               ];
             }
           ];
