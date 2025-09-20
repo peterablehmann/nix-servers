@@ -49,7 +49,7 @@ in
       ALLOWED_HOSTS = [ domain ];
       REMOTE_AUTH_ENABLED = "True";
       REMOTE_AUTH_BACKEND = "social_core.backends.open_id_connect.OpenIdConnectAuth";
-      SOCIAL_AUTH_OIDC_DISPLAY = "Kanidm";
+      # SOCIAL_AUTH_OIDC_DISPLAY = "Kanidm";
       SOCIAL_AUTH_OIDC_OIDC_ENDPOINT = "https://idm.xnee.net/oauth2/openid/netbox";
       SOCIAL_AUTH_OIDC_KEY = "netbox";
       SOCIAL_AUTH_OIDC_JWT_ALGORITHMS = [ "ES256" ];
