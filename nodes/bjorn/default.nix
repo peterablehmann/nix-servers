@@ -38,6 +38,10 @@
       "${inputs.self}/secrets/${config.networking.hostName}.yaml";
     "github-runners/nix-as213422-4".sopsFile =
       "${inputs.self}/secrets/${config.networking.hostName}.yaml";
+    "github-runners/offline-kollektiv-xnee-net-1".sopsFile =
+      "${inputs.self}/secrets/${config.networking.hostName}.yaml";
+    "github-runners/offline-kollektiv-xnee-net-2".sopsFile =
+      "${inputs.self}/secrets/${config.networking.hostName}.yaml";
   };
 
   services.github-runners =
@@ -73,6 +77,20 @@
         name = "nix-as213422-4";
         tokenFile = config.sops.secrets."github-runners/nix-as213422-4".path;
         url = "https://github.com/peterablehmann/nix-as213422";
+        inherit extraPackages;
+      };
+      offline-kollektiv-xnee-net-1 = {
+        enable = true;
+        name = "offline-kollektiv-xnee-net-1";
+        tokenFile = config.sops.secrets."github-runners/offline-kollektiv-xnee-net-1".path;
+        url = "https://github.com/offline-kollektiv";
+        inherit extraPackages;
+      };
+      offline-kollektiv-xnee-net-2 = {
+        enable = true;
+        name = "offline-kollektiv-xnee-net-2";
+        tokenFile = config.sops.secrets."github-runners/offline-kollektiv-xnee-net-2".path;
+        url = "https://github.com/offline-kollektiv";
         inherit extraPackages;
       };
     };
