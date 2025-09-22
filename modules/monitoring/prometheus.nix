@@ -99,6 +99,13 @@
               ];
             }
           ];
+          relabel_configs = [
+            {
+              source_labels = [ "__address__" ];
+              regex = "(.*):\d+";
+              target_label = "instance";
+            }
+          ];
         }
         {
           job_name = "smartctl-exporter";
