@@ -5,9 +5,15 @@
   ...
 }:
 {
-  sops.secrets."prometheus/basic_auth" = {
-    sopsFile = "${inputs.self}/secrets/ymir.yaml";
-    owner = "prometheus";
+  sops.secrets = {
+    "prometheus/basic_auth" = {
+      sopsFile = "${inputs.self}/secrets/ymir.yaml";
+      owner = "prometheus";
+    };
+    "prometheus/mmp_basic_auth" = {
+      sopsFile = "${inputs.self}/secrets/ymir.yaml";
+      owner = "prometheus";
+    };
   };
 
   services = {
@@ -104,6 +110,23 @@
               source_labels = [ "__address__" ];
               regex = "(.*):\d+";
               target_label = "instance";
+            }
+          ];
+        }
+        {
+          job_name = "offline-kollektiv-mmp";
+          scrape_interval = "30s";
+          scheme = "https";
+          basic_auth = {
+            username = "monitoring";
+            password_file = config.sops.secrets."prometheus/mmp_basic_auth".path;
+          };
+          static_configs = [
+            {
+              targets = [
+                "pdu01.nbg01.infra.aq0.de"
+                "pdu02.nbg01.infra.aq0.de"
+              ];
             }
           ];
         }
