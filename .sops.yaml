@@ -1,11 +1,10 @@
 keys:
   - &peter_kleeblatt age1hczyac0fvxs2uegmvgfld464p2ffqs7wkg3jn2lkmzq4drr5aywqqd376x
   - &peter_sleipnir age1hlpr0fx03wk4q2fk86w6ywm5tw8e0n7k7e850yj73g4n08pf3pxs5rlwz9
-  - &system_bjorn age17t60jhguzk52n7y3esq3pxsef7elfpm8sekzatg2dgu9ynpwjqcqhcwdks
+  - &system_bjorn age1pvzhh4fveadp7avnvhzp5zn5rj7dex0wkydh9c96rfxkexp273usttetgf
   - &system_heptifili age1hme485ggszkphmky3y0s59r35zmva8jp4awjq8uj6gxc5e7wcvcsx9rg4h
   - &system_workstation_server age1dxdta04txkwa25dlzq8rppwrj0ju5e5je0pz0qrek0jz2fs2cc7sym7acy
   - &system_ymir age183wgf8xp46chqk049ekyg7vsan2p50zh4lqfllcllzwuekeywdzqn7pz0q
-  
 
 creation_rules:
   - path_regex: secrets/common.(yaml|json|env|ini)$
@@ -17,7 +16,7 @@ creation_rules:
       - *system_ymir
       - *system_heptifili
       - *system_bjorn
-  
+
   - path_regex: secrets/workstation-server.(yaml|json|env|ini)$
     key_groups:
     - age:
