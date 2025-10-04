@@ -20,7 +20,7 @@
     ./nix.nix
     ./ssh.nix
     ./tailscale.nix
-    ./timesyncd.nix
+    ./time.nix
     ./users.nix
   ];
 
@@ -32,7 +32,6 @@
 
   networking.domains.defaultTTL = 60;
   systemd.network.wait-online.ignoredInterfaces = [ "tailscale0" ];
-  time.timeZone = "Europe/Berlin";
   i18n.defaultLocale = "de_DE.UTF-8";
 
   sops.age.sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];

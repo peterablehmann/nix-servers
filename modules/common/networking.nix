@@ -50,7 +50,6 @@
           "2620:fe::fe"
           "2620:fe::9"
         ];
-    timeServers = [ "ntp.hetzner.com" ];
   };
   systemd.network = {
     enable = true;
