@@ -114,6 +114,18 @@
           ];
         }
         {
+          job_name = "ntpd-exporter";
+          scrape_interval = "5s";
+          scheme = "https";
+          static_configs = [
+            {
+              targets = lib.mapAttrsToList (name: host: "ntpd-exporter.${host.config.networking.fqdn}") (
+                lib.filterAttrs (name: host: host.config.services.ntpd-rs.enable) inputs.self.nixosConfigurations
+              );
+            }
+          ];
+        }
+        {
           job_name = "offline-kollektiv-mmp";
           scrape_interval = "30s";
           scheme = "https";
