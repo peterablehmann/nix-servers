@@ -14,7 +14,7 @@
   metadata = {
     hostName = "ymir";
     domain = "xnee.net";
-    location = "hetzner-cloud";
+    provider = "hetzner-cloud";
     network = {
       ipv4 = {
         address = "128.140.9.158";

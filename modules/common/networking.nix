@@ -24,7 +24,7 @@
     usePredictableInterfaceNames = lib.mkDefault false;
     nameservers =
       if
-        builtins.elem config.metadata.location [
+        builtins.elem config.metadata.provider [
           "proxmox.xnee.net"
           "hetzner-cloud"
         ]
@@ -35,14 +35,14 @@
           "2a01:4ff:ff00::add:1"
           "2a01:4ff:ff00::add:2"
         ]
-      else if config.metadata == "netcup" then
+      else if config.metadata.provider == "netcup" then
         [
           "46.38.225.230"
           "46.38.252.230"
           "2a03:4000:0:1::e1e6"
           "2a03:4000:8000::fce6"
         ]
-      # Fallback to Quad9 if location is unknown
+      # Fallback to Quad9 if provider is unknown
       else
         [
           "9.9.9.9"
@@ -82,7 +82,7 @@
               {
                 Gateway = config.metadata.network.ipv4.gateway;
               }
-              // (if config.metadata.location == "hetzner-cloud" then { GatewayOnLink = true; } else { })
+              // (if config.metadata.provider == "hetzner-cloud" then { GatewayOnLink = true; } else { })
             else
               null
           )

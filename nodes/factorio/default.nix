@@ -11,7 +11,7 @@
   metadata = {
     hostName = "factorio";
     domain = "xnee.net";
-    location = "netcup";
+    provider = "netcup";
     network = {
       ipv4 = {
         address = "159.195.8.19";

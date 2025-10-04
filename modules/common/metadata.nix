@@ -12,7 +12,7 @@ in
       type = types.str;
       description = "The domain name of the system.";
     };
-    location = mkOption {
+    provider = mkOption {
       type = types.enum [
         "unknown"
         "proxmox.xnee.net"
@@ -20,7 +20,7 @@ in
         "netcup"
       ];
       default = "unknown";
-      description = "The physical location of the system.";
+      description = "The the provider of the system.";
     };
     network = {
       link = {
