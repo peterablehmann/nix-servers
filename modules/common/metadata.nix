@@ -13,7 +13,12 @@ in
       description = "The domain name of the system.";
     };
     location = mkOption {
-      type = types.str;
+      type = types.enum [
+        "unknown"
+        "proxmox.xnee.net"
+        "hetzner-cloud"
+        "netcup"
+      ];
       default = "unknown";
       description = "The physical location of the system.";
     };

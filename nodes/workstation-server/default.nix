@@ -13,6 +13,7 @@
   metadata = {
     hostName = "workstation-server";
     domain = "xnee.net";
+    location = "proxmox.xnee.net";
     network = {
       ipv4 = {
         address = "157.90.190.84";

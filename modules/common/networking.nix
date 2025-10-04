@@ -22,12 +22,34 @@
     useDHCP = false;
     dhcpcd.enable = false;
     usePredictableInterfaceNames = lib.mkDefault false;
-    nameservers = [
-      "185.12.64.1"
-      "185.12.64.2"
-      "2a01:4ff:ff00::add:1"
-      "2a01:4ff:ff00::add:2"
-    ];
+    nameservers =
+      if
+        builtins.elem config.metadata.location [
+          "proxmox.xnee.net"
+          "hetzner-cloud"
+        ]
+      then
+        [
+          "185.12.64.1"
+          "185.12.64.2"
+          "2a01:4ff:ff00::add:1"
+          "2a01:4ff:ff00::add:2"
+        ]
+      else if config.metadata == "netcup" then
+        [
+          "46.38.225.230"
+          "46.38.252.230"
+          "2a03:4000:0:1::e1e6"
+          "2a03:4000:8000::fce6"
+        ]
+      # Fallback to Quad9 if location is unknown
+      else
+        [
+          "9.9.9.9"
+          "149.112.112.112"
+          "2620:fe::fe"
+          "2620:fe::9"
+        ];
     timeServers = [ "ntp.hetzner.com" ];
   };
   systemd.network = {

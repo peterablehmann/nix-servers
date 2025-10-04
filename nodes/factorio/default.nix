@@ -11,6 +11,7 @@
   metadata = {
     hostName = "factorio";
     domain = "xnee.net";
+    location = "netcup";
     network = {
       ipv4 = {
         address = "159.195.8.19";
@@ -26,10 +27,4 @@
   };
 
   services.qemuGuest.enable = true;
-
-  # services.factorio = {
-  #   enable = true;
-  #   openFirewall = true;
-  #   loadLatestSave = true;
-  # };
 }
