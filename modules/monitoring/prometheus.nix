@@ -63,13 +63,11 @@
           static_configs = [
             {
               targets = [
-                "access0.mgmt.as213422.net:9100"
-                "core0.mgmt.as213422.net:9100"
-                "core1.mgmt.as213422.net:9100"
-                "edge0.mgmt.as213422.net:9100"
-                "edge1.mgmt.as213422.net:9100"
-                "edge2.mgmt.as213422.net:9100"
-                "edge3.mgmt.as213422.net:9100"
+                "bbr00.nbg.de.mgmt.as213422.net:9100"
+                "bbr01.nbg.de.mgmt.as213422.net:9100"
+                "acr00.nbg.de.mgmt.as213422.net:9100"
+                "bbr00.dus.de.mgmt.as213422.net:9100"
+                "bbr01.dus.de.mgmt.as213422.net:9100"
               ];
             }
           ];
@@ -95,13 +93,11 @@
           static_configs = [
             {
               targets = [
-                "access0.mgmt.as213422.net:9342"
-                "core0.mgmt.as213422.net:9342"
-                "core1.mgmt.as213422.net:9342"
-                "edge0.mgmt.as213422.net:9342"
-                "edge1.mgmt.as213422.net:9342"
-                "edge2.mgmt.as213422.net:9342"
-                "edge3.mgmt.as213422.net:9342"
+                "bbr00.nbg.de.mgmt.as213422.net:9342"
+                "bbr01.nbg.de.mgmt.as213422.net:9342"
+                "acr00.nbg.de.mgmt.as213422.net:9342"
+                "bbr00.dus.de.mgmt.as213422.net:9342"
+                "bbr01.dus.de.mgmt.as213422.net:9342"
               ];
             }
           ];
