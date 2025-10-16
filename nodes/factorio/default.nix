@@ -35,7 +35,7 @@
       "haennetz"
     ];
     admins = [ "xgwq" ];
-    description = "Bergwerk";
+    game-name = "Bergwerk";
     autosave-interval = 10;
   };
 }
