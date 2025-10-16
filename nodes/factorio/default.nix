@@ -28,6 +28,7 @@
 
   services.factorio = {
     enable = true;
+    openFirewall = true;
     allowedPlayers = [
       "xgwq"
       "faheus"
