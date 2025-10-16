@@ -1,4 +1,5 @@
 {
+  config,
   inputs,
   ...
 }:
@@ -38,4 +39,6 @@
     game-name = "Bergwerk";
     autosave-interval = 10;
   };
+
+  backup.paths = [ "/var/lib/${config.services.factorio.stateDirName}" ];
 }
