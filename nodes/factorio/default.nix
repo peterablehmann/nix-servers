@@ -31,6 +31,7 @@
     allowedPlayers = [
       "xgwq"
       "faheus"
+      "haennetz"
     ];
     admins = [ "xgwq" ];
     description = "Bergwerk";
