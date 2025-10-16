@@ -26,5 +26,14 @@
     };
   };
 
-  services.qemuGuest.enable = true;
+  services.factorio = {
+    enable = true;
+    allowedPlayers = [
+      "xgwq"
+      "faheus"
+    ];
+    admins = [ "xgwq" ];
+    description = "Bergwerk";
+    autosave-interval = 10;
+  };
 }
