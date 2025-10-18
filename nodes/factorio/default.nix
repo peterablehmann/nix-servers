@@ -34,6 +34,7 @@
       "xgwq"
       "faheus"
       "haennetz"
+      "crunsher2"
     ];
     admins = [ "xgwq" ];
     game-name = "Bergwerk";
