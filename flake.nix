@@ -122,7 +122,7 @@
             self.nixosModules.common
           ];
         };
-        ixpect = nixpkgs.lib.nixosSystem {
+        ixpect-frankonix = nixpkgs.lib.nixosSystem {
           specialArgs = { inherit inputs outputs; };
           system = "x86_64-linux";
           extraModules = [ inputs.colmena.nixosModules.deploymentOptions ];

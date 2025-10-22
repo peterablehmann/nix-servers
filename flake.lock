@@ -265,11 +265,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1761080945,
-        "narHash": "sha256-qPyJ9Dao1fhlC8H2uXzctztZDdNwiIz3mUUTaG6NIhA=",
+        "lastModified": 1761165179,
+        "narHash": "sha256-hGR6CRsS9eHpx8G6szmja/puO9Cz2lJOrldGPRym+RY=",
         "ref": "refs/heads/main",
-        "rev": "e22cdfdf365b1595dcbedf800cd5c29d536a5c44",
-        "revCount": 236,
+        "rev": "737ff72de7d78649e841995301a9a8c25161e908",
+        "revCount": 241,
         "type": "git",
         "url": "https://codeberg.org/peterablehmann/ixpect"
       },
