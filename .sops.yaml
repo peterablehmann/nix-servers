@@ -4,6 +4,7 @@ keys:
   - &system_bjorn age1pvzhh4fveadp7avnvhzp5zn5rj7dex0wkydh9c96rfxkexp273usttetgf
   - &system_factorio age1haqj7mte6l245ukpn54pxcme6e00as6pv0rwurrusnvzl6vf9f4q544muh
   - &system_heptifili age1hme485ggszkphmky3y0s59r35zmva8jp4awjq8uj6gxc5e7wcvcsx9rg4h
+  - &system_ixpect-frankonix age1te0esp3szqwe7vpetcl7njj9e3u32d9s4zuh6m6flqjzpk3zcfrqk6k9mg
   - &system_workstation_server age1dxdta04txkwa25dlzq8rppwrj0ju5e5je0pz0qrek0jz2fs2cc7sym7acy
   - &system_ymir age183wgf8xp46chqk049ekyg7vsan2p50zh4lqfllcllzwuekeywdzqn7pz0q
 
@@ -17,6 +18,7 @@ creation_rules:
       - *system_workstation_server
       - *system_ymir
       - *system_heptifili
+      - *system_ixpect-frankonix
       - *system_bjorn
   
   - path_regex: secrets/factorio.(yaml|json|env|ini)$
@@ -46,6 +48,13 @@ creation_rules:
       - *peter_kleeblatt
       - *peter_sleipnir
       - *system_heptifili
+
+  - path_regex: secrets/ixpect-frankonix.(yaml|json|env|ini)$
+    key_groups:
+    - age:
+      - *peter_kleeblatt
+      - *peter_sleipnir
+      - *system_ixpect-frankonix
 
   - path_regex: secrets/bjorn.(yaml|json|env|ini)$
     key_groups:

@@ -33,6 +33,11 @@
     nixos-dns.url = "github:Janik-Haag/NixOS-DNS";
     nixos-dns.inputs.nixpkgs.follows = "nixpkgs";
 
+    ixpect = {
+      url = "git+https://codeberg.org/peterablehmann/ixpect";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     fernglas = {
       type = "github";
       owner = "wobcom";
@@ -114,6 +119,15 @@
           extraModules = [ inputs.colmena.nixosModules.deploymentOptions ];
           modules = [
             ./nodes/heptifili
+            self.nixosModules.common
+          ];
+        };
+        ixpect = nixpkgs.lib.nixosSystem {
+          specialArgs = { inherit inputs outputs; };
+          system = "x86_64-linux";
+          extraModules = [ inputs.colmena.nixosModules.deploymentOptions ];
+          modules = [
+            ./nodes/ixpect-frankonix
             self.nixosModules.common
           ];
         };
