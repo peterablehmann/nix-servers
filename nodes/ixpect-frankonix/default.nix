@@ -41,7 +41,25 @@
       templateDir = ./templates;
       settings = {
         probes = {
-          ipv6_router.enable = true;
+          arp_bogon = {
+            enable = true;
+            prefixes = [
+              "193.34.203.192/26"
+            ];
+          };
+          arp_neighbor = {
+            enable = true;
+            dynamic_enable = true;
+          };
+          bum_rate = {
+            enable = true;
+            window = "15s";
+            thresholds = {
+              broadcast = 500;
+              multicast = 500;
+              unicast = 500;
+            };
+          };
           ether_type = {
             enable = true;
             allowed_ether_types = [
@@ -50,13 +68,41 @@
               34525 # IPv6
             ];
           };
+          ipv6_bogon = {
+            enable = true;
+            prefixes = [
+              "2001:7f8:15b:1::/64"
+            ];
+          };
+          ipv6_neighbor = {
+            enable = true;
+            dynamic_enable = true;
+          };
+          ipv6_router.enable = true;
+          stp.enable = true;
         };
         event.notifiers.log = {
           enable = true;
           events = [
+            "ARP_BOGON_SOURCE"
+            "ARP_BOGON_TARGET"
+            "ARP_NEIGHBOR_NEW_DYNAMIC"
+            "ARP_NEIGHBOR_SPOOFED_DYNAMIC"
+            "ARP_NEIGHBOR_SPOOFED_STATIC"
+            "ARP_NEIGHBOR_UNKNOWN"
+            "BUM_RATE_BROADCAST_EXCEEDED"
+            "BUM_RATE_MULTICAST_EXCEEDED"
+            "BUM_RATE_UNICAST_EXCEEDED"
+            "ETHER_TYPE_VIOLATION"
+            "IPV6_BOGON_SOURCE"
+            "IPV6_BOGON_TARGET"
+            "IPV6_NEIGHBOR_NEW_DYNAMIC"
+            "IPV6_NEIGHBOR_SPOOFED_DYNAMIC"
+            "IPV6_NEIGHBOR_SPOOFED_STATIC"
+            "IPV6_NEIGHBOR_UNKNOWN"
             "IPV6_ROUTER_ADVERTISEMENT"
             "IPV6_ROUTER_SOLICITATION"
-            "ETHER_TYPE_VIOLATION"
+            "STP_PACKET_FOUND"
           ];
         };
       };
