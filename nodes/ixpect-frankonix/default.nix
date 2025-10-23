@@ -72,7 +72,9 @@
             enable = true;
             prefixes = [
               "2001:7f8:15b:1::/64"
+              "fe80::/10"
             ];
+            ignore_link_local = true;
           };
           ipv6_neighbor = {
             enable = true;
