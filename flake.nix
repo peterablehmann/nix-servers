@@ -34,7 +34,7 @@
     nixos-dns.inputs.nixpkgs.follows = "nixpkgs";
 
     ixpect = {
-      url = "git+https://codeberg.org/peterablehmann/ixpect";
+      url = "git+https://codeberg.org/ixpect/ixpect";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
