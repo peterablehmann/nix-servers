@@ -67,8 +67,8 @@
         };
         "bbr01.nbg.de".aaaa.data = "2a0f:6283:1400::1";
         "bbr01.nbg.de.mgmt" = {
-          aaaa.data = "2a01:4f8:1c1b:fec6::1";
-          a.data = "168.119.118.205";
+          aaaa.data = "2a01:4f8:1b7:730::c";
+          a.data = "157.90.190.86";
         };
         "acr00.nbg.de".aaaa.data = "2a0f:6283:1400::1";
         "acr00.nbg.de.mgmt".aaaa.data = "2a01:4f8:1b7:730::4";
