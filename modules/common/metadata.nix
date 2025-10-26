@@ -15,9 +15,10 @@ in
     provider = mkOption {
       type = types.enum [
         "unknown"
-        "proxmox.xnee.net"
         "hetzner-cloud"
         "netcup"
+        "proxmox.xnee.net"
+        "proxmox.xnee.net-as213422"
       ];
       default = "unknown";
       description = "The the provider of the system.";

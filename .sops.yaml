@@ -7,6 +7,7 @@ keys:
   - &system_ixpect-frankonix age1te0esp3szqwe7vpetcl7njj9e3u32d9s4zuh6m6flqjzpk3zcfrqk6k9mg
   - &system_workstation_server age1dxdta04txkwa25dlzq8rppwrj0ju5e5je0pz0qrek0jz2fs2cc7sym7acy
   - &system_ymir age183wgf8xp46chqk049ekyg7vsan2p50zh4lqfllcllzwuekeywdzqn7pz0q
+  - &system_rpki0 age1c0r92htw85wvd5yycqy5hxjumrl27frvvu7eawnlj3yh0fu87qfsehnmer
 
 creation_rules:
   - path_regex: secrets/common.(yaml|json|env|ini)$
@@ -20,6 +21,7 @@ creation_rules:
       - *system_heptifili
       - *system_ixpect-frankonix
       - *system_bjorn
+      - *system_rpki0
   
   - path_regex: secrets/factorio.(yaml|json|env|ini)$
     key_groups:
@@ -62,3 +64,10 @@ creation_rules:
       - *peter_kleeblatt
       - *peter_sleipnir
       - *system_bjorn
+  
+  - path_regex: secrets/rpki0.(yaml|json|env|ini)$
+    key_groups:
+    - age:
+      - *peter_kleeblatt
+      - *peter_sleipnir
+      - *system_rpki0

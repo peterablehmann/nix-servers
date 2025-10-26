@@ -57,6 +57,28 @@
       };
     in
     {
+      "as213422.net" = lib.recursiveUpdate defaults {
+        "" = www208;
+        "lg".cname.data = "managed-lg.bgp.tools";
+        "ripe-atlas-1".aaaa.data = "2a0f:85c1:b7a:a56f:be24:11ff:fe8e:60b8";
+        "nlnog-ring".aaaa.data = "2a0f:6283:1400:1::2";
+        "bbr00.nbg.de".aaaa.data = "2a0f:6283:1400::";
+        "bbr00.nbg.de.mgmt" = {
+          aaaa.data = "2a01:4f8:1b7:730::5";
+          a.data = "157.90.190.85";
+        };
+        "bbr01.nbg.de".aaaa.data = "2a0f:6283:1400::1";
+        "bbr01.nbg.de.mgmt" = {
+          aaaa.data = "2a01:4f8:1c1b:fec6::1";
+          a.data = "168.119.118.205";
+        };
+        "acr00.nbg.de".aaaa.data = "2a0f:6283:1400::1";
+        "acr00.nbg.de.mgmt".aaaa.data = "2a01:4f8:1b7:730::4";
+        "bbr00.dus.de".aaaa.data = "2a0f:6283:1401::";
+        "bbr00.dus.de.mgmt".aaaa.data = "2a0c:b640:10::2:38";
+        "bbr01.dus.de".aaaa.data = "2a0f:6283:1401::1";
+        "bbr01.dus.de.mgmt".aaaa.data = "2a14:7c0:7000:3ff::14b";
+      };
       "bigdriver.net" = lib.recursiveUpdate defaults { };
       "hainsacker.de" = lib.recursiveUpdate defaults { };
       "lehmann.ing" = lib.recursiveUpdate defaults { };

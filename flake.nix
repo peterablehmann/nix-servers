@@ -131,6 +131,15 @@
             self.nixosModules.common
           ];
         };
+        "rpki0.as213422.net" = nixpkgs.lib.nixosSystem {
+          specialArgs = { inherit inputs outputs; };
+          system = "x86_64-linux";
+          extraModules = [ inputs.colmena.nixosModules.deploymentOptions ];
+          modules = [
+            ./nodes/rpki0.as213422.net
+            self.nixosModules.common
+          ];
+        };
         workstation-server = nixpkgs.lib.nixosSystem {
           specialArgs = { inherit inputs outputs; };
           system = "x86_64-linux";
@@ -182,6 +191,9 @@
           };
         };
         zones = {
+          "as213422.net." = nixos-dns.utils.octodns.generateZoneAttrs [ "hetzner" ] // {
+            processors = [ "acme" ];
+          };
           "bigdriver.net." = nixos-dns.utils.octodns.generateZoneAttrs [ "hetzner" ] // {
             processors = [ "acme" ];
           };

@@ -1,4 +1,5 @@
 {
+  config,
   inputs,
   ...
 }:
@@ -28,4 +29,6 @@
       };
     };
   };
+
+  routinator.domain = "routinator.${config.metadata.domain}";
 }
