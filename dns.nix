@@ -60,8 +60,6 @@
       "as213422.net" = lib.recursiveUpdate defaults {
         "" = www208;
         "lg".cname.data = "managed-lg.bgp.tools";
-        "ripe-atlas-1".aaaa.data = "2a0f:85c1:b7a:a56f:be24:11ff:fe8e:60b8";
-        "nlnog-ring".aaaa.data = "2a0f:6283:1400:1::2";
         "bbr00.nbg.de".aaaa.data = "2a0f:6283:1400::";
         "bbr00.nbg.de.mgmt" = {
           aaaa.data = "2a01:4f8:1b7:730::5";
