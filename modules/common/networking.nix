@@ -10,12 +10,13 @@
       subDomains = {
         "${config.networking.fqdn}" = { };
       };
-      baseDomains."${config.networking.domain}" = {
-        a.data =
-          if config.metadata.network.ipv4.address != null then config.metadata.network.ipv4.address else null;
-        aaaa.data =
-          if config.metadata.network.ipv6.address != null then config.metadata.network.ipv6.address else null;
-      };
+      baseDomains."${config.networking.domain}" =
+        lib.optionalAttrs (config.metadata.network.ipv4.address != null) {
+          a.data = config.metadata.network.ipv4.address;
+        }
+        // lib.optionalAttrs (config.metadata.network.ipv6.address != null) {
+          aaaa.data = config.metadata.network.ipv6.address;
+        };
     };
     inherit (config.metadata) hostName domain;
     useNetworkd = true;
@@ -61,37 +62,22 @@
         };
         inherit (config.metadata.network.link) matchConfig;
         linkConfig = { inherit (config.metadata.network.link) MTUBytes; };
-        address = [
-          (
-            if config.metadata.network.ipv4.address != null then
-              "${config.metadata.network.ipv4.address}/${builtins.toString config.metadata.network.ipv4.prefixLength}"
-            else
-              null
+        address =
+          lib.optional (config.metadata.network.ipv4.address != null)
+            "${config.metadata.network.ipv4.address}/${builtins.toString config.metadata.network.ipv4.prefixLength}"
+          ++
+            lib.optional (config.metadata.network.ipv6.address != null)
+              "${config.metadata.network.ipv6.address}/${builtins.toString config.metadata.network.ipv6.prefixLength}";
+        routes =
+          lib.optional (config.metadata.network.ipv4.address != null) (
+            {
+              Gateway = config.metadata.network.ipv4.gateway;
+            }
+            // lib.optionalAttrs (config.metadata.provider == "hetzner-cloud") { GatewayOnLink = true; }
           )
-          (
-            if config.metadata.network.ipv6.address != null then
-              "${config.metadata.network.ipv6.address}/${builtins.toString config.metadata.network.ipv6.prefixLength}"
-            else
-              null
-          )
-        ];
-        routes = [
-          (
-            if config.metadata.network.ipv4.address != null then
-              {
-                Gateway = config.metadata.network.ipv4.gateway;
-              }
-              // (if config.metadata.provider == "hetzner-cloud" then { GatewayOnLink = true; } else { })
-            else
-              null
-          )
-          (
-            if config.metadata.network.ipv6.address != null then
-              { Gateway = config.metadata.network.ipv6.gateway; }
-            else
-              null
-          )
-        ];
+          ++ lib.optional (config.metadata.network.ipv6.address != null) {
+            Gateway = config.metadata.network.ipv6.gateway;
+          };
         linkConfig.RequiredForOnline = "routable";
       };
     };
