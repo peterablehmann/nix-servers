@@ -75,6 +75,7 @@ in
             scheme = "HTTPS";
             method = "GET";
           };
+          interval_msec = 3600000;
           targets.host_names = lib.strings.concatStrings (
             lib.strings.intersperse "," (
               lib.flatten (
