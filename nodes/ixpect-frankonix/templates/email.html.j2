@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>[IXpect] {{name}} triggered in {{batch_count}} batches</title>
+</head>
+
+<body>
+  <h1>{{name}} triggered in {{batch_count}} batches</h1>
+
+  <table border="1">
+    <thead>
+      <tr>
+        <th>Events</th>
+        <th>Timestamp</th>
+        <th>ID</th>
+        <th>Data</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      {% for batch in batches %}
+      <tr>
+        <td>{{batch.size}}</td>
+        <td>{{batch.timestamp}}</td>
+        <td>{{batch.id}}</td>
+        <td>
+          <pre>{{batch.data}}</pre>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</body>
+
+</html>
