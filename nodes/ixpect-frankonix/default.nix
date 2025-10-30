@@ -121,7 +121,7 @@
             from = "noreply+ixpect@xnee.net";
             channels = [
               {
-                to = "alert@as213422.net";
+                to = [ "alert@as213422.net" ];
                 events = [ "IPV6_ROUTER_ADVERTISEMENT" ];
               }
             ];
