@@ -17,7 +17,7 @@
     network = {
       link.MTUBytes = 1400;
       ipv6 = {
-        address = "2a0f:6283:1400:1::3";
+        address = "2a0f:6283:1400:1::5";
         prefixLength = 64;
         gateway = "fe80::1";
       };
