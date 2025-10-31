@@ -29,13 +29,11 @@
 
   services = {
     qemuGuest.enable = true;
-    redis.servers."".enable = true;
     ixpect = {
       enable = true;
       package = inputs.ixpect.packages.x86_64-linux.ixpect;
       capture.interface = "enx90a182722eb1";
-      packetPoolSize = 128;
-      redisUrl = "redis://localhost:6379";
+      packetPoolSize = 256;
       templateDir = ./templates;
       settings = {
         probes = {
