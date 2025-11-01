@@ -201,7 +201,9 @@
           scheme = "https";
           static_configs = [
             {
-              targets = [ "routinator.xnee.net" ];
+              targets = lib.mapAttrsToList (name: host: host.config.routinator.domain) (
+                lib.filterAttrs (name: host: host.config.services.routinator.enable) inputs.self.nixosConfigurations
+              );
             }
           ];
         }
