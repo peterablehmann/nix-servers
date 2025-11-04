@@ -25,6 +25,14 @@
 
   sops.secrets."mail/pass".sopsFile = "${inputs.self}/secrets/${config.networking.hostName}.yaml";
 
+  systemd.network.networks."20-frankonix" = {
+    networkConfig = {
+      DHCP = false;
+      IPv6AcceptRA = false;
+    };
+    matchConfig.Name = "enx90a182722eb1";
+  };
+
   networking.firewall.trustedInterfaces = [ "enx90a182722eb1" ];
 
   services = {
