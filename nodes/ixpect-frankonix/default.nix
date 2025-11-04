@@ -35,6 +35,10 @@
 
   networking.firewall.trustedInterfaces = [ "enx90a182722eb1" ];
 
+  systemd.services.ixpect.serviceConfig.BindPaths = [
+    config.services.redis.servers.ixpect.unixSocket
+  ];
+
   services = {
     qemuGuest.enable = true;
     ixpect = {
