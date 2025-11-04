@@ -35,12 +35,9 @@
 
   networking.firewall.trustedInterfaces = [ "enx90a182722eb1" ];
 
-  systemd.services.ixpect.serviceConfig.BindPaths = [
-    config.services.redis.servers.ixpect.unixSocket
-  ];
-
   services = {
     qemuGuest.enable = true;
+    redis.servers.ixpect = { inherit (config.services.ixpect) user group; };
     ixpect = {
       enable = true;
       package = inputs.ixpect.packages.x86_64-linux.ixpect;
