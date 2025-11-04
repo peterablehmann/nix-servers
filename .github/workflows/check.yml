@@ -61,12 +61,12 @@ jobs:
         uses: DeterminateSystems/nix-installer-action@main
         with:
           diagnostic-endpoint: ""
-      # - name: Setup NIX Cache
-      #   uses: zombiezen/setup-nix-cache-action@v0.4.0
-      #   with:
-      #     substituters: s3://nix-cache?endpoint=https://nbg1.your-objectstorage.com
-      #     secret_keys: ${{ secrets.NIX_PRIVATE_KEY }}
-      #     aws_access_key_id: ${{ secrets.CACHE_ACCESS_KEY_ID }}
-      #     aws_secret_access_key: ${{ secrets.CACHE_SECRET_ACCESS_KEY }}
+      - name: Setup NIX Cache
+        uses: zombiezen/setup-nix-cache-action@v0.4.0
+        with:
+          substituters: s3://nix-cache?endpoint=https://nbg1.your-objectstorage.com
+          secret_keys: ${{ secrets.NIX_PRIVATE_KEY }}
+          aws_access_key_id: ${{ secrets.CACHE_ACCESS_KEY_ID }}
+          aws_secret_access_key: ${{ secrets.CACHE_SECRET_ACCESS_KEY }}
       - name: "Build system configurations"
         run: nix develop --command bash -c 'colmena apply build'
