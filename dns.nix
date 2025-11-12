@@ -93,6 +93,10 @@
         "" = www208 // {
           txt.data = [ "TAILSCALE-fMbKHU9GGi8WDXsYeZxJ" ] ++ defaults."".txt.data;
         };
+        "incus-test" = {
+          a.data = "157.90.190.84";
+          aaaa.data = "2a01:4f8:1b7:730::4";
+        };
         "www".cname.data = "xnee.net";
         "kvm1" = {
           a.data = "100.85.70.7";
