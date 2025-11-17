@@ -70,8 +70,6 @@
           aaaa.data = "2a01:4f8:1b7:730::c";
           a.data = "157.90.190.86";
         };
-        "acr00.nbg.de".aaaa.data = "2a0f:6283:1400::1";
-        "acr00.nbg.de.mgmt".aaaa.data = "2a01:4f8:1b7:730::4";
         "bbr00.dus.de".aaaa.data = "2a0f:6283:1401::";
         "bbr00.dus.de.mgmt".aaaa.data = "2a0c:b640:10::2:38";
         "bbr01.dus.de".aaaa.data = "2a0f:6283:1401::1";
