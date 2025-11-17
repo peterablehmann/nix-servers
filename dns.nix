@@ -91,7 +91,7 @@
         "" = www208 // {
           txt.data = [ "TAILSCALE-fMbKHU9GGi8WDXsYeZxJ" ] ++ defaults."".txt.data;
         };
-        "incus-test".aaaa.data = "2a0f:6283:1400:1::7";
+        "incus-test".aaaa.data = "2a0f:6283:1400:1::a";
         "incus-test-1".aaaa.data = "2a0f:6283:1400:1::7";
         "incus-test-2".aaaa.data = "2a0f:6283:1400:1::8";
         "incus-test-3".aaaa.data = "2a0f:6283:1400:1::9";
