@@ -96,20 +96,6 @@
           a.data = "100.85.70.7";
           aaaa.data = "fd7a:115c:a1e0::f701:4607";
         };
-        "myrkviar" = {
-          a.data = "49.12.178.245";
-          aaaa.data = "2a01:4f8:1b7:730::1";
-        };
-        "*.myrkviar" = {
-          a.data = "49.12.178.245";
-          aaaa.data = "2a01:4f8:1b7:730::1";
-        };
-        "oob.myrkviar".aaaa.data = "fdc5:0f61:83a0::2";
-        "idrac.myrkviar".aaaa.data = "fdc5:0f61:83a0::3";
-        "proxmox" = {
-          a.data = [ "49.12.178.245" ];
-          aaaa.data = [ "2a01:4f8:1b7:730::1" ];
-        };
         "pbs-dus-1" = {
           a.data = "77.90.16.233";
           aaaa.data = "2a0f:6284:4300:101::74";

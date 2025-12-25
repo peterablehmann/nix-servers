@@ -46,7 +46,6 @@
           static_configs = [
             {
               targets = [
-                "node-exporter.myrkviar.xnee.net"
               ]
               ++ lib.mapAttrsToList (name: host: "node-exporter.${host.config.networking.fqdn}") (
                 lib.filterAttrs (
@@ -157,7 +156,7 @@
             username = "prometheus";
             password_file = config.sops.secrets."prometheus/basic_auth".path;
           };
-          static_configs = [ { targets = [ "transceiver-exporter.myrkviar.xnee.net" ]; } ];
+          static_configs = [ { targets = [ ]; } ];
         }
         {
           job_name = "zfs-exporter";
