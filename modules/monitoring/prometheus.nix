@@ -14,6 +14,10 @@
       sopsFile = "${inputs.self}/secrets/ymir.yaml";
       owner = "prometheus";
     };
+    "prometheus/slsystems_basic_auth" = {
+      sopsFile = "${inputs.self}/secrets/ymir.yaml";
+      owner = "prometheus";
+    };
   };
 
   services = {
@@ -67,6 +71,24 @@
                 "acr00.nbg.de.mgmt.as213422.net:9100"
                 "bbr00.dus.de.mgmt.as213422.net:9100"
                 "bbr01.dus.de.mgmt.as213422.net:9100"
+              ];
+            }
+          ];
+        }
+        {
+          job_name = "node-exporter-slsystems";
+          scrape_interval = "15s";
+          scheme = "https";
+          basic_auth = {
+            username = "prometheus";
+            password_file = config.sops.secrets."prometheus/slsystems_basic_auth".path;
+          };
+          static_configs = [
+            {
+              targets = [
+                "node-exporter.pve-1.slsystems.org"
+                "node-exporter.pve-2.slsystems.org"
+                "node-exporter.pve-3.slsystems.org"
               ];
             }
           ];
