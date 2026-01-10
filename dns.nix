@@ -104,6 +104,15 @@
           a.data = "152.53.47.219";
           aaaa.data = "2a0a:4cc0:0:2c6e::";
         };
+        "controlplane.talos-1" = {
+          # n1
+          a.data = "157.90.190.84";
+          aaaa.data = "2a01:4f8:1b7:730::d";
+        };
+        "n1.talos-1" = {
+          a.data = "157.90.190.84";
+          aaaa.data = "2a01:4f8:1b7:730::d";
+        };
       };
     };
 }
