@@ -97,7 +97,6 @@
       nixosConfigurations = {
         bjorn = nixpkgs.lib.nixosSystem {
           specialArgs = { inherit inputs outputs; };
-          system = "x86_64-linux";
           extraModules = [ inputs.colmena.nixosModules.deploymentOptions ];
           modules = [
             ./nodes/bjorn
@@ -106,7 +105,6 @@
         };
         factorio = nixpkgs.lib.nixosSystem {
           specialArgs = { inherit inputs outputs; };
-          system = "x86_64-linux";
           extraModules = [ inputs.colmena.nixosModules.deploymentOptions ];
           modules = [
             ./nodes/factorio
@@ -115,7 +113,6 @@
         };
         heptifili = nixpkgs.lib.nixosSystem {
           specialArgs = { inherit inputs outputs; };
-          system = "x86_64-linux";
           extraModules = [ inputs.colmena.nixosModules.deploymentOptions ];
           modules = [
             ./nodes/heptifili
@@ -124,7 +121,6 @@
         };
         ixpect-frankonix = nixpkgs.lib.nixosSystem {
           specialArgs = { inherit inputs outputs; };
-          system = "x86_64-linux";
           extraModules = [ inputs.colmena.nixosModules.deploymentOptions ];
           modules = [
             ./nodes/ixpect-frankonix
@@ -133,7 +129,6 @@
         };
         "rpki0.as213422.net" = nixpkgs.lib.nixosSystem {
           specialArgs = { inherit inputs outputs; };
-          system = "x86_64-linux";
           extraModules = [ inputs.colmena.nixosModules.deploymentOptions ];
           modules = [
             ./nodes/rpki0.as213422.net
@@ -142,7 +137,6 @@
         };
         workstation-server = nixpkgs.lib.nixosSystem {
           specialArgs = { inherit inputs outputs; };
-          system = "x86_64-linux";
           extraModules = [ inputs.colmena.nixosModules.deploymentOptions ];
           modules = [
             ./nodes/workstation-server
@@ -151,7 +145,6 @@
         };
         ymir = nixpkgs.lib.nixosSystem {
           specialArgs = { inherit inputs outputs; };
-          system = "x86_64-linux";
           extraModules = [ inputs.colmena.nixosModules.deploymentOptions ];
           modules = [
             ./nodes/ymir
@@ -160,7 +153,6 @@
         };
         zabbix = nixpkgs.lib.nixosSystem {
           specialArgs = { inherit inputs outputs; };
-          system = "x86_64-linux";
           extraModules = [ inputs.colmena.nixosModules.deploymentOptions ];
           modules = [
             ./nodes/zabbix
