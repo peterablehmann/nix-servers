@@ -26,16 +26,6 @@ buildGoModule rec {
 
   vendorHash = "sha256-7ZhS3RHIq68q22J5jEjCAVyf7PMLETKM1a0vqyzgHWA=";
 
-  # preBuild = ''
-  #   git config user.email "nixbld@nixbld.nixbld"
-  #   git config user.name "nixbld"
-  #   git add .
-  #   git commit -m "v${version}"
-  #   # git tag v${version}
-  # '';
-
-  GOFLAGS = [ "-buildvcs=true" ];
-
   postInstall = lib.optionalString (stdenv.buildPlatform.canExecute stdenv.hostPlatform) ''
     local INSTALL="$out/bin/vyconfigure"
     installShellCompletion --cmd vyconfigure \
