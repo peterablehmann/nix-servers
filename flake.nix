@@ -21,9 +21,9 @@
     # Flake-Utils
     flake-utils.url = "github:numtide/flake-utils";
 
-    # Colmena
-    colmena.url = "github:zhaofengli/colmena/main";
-    colmena.inputs.nixpkgs.follows = "nixpkgs";
+    # arcana
+    arcana.url = "git+https://git.afnix.fr/arcana/arcana";
+    arcana.inputs.nixpkgs.follows = "nixpkgs";
 
     # Attic
     attic.url = "github:zhaofengli/attic";
@@ -53,14 +53,14 @@
       disko,
       sops-nix,
       flake-utils,
-      colmena,
+      arcana,
       attic,
       nixos-dns,
       ...
     }@inputs:
     let
       inherit (self) outputs;
-      # let's filter the installer configuration since we don't want to deploy it with colmena
+      # let's filter the installer configuration since we don't want to deploy it with arcana
       conf = builtins.removeAttrs self.nixosConfigurations [ "home-installer" ];
     in
     (flake-utils.lib.eachDefaultSystem (
@@ -71,8 +71,7 @@
       {
         devShells.default = pkgs.mkShell {
           packages = with pkgs; [
-            # pkgs is needed here because colmena would otherwise be in the scope two times
-            pkgs.colmena
+            inputs.arcana.defaultPackage.${system}
             sops
             jq
             octodns
@@ -84,9 +83,7 @@
       }
     ))
     // {
-      colmena = {
-        # see for details:
-        # https://github.com/zhaofengli/colmena/issues/60#issuecomment-1510496861
+      arcana = {
         meta = {
           nixpkgs = import inputs.nixpkgs { system = "x86_64-linux"; };
           nodeSpecialArgs = builtins.mapAttrs (name: value: value._module.specialArgs) conf;
@@ -97,7 +94,7 @@
       nixosConfigurations = {
         bjorn = nixpkgs.lib.nixosSystem {
           specialArgs = { inherit inputs outputs; };
-          extraModules = [ inputs.colmena.nixosModules.deploymentOptions ];
+          extraModules = [ inputs.arcana.nixosModules.deploymentOptions ];
           modules = [
             ./nodes/bjorn
             self.nixosModules.common
@@ -105,7 +102,7 @@
         };
         factorio = nixpkgs.lib.nixosSystem {
           specialArgs = { inherit inputs outputs; };
-          extraModules = [ inputs.colmena.nixosModules.deploymentOptions ];
+          extraModules = [ inputs.arcana.nixosModules.deploymentOptions ];
           modules = [
             ./nodes/factorio
             self.nixosModules.common
@@ -113,7 +110,7 @@
         };
         heptifili = nixpkgs.lib.nixosSystem {
           specialArgs = { inherit inputs outputs; };
-          extraModules = [ inputs.colmena.nixosModules.deploymentOptions ];
+          extraModules = [ inputs.arcana.nixosModules.deploymentOptions ];
           modules = [
             ./nodes/heptifili
             self.nixosModules.common
@@ -121,7 +118,7 @@
         };
         ixpect-frankonix = nixpkgs.lib.nixosSystem {
           specialArgs = { inherit inputs outputs; };
-          extraModules = [ inputs.colmena.nixosModules.deploymentOptions ];
+          extraModules = [ inputs.arcana.nixosModules.deploymentOptions ];
           modules = [
             ./nodes/ixpect-frankonix
             self.nixosModules.common
@@ -129,7 +126,7 @@
         };
         "rpki0.as213422.net" = nixpkgs.lib.nixosSystem {
           specialArgs = { inherit inputs outputs; };
-          extraModules = [ inputs.colmena.nixosModules.deploymentOptions ];
+          extraModules = [ inputs.arcana.nixosModules.deploymentOptions ];
           modules = [
             ./nodes/rpki0.as213422.net
             self.nixosModules.common
@@ -137,7 +134,7 @@
         };
         workstation-server = nixpkgs.lib.nixosSystem {
           specialArgs = { inherit inputs outputs; };
-          extraModules = [ inputs.colmena.nixosModules.deploymentOptions ];
+          extraModules = [ inputs.arcana.nixosModules.deploymentOptions ];
           modules = [
             ./nodes/workstation-server
             self.nixosModules.common
@@ -145,7 +142,7 @@
         };
         ymir = nixpkgs.lib.nixosSystem {
           specialArgs = { inherit inputs outputs; };
-          extraModules = [ inputs.colmena.nixosModules.deploymentOptions ];
+          extraModules = [ inputs.arcana.nixosModules.deploymentOptions ];
           modules = [
             ./nodes/ymir
             self.nixosModules.common
@@ -153,7 +150,7 @@
         };
         zabbix = nixpkgs.lib.nixosSystem {
           specialArgs = { inherit inputs outputs; };
-          extraModules = [ inputs.colmena.nixosModules.deploymentOptions ];
+          extraModules = [ inputs.arcana.nixosModules.deploymentOptions ];
           modules = [
             ./nodes/zabbix
             self.nixosModules.common

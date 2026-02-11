@@ -12,9 +12,7 @@ jobs:
       - name: Check out repository code
         uses: actions/checkout@v6
       - name: Setup Nix
-        uses: DeterminateSystems/nix-installer-action@main
-        with:
-          diagnostic-endpoint: ""
+        uses: samueldr/lix-gha-installer-action@v2025-10-27
       - name: "Run flake checks"
         run: nix flake check --all-systems
 
@@ -24,10 +22,7 @@ jobs:
       - name: Check out repository code
         uses: actions/checkout@v6
       - name: Setup Nix
-        uses: DeterminateSystems/nix-installer-action@main
-        with:
-          diagnostic-endpoint: ""
-
+        uses: samueldr/lix-gha-installer-action@v2025-10-27
       - name: Check format
         run: nix develop --command bash -c 'treefmt --ci'
       - name: Lint using Statix
@@ -41,9 +36,7 @@ jobs:
       - name: Check out repository code
         uses: actions/checkout@v6
       - name: Setup Nix
-        uses: DeterminateSystems/nix-installer-action@main
-        with:
-          diagnostic-endpoint: ""
+        uses: samueldr/lix-gha-installer-action@v2025-10-27
       - name: Build DNS config
         run: nix build .#dns
       - name: Deploy DNS config
@@ -58,9 +51,7 @@ jobs:
       - name: Check out repository code
         uses: actions/checkout@v6
       - name: Setup Nix
-        uses: DeterminateSystems/nix-installer-action@main
-        with:
-          diagnostic-endpoint: ""
+        uses: samueldr/lix-gha-installer-action@v2025-10-27
       - name: Setup NIX Cache
         uses: zombiezen/setup-nix-cache-action@v0.4.0
         with:
@@ -69,4 +60,4 @@ jobs:
           aws_access_key_id: ${{ secrets.CACHE_ACCESS_KEY_ID }}
           aws_secret_access_key: ${{ secrets.CACHE_SECRET_ACCESS_KEY }}
       - name: "Build system configurations"
-        run: nix develop --command bash -c 'colmena apply build'
+        run: nix develop --command bash -c 'arcana apply build'
