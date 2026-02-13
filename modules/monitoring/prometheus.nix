@@ -49,7 +49,10 @@
           };
           static_configs = [
             {
-              targets = [ "node-exporter.docker-1.xnee.net" ] ++ lib.mapAttrsToList (name: host: "node-exporter.${host.config.networking.fqdn}") (
+              targets = [
+                "node-exporter.docker-1.xnee.net"
+              ]
+              ++ lib.mapAttrsToList (name: host: "node-exporter.${host.config.networking.fqdn}") (
                 lib.filterAttrs (
                   name: host: host.config.services.prometheus.exporters.node.enable
                 ) inputs.self.nixosConfigurations
