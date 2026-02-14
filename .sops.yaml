@@ -74,7 +74,7 @@ creation_rules:
       - *peter_sleipnir
       - *system_rpki0
 
-    - path_regex: secrets/zabbix.(yaml|json|env|ini)$
+  - path_regex: secrets/zabbix.(yaml|json|env|ini)$
     key_groups:
     - age:
       - *peter_kleeblatt
