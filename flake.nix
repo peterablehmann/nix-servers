@@ -170,6 +170,7 @@
         pdns-recursor = ./modules/pdns-recursor.nix;
         radicale = ./modules/radicale;
         restic-server = ./modules/restic-server;
+        pocket-id = ./modules/pocket-id.nix;
         powerdns = ./modules/powerdns.nix;
         routinator = ./modules/routinator.nix;
         syncthing = ./modules/syncthing.nix;
