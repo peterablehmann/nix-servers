@@ -57,19 +57,19 @@ in
       };
       "auth.generic_oauth" = {
         enabled = true;
-        name = "Kanidm";
-        client_id = "grafana";
+        name = "sso.xnee.net";
+        client_id = "da875475-b74f-4def-8589-8f78ca7d7939";
         client_secret = "$__file{${config.sops.secrets."grafana/token".path}}";
         scopes = "openid,profile,email,groups";
-        auth_url = "https://idm.xnee.net/ui/oauth2";
-        token_url = "https://idm.xnee.net/oauth2/token";
-        api_url = "https://idm.xnee.net/oauth2/openid/grafana/userinfo";
+        auth_url = "https://sso.xnee.net/authorize";
+        token_url = "https://sso.xnee.net/api/oidc/token";
+        api_url = "https://sso.xnee.net/api/oidc/userinfo";
         use_pkce = true;
         use_refresh_token = true;
         allow_sign_up = true;
         login_attribute_path = "preferred_username";
         groups_attribute_path = "groups";
-        role_attribute_path = "contains(grafana_role[*], 'GrafanaAdmin') && 'GrafanaAdmin' || contains(grafana_role[*], 'Admin') && 'Admin' || contains(grafana_role[*], 'Editor') && 'Editor' || 'Viewer'";
+        role_attribute_path = "contains(groups[*], 'monitoring_admins') && 'Admin' || contains(groups[*], 'monitoring_editors') && 'Editor' || 'Viewer'";
         allow_assign_grafana_admin = true;
       };
     };
