@@ -47,12 +47,17 @@ in
     plugins = python3Packages: with python3Packages; [ netbox-topology-views ];
     settings = {
       ALLOWED_HOSTS = [ domain ];
-      REMOTE_AUTH_ENABLED = "True";
+      # Remote authentication support
+      REMOTE_AUTH_ENABLED = true;
       REMOTE_AUTH_BACKEND = "social_core.backends.open_id_connect.OpenIdConnectAuth";
-      # SOCIAL_AUTH_OIDC_DISPLAY = "Kanidm";
-      SOCIAL_AUTH_OIDC_OIDC_ENDPOINT = "https://idm.xnee.net/oauth2/openid/netbox";
-      SOCIAL_AUTH_OIDC_KEY = "netbox";
-      SOCIAL_AUTH_OIDC_JWT_ALGORITHMS = [ "ES256" ];
+      REMOTE_AUTH_HEADER = "HTTP_REMOTE_USER";
+      REMOTE_AUTH_USER_FIRST_NAME = "HTTP_REMOTE_USER_FIRST_NAME";
+      REMOTE_AUTH_USER_LAST_NAME = "HTTP_REMOTE_USER_LAST_NAME";
+      REMOTE_AUTH_USER_EMAIL = "HTTP_REMOTE_USER_EMAIL";
+      REMOTE_AUTH_AUTO_CREATE_USER = true;
+      SOCIAL_AUTH_OIDC_ENDPOINT = "https://sso.xnee.net";
+      SOCIAL_AUTH_OIDC_KEY = "981052f1-1325-4d6c-8dc6-bbbc706f0c83";
+      LOGOUT_REDIRECT_URL = "https://netbox.xnee.net";
       PLUGINS = [ "netbox_topology_views" ];
     };
     extraConfig = ''
