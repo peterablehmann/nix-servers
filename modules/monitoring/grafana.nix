@@ -50,9 +50,9 @@ in
       smtp = {
         enabled = true;
         host = "mail.your-server.de:587";
-        user = "monitoring@xnee.net";
+        user = "noreply@xnee.net";
         password = "$__file{${config.sops.secrets."grafana/smtp_password".path}}";
-        from_address = "monitoring@xnee.net";
+        from_address = "monitoring+noreply@xnee.net";
         from_name = "monitoring.xnee.net";
       };
       "auth.generic_oauth" = {
