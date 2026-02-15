@@ -36,6 +36,7 @@ in
         APP_URL = "https://sso.xnee.net";
         ANALYTICS_DISABLED = true;
         UI_CONFIG_DISABLED = true;
+        EMAILS_VERIFIED = true; # Emails are always shown as verified as I do manual user creation
         # Mail
         SMTP_HOST = "mail.your-server.de";
         SMTP_PORT = 587;
