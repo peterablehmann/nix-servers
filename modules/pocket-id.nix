@@ -40,7 +40,7 @@ in
         # Mail
         SMTP_HOST = "mail.your-server.de";
         SMTP_PORT = 587;
-        SMTP_TLS = "TLS";
+        SMTP_TLS = "starttls";
         SMTP_FROM = "sso+noreply@xnee.net";
         SMTP_USER = "noreply@xnee.net";
         EMAIL_VERIFICATION_ENABLED = true;
