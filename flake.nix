@@ -163,6 +163,7 @@
 
       nixosModules = {
         common = ./modules/common;
+        immich = ./modules/immich.nix;
         kanidm = ./modules/kanidm.nix;
         monitoring = ./modules/monitoring;
         netbox = ./modules/netbox.nix;
