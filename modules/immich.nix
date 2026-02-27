@@ -18,6 +18,14 @@ in
       forceSSL = true;
       locations."/" = {
         proxyPass = "http://[${config.services.immich.host}]:${builtins.toString config.services.immich.port}";
+        extraConfig = ''
+          client_max_body_size 50G;
+          proxy_request_buffering off;
+          client_body_buffer_size 1024k;
+          proxy_read_timeout 600s;
+          proxy_send_timeout 600s;
+          send_timeout       600s;
+        '';
       };
     };
 
