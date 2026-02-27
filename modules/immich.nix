@@ -18,6 +18,7 @@ in
       forceSSL = true;
       locations."/" = {
         proxyPass = "http://[${config.services.immich.host}]:${builtins.toString config.services.immich.port}";
+        proxyWebsockets = true;
         extraConfig = ''
           client_max_body_size 50G;
           proxy_request_buffering off;
