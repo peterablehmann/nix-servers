@@ -119,6 +119,14 @@
             self.nixosModules.common
           ];
         };
+        immich = nixpkgs.lib.nixosSystem {
+          specialArgs = { inherit inputs outputs; };
+          extraModules = [ inputs.colmena.nixosModules.deploymentOptions ];
+          modules = [
+            ./nodes/immich
+            self.nixosModules.common
+          ];
+        };
         ixpect-frankonix = nixpkgs.lib.nixosSystem {
           specialArgs = { inherit inputs outputs; };
           extraModules = [ inputs.colmena.nixosModules.deploymentOptions ];
@@ -148,14 +156,6 @@
           extraModules = [ inputs.colmena.nixosModules.deploymentOptions ];
           modules = [
             ./nodes/ymir
-            self.nixosModules.common
-          ];
-        };
-        zabbix = nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit inputs outputs; };
-          extraModules = [ inputs.colmena.nixosModules.deploymentOptions ];
-          modules = [
-            ./nodes/zabbix
             self.nixosModules.common
           ];
         };

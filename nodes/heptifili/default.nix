@@ -4,7 +4,6 @@
 }:
 {
   imports = [
-    inputs.self.nixosModules.immich
     inputs.self.nixosModules.netbox
     inputs.self.nixosModules.paperless
     inputs.self.nixosModules.powerdns

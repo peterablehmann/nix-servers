@@ -5,12 +5,13 @@
 }:
 {
   imports = [
+    inputs.self.nixosModules.immich
     ./disko.nix
     ./hardware-configuration.nix
   ];
 
   metadata = {
-    hostName = "zabbix";
+    hostName = "immich";
     domain = "xnee.net";
     provider = "proxmox.xnee.net";
     network = {
