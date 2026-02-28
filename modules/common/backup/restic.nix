@@ -79,11 +79,11 @@ in
         repository = "sftp://u371467-sub2@u371467.your-storagebox.de:22//backup";
         inherit (cfg) paths exclude;
       };
-      "wasabi" = mkResticConfig {
+      "wasabi" = lib.mkIf (config.metadata.network.ipv4.address != null) (mkResticConfig {
         repository = "s3:https://s3.eu-central-2.wasabisys.com/backup-xnee-net";
         environmentFile = config.sops.secrets."backup/wasabi".path;
         inherit (cfg) paths exclude;
-      };
+      });
       "hetzner-s3" = mkResticConfig {
         repository = "s3:https://nbg1.your-objectstorage.com/backup-xnee-net";
         environmentFile = config.sops.secrets."backup/hetzner-s3".path;
