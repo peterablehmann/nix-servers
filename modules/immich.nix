@@ -34,6 +34,7 @@ in
       enable = true;
       host = "::1";
       settings.server.externalDomain = "https://${domain}";
+      machine-learning.environment."MPLCONFIGDIR" = "${config.services.immich.mediaLocation}/.config/matplotlib";
     };
 
     backup.paths = [ config.services.immich.mediaLocation ];
