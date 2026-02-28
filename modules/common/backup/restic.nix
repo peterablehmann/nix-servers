@@ -103,7 +103,11 @@ in
         (
           lib.filterAttrs (
             name: host:
-            (host.config.networking.fqdn != config.networking.fqdn && host.config.services.restic.server.enable)
+            (
+              host.config.networking.fqdn != config.networking.fqdn
+              && host.config.services.restic.server.enable
+              && !(config.metadata.provider == "proxmox.xnee.net" && name == "heptifili")
+            )
           ) inputs.self.nixosConfigurations
         )
     ));
