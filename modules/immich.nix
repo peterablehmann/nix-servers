@@ -34,7 +34,6 @@ in
       enable = true;
       host = "::1";
       settings.server.externalDomain = "https://${domain}";
-      machine-learning.environment.HF_XET_CACHE = "/var/cache/immich/huggingface-xet";
     };
 
     backup.paths = [ config.services.immich.mediaLocation ];
