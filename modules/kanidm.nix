@@ -15,7 +15,7 @@ in
     kTLS = true;
     forceSSL = true;
     locations."/" = {
-      proxyPass = "https://${config.services.kanidm.serverSettings.bindaddress}";
+      proxyPass = "https://${config.services.kanidm.server.settings.bindaddress}";
     };
   };
 
@@ -28,27 +28,31 @@ in
   };
 
   services.kanidm = {
-    package = pkgs.kanidm_1_8;
-    enableClient = true;
-    clientSettings = {
-      uri = "https://${domain}";
-      verify_ca = true;
-      verify_hostnames = true;
+    package = pkgs.kanidm_1_9;
+    client = {
+      enable = true;
+      settings = {
+        uri = "https://${domain}";
+        verify_ca = true;
+        verify_hostnames = true;
+      };
     };
-    enableServer = true;
-    serverSettings = {
-      version = "2";
-      bindaddress = "[::]:8443";
-      ldapbindaddress = "[::]:3636";
-      tls_chain = "${tls-dir}/fullchain.pem";
-      tls_key = "${tls-dir}/key.pem";
-      inherit domain;
-      origin = "https://${config.services.kanidm.serverSettings.domain}";
-      online_backup = {
-        path = "/var/lib/kanidm/backups/";
-        schedule = "00 22 * * *";
+    server = {
+      enable = true;
+      settings = {
+        version = "2";
+        bindaddress = "[::]:8443";
+        ldapbindaddress = "[::]:3636";
+        tls_chain = "${tls-dir}/fullchain.pem";
+        tls_key = "${tls-dir}/key.pem";
+        inherit domain;
+        origin = "https://${config.services.kanidm.server.settings.domain}";
+        online_backup = {
+          path = "/var/lib/kanidm/backups/";
+          schedule = "00 22 * * *";
+        };
       };
     };
   };
-  backup.paths = [ config.services.kanidm.serverSettings.online_backup.path ];
+  backup.paths = [ config.services.kanidm.server.settings.online_backup.path ];
 }
