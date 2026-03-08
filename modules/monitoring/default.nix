@@ -1,6 +1,6 @@
 {
   imports = [
-    ./parsedmarc.nix
+    # ./parsedmarc.nix
     ./prometheus.nix
     ./grafana.nix
   ];
