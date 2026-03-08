@@ -27,6 +27,10 @@ in
   };
 
   sops.secrets = {
+    "grafana/secret_key" = {
+      sopsFile = "${inputs.self}/secrets/${config.networking.hostName}.yaml";
+      owner = "grafana";
+    };
     "grafana/token" = {
       sopsFile = "${inputs.self}/secrets/${config.networking.hostName}.yaml";
       owner = "grafana";
@@ -40,6 +44,7 @@ in
   services.grafana = {
     enable = true;
     settings = {
+      security.secret_key = "$__file{${config.sops.secrets."grafana/secret_key".path}}";
       server = {
         http_addr = "::1";
         http_port = 3312;
