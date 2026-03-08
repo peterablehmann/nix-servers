@@ -95,14 +95,6 @@
       // builtins.mapAttrs (name: value: { imports = value._module.args.modules; }) conf;
 
       nixosConfigurations = {
-        bjorn = nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit inputs outputs; };
-          extraModules = [ inputs.colmena.nixosModules.deploymentOptions ];
-          modules = [
-            ./nodes/bjorn
-            self.nixosModules.common
-          ];
-        };
         factorio = nixpkgs.lib.nixosSystem {
           specialArgs = { inherit inputs outputs; };
           extraModules = [ inputs.colmena.nixosModules.deploymentOptions ];
