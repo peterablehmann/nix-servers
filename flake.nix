@@ -119,14 +119,6 @@
             self.nixosModules.common
           ];
         };
-        ixpect-frankonix = nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit inputs outputs; };
-          extraModules = [ inputs.colmena.nixosModules.deploymentOptions ];
-          modules = [
-            ./nodes/ixpect-frankonix
-            self.nixosModules.common
-          ];
-        };
         "rpki0.as213422.net" = nixpkgs.lib.nixosSystem {
           specialArgs = { inherit inputs outputs; };
           extraModules = [ inputs.colmena.nixosModules.deploymentOptions ];
