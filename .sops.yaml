@@ -5,6 +5,7 @@ keys:
   - &system_workstation_server age1dxdta04txkwa25dlzq8rppwrj0ju5e5je0pz0qrek0jz2fs2cc7sym7acy
   - &system_ymir age183wgf8xp46chqk049ekyg7vsan2p50zh4lqfllcllzwuekeywdzqn7pz0q
   - &system_rpki0 age1c0r92htw85wvd5yycqy5hxjumrl27frvvu7eawnlj3yh0fu87qfsehnmer
+  - &system_storage1 age1084ma2v4nqcl4dqr7styvhgr8ee4mxgs7qd6trsycakrydaqe38q57m3pc
   - &system_zabbix age1y99qvywte9j2uxjdzewf29wxkp5tngqu49rcq2j7ypmz4gyxpqysuk45ns
 
 creation_rules:
@@ -17,6 +18,7 @@ creation_rules:
       - *system_ymir
       - *system_heptifili
       - *system_rpki0
+      - *system_storage1
       - *system_zabbix
 
   - path_regex: secrets/workstation-server.(yaml|json|env|ini)$

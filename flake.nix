@@ -119,6 +119,14 @@
             self.nixosModules.common
           ];
         };
+        "storage1" = nixpkgs.lib.nixosSystem {
+          specialArgs = { inherit inputs outputs; };
+          extraModules = [ inputs.colmena.nixosModules.deploymentOptions ];
+          modules = [
+            ./nodes/storage1
+            self.nixosModules.common
+          ];
+        };
         workstation-server = nixpkgs.lib.nixosSystem {
           specialArgs = { inherit inputs outputs; };
           extraModules = [ inputs.colmena.nixosModules.deploymentOptions ];
