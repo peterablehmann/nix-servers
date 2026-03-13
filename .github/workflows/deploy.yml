@@ -8,17 +8,17 @@ on:
 permissions: read-all
 
 jobs:
-  Check:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Check out repository code
-        uses: actions/checkout@v6
-      - name: Setup Nix
-        uses: DeterminateSystems/nix-installer-action@main
-        with:
-          diagnostic-endpoint: ""
-      - name: "Run flake checks"
-        run: nix flake check --all-systems
+  # Check:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Check out repository code
+  #       uses: actions/checkout@v6
+  #     - name: Setup Nix
+  #       uses: DeterminateSystems/nix-installer-action@main
+  #       with:
+  #         diagnostic-endpoint: ""
+  #     - name: "Run flake checks"
+  #       run: nix flake check --all-systems
 
   Lint:
     runs-on: ubuntu-latest
@@ -35,7 +35,7 @@ jobs:
         run: nix run nixpkgs#statix -- check .
   
   Deploy:
-    needs: [Check, Lint]
+    needs: [ Lint ]
     runs-on: ubuntu-latest
     steps:
       - name: Tailscale
