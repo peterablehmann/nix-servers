@@ -6,44 +6,37 @@ on:
 permissions: read-all
 
 jobs:
-  # Check:
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - name: Check out repository code
-  #       uses: actions/checkout@v6
-  #     - name: Setup Nix
-  #       uses: DeterminateSystems/nix-installer-action@main
-  #       with:
-  #         diagnostic-endpoint: ""
-  #     - name: "Run flake checks"
-  #       run: nix flake check --all-systems
+  Check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v6
+      - name: Setup Lix
+        uses: samueldr/lix-gha-installer-action@v2026-02-22
+      - name: "Run flake checks"
+        run: nix flake check --all-systems
 
   Lint:
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository code
         uses: actions/checkout@v6
-      - name: Setup Nix
-        uses: DeterminateSystems/nix-installer-action@main
-        with:
-          diagnostic-endpoint: ""
-
+      - name: Setup Lix
+        uses: samueldr/lix-gha-installer-action@v2026-02-22
       - name: Check format
         run: nix develop --command bash -c 'treefmt --ci'
       - name: Lint using Statix
         run: nix run nixpkgs#statix -- check .
   
   DNS:
-    needs: [ Lint ]
+    needs: [ Check, Lint ]
     if: ${{ github.event_name == 'pull_request' }}
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository code
         uses: actions/checkout@v6
-      - name: Setup Nix
-        uses: DeterminateSystems/nix-installer-action@main
-        with:
-          diagnostic-endpoint: ""
+      - name: Setup Lix
+        uses: samueldr/lix-gha-installer-action@v2026-02-22
       - name: Build DNS config
         run: nix build .#dns
       - name: Deploy DNS config
@@ -52,14 +45,12 @@ jobs:
           HETZNER_DNS_API: ${{ secrets.HETZNER_DNS_API }}
   
   Build:
-    needs: [ Lint ]
+    needs: [ Check, Lint ]
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository code
         uses: actions/checkout@v6
-      - name: Setup Nix
-        uses: DeterminateSystems/nix-installer-action@main
-        with:
-          diagnostic-endpoint: ""
+      - name: Setup Lix
+        uses: samueldr/lix-gha-installer-action@v2026-02-22
       - name: "Build system configurations"
         run: nix develop --command bash -c 'colmena apply build'
