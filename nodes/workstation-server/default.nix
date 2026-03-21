@@ -27,6 +27,20 @@
       };
     };
   };
+  systemd.network = {
+    enable = true;
+    networks = {
+      "20-mgmt" = {
+        networkConfig = {
+          DHCP = false;
+          IPv6AcceptRA = false;
+        };
+        matchConfig.Name = "enp0s19";
+        address = [ "192.168.104.2" ];
+      };
+    };
+  };
+  services.tailscale.extraUpFlags = [ "--advertise-routes=192.168.104.0/24" ];
   services.qemuGuest.enable = true;
 
   nix.settings.experimental-features = [
