@@ -112,6 +112,8 @@
           a.data = "192.168.33.2";
           aaaa.data = "2003:a:173b:1010::2";
         };
+        "docker-pub-1".aaaa.data = "2003:a:173b:1050:1266:6aff:fec7:8004";
+        "forgejo".cname.data = "docker-pub-1.xnee.net";
       };
     };
 }
