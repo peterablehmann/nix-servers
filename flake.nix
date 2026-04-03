@@ -207,6 +207,7 @@
             hetzner = {
               class = "octodns_hetzner.HetznerProvider";
               token = "env/HETZNER_DNS_API";
+              backend = "hcloud";
             };
           };
         };
