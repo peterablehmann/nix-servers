@@ -19,6 +19,11 @@ in
       owner = "netbox";
       group = "netbox";
     };
+    "netbox/api_pepper" = {
+      sopsFile = "${inputs.self}/secrets/${config.networking.hostName}.yaml";
+      owner = "netbox";
+      group = "netbox";
+    };
   };
   networking.domains.subDomains.${domain} = { };
   security.acme.certs."${domain}" = { };
@@ -44,6 +49,7 @@ in
     enable = true;
     package = pkgs.netbox;
     secretKeyFile = config.sops.secrets."netbox/secret_key".path;
+    apiTokenPeppersFile = config.sops.secrets."netbox/api_pepper".path;
     plugins = python3Packages: with python3Packages; [ netbox-topology-views ];
     settings = {
       ALLOWED_HOSTS = [ domain ];
