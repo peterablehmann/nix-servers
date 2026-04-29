@@ -112,14 +112,6 @@
             self.nixosModules.common
           ];
         };
-        "rpki0.as213422.net" = nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit inputs outputs; };
-          extraModules = [ inputs.colmena.nixosModules.deploymentOptions ];
-          modules = [
-            ./nodes/rpki0.as213422.net
-            self.nixosModules.common
-          ];
-        };
         "storage1" = nixpkgs.lib.nixosSystem {
           specialArgs = { inherit inputs outputs; };
           extraModules = [ inputs.colmena.nixosModules.deploymentOptions ];
