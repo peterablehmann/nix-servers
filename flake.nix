@@ -25,24 +25,10 @@
     colmena.url = "github:zhaofengli/colmena/main";
     colmena.inputs.nixpkgs.follows = "nixpkgs";
 
-    # Attic
-    attic.url = "github:zhaofengli/attic";
-
     # NixOS-DNS
     # peterablehmann/NixOS-DNS/tree/fix-cnames
     nixos-dns.url = "github:Janik-Haag/NixOS-DNS";
     nixos-dns.inputs.nixpkgs.follows = "nixpkgs";
-
-    ixpect = {
-      url = "git+https://codeberg.org/ixpect/ixpect";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    fernglas = {
-      type = "github";
-      owner = "wobcom";
-      repo = "fernglas";
-    };
   };
 
   outputs =
@@ -54,7 +40,6 @@
       sops-nix,
       flake-utils,
       colmena,
-      attic,
       nixos-dns,
       ...
     }@inputs:
