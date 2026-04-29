@@ -36,7 +36,7 @@
           IPv6AcceptRA = false;
         };
         matchConfig.Name = "enp0s19";
-        address = [ "192.168.104.2" ];
+        address = [ "192.168.104.2/24" ];
       };
     };
   };
