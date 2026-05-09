@@ -45,6 +45,20 @@ in
     };
   };
 
+  # Delete me   https://nixpk.gs/pr-tracker.html?pr=514527
+  nixpkgs.overlays = [
+    (final: prev: {
+      netbox = prev.netbox.overrideAttrs (old: {
+        src = prev.fetchFromGitHub {
+          owner = "netbox-community";
+          repo = "netbox";
+          tag = "v4.5.5";
+          hash = "sha256-he+WNbzIZSc2q97YjnAKHeFR0MDZCkDuAF/mfgAZuU4=";
+        };
+      });
+    })
+  ];
+
   services.netbox = {
     enable = true;
     package = pkgs.netbox;
