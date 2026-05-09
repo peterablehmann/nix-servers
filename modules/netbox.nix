@@ -49,12 +49,13 @@ in
   nixpkgs.overlays = [
     (final: prev: {
       netbox = prev.netbox.overrideAttrs (old: {
-        src = prev.fetchFromGitHub {
-          owner = "netbox-community";
-          repo = "netbox";
-          tag = "v4.5.5";
-          hash = "sha256-he+WNbzIZSc2q97YjnAKHeFR0MDZCkDuAF/mfgAZuU4=";
-        };
+        patches = (old.patches or [ ]) ++ [
+          (prev.fetchpatch2 {
+            name = "upgrade-django-tables2-v3.0.patch";
+            url = "https://github.com/netbox-community/netbox/commit/d57346d9f0eef8126eafcd5033ea43864faeaf0d.patch";
+            hash = "sha256-6/wdd8wDVT4eqDKMNx8tmoPTDvw8OE7atf9nzg3LZzk=";
+          })
+        ];
       });
     })
   ];
