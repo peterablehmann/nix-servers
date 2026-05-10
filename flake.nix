@@ -105,6 +105,14 @@
             self.nixosModules.common
           ];
         };
+        "kalfr" = nixpkgs.lib.nixosSystem {
+          specialArgs = { inherit inputs outputs; };
+          extraModules = [ inputs.colmena.nixosModules.deploymentOptions ];
+          modules = [
+            ./nodes/kalfr
+            self.nixosModules.common
+          ];
+        };
         "storage1" = nixpkgs.lib.nixosSystem {
           specialArgs = { inherit inputs outputs; };
           extraModules = [ inputs.colmena.nixosModules.deploymentOptions ];
@@ -134,6 +142,7 @@
       nixosModules = {
         common = ./modules/common;
         forgejo = ./modules/forgejo.nix;
+        forgejo-runner = ./modules/forgejo-runner.nix;
         immich = ./modules/immich.nix;
         kanidm = ./modules/kanidm.nix;
         monitoring = ./modules/monitoring;

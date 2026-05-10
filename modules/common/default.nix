@@ -55,7 +55,10 @@
   systemd.network.wait-online.ignoredInterfaces = [ "tailscale0" ];
   i18n.defaultLocale = "de_DE.UTF-8";
 
-  sops.age.sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
+  sops = {
+    age.sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
+    defaultSopsFile = "${inputs.self}/secrets/${config.networking.hostName}.yaml";
+  };
 
   networking.nftables.enable = true;
 
