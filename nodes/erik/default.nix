@@ -1,0 +1,31 @@
+{
+  inputs,
+  ...
+}:
+{
+  imports = [
+    inputs.self.nixosModules.forgejo
+    ./disko.nix
+    ./hardware-configuration.nix
+  ];
+
+  metadata = {
+    hostName = "erik";
+    domain = "xnee.net";
+    provider = "proxmox.xnee.net";
+    network = {
+      ipv4 = {
+        address = "192.168.48.5";
+        prefixLength = 24;
+        gateway = "192.168.48.1";
+      };
+      ipv6 = {
+        address = "2a01:4f8:1b7:731::5";
+        prefixLength = 64;
+        gateway = "2a01:4f8:1b7:731::1";
+      };
+    };
+  };
+  deployment.tags = [ "ci" ];
+  services.qemuGuest.enable = true;
+}

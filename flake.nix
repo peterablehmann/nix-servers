@@ -81,6 +81,14 @@
       // builtins.mapAttrs (name: value: { imports = value._module.args.modules; }) conf;
 
       nixosConfigurations = {
+        erik = nixpkgs.lib.nixosSystem {
+          specialArgs = { inherit inputs outputs; };
+          extraModules = [ inputs.colmena.nixosModules.deploymentOptions ];
+          modules = [
+            ./nodes/erik
+            self.nixosModules.common
+          ];
+        };
         heptifili = nixpkgs.lib.nixosSystem {
           specialArgs = { inherit inputs outputs; };
           extraModules = [ inputs.colmena.nixosModules.deploymentOptions ];
@@ -125,6 +133,7 @@
 
       nixosModules = {
         common = ./modules/common;
+        forgejo = ./modules/forgejo.nix;
         immich = ./modules/immich.nix;
         kanidm = ./modules/kanidm.nix;
         monitoring = ./modules/monitoring;
