@@ -31,15 +31,18 @@ in
       database.type = "postgres";
       lfs.enable = true;
       settings = {
+        actions = {
+          ENABLED = true;
+          DEFAULT_ACTIONS_URL = "github";
+        };
         server = {
           DOMAIN = domain;
           ROOT_URL = "https://${config.services.forgejo.settings.server.DOMAIN}/";
           # SSH_PORT = lib.head config.services.openssh.ports;
           PROTOCOL = "http+unix";
         };
-        actions = {
-          ENABLED = true;
-          DEFAULT_ACTIONS_URL = "github";
+        service = {
+          DISABLE_REGISTRATION = true;
         };
         webhook = {
           ALLOWED_HOST_LIST = "external,private";
