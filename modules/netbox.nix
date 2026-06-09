@@ -45,21 +45,6 @@ in
     };
   };
 
-  # Delete me   https://nixpk.gs/pr-tracker.html?pr=514527
-  nixpkgs.overlays = [
-    (final: prev: {
-      netbox = prev.netbox.overrideAttrs (old: {
-        patches = (old.patches or [ ]) ++ [
-          (prev.fetchpatch2 {
-            name = "upgrade-django-tables2-v3.0.patch";
-            url = "https://github.com/netbox-community/netbox/commit/d57346d9f0eef8126eafcd5033ea43864faeaf0d.patch";
-            hash = "sha256-6/wdd8wDVT4eqDKMNx8tmoPTDvw8OE7atf9nzg3LZzk=";
-          })
-        ];
-      });
-    })
-  ];
-
   services.netbox = {
     enable = true;
     package = pkgs.netbox;
