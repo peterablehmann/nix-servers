@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository code
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
       - name: Setup Lix
         uses: samueldr/lix-gha-installer-action@v2026-02-22
       - name: "Run flake checks"
@@ -22,7 +22,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository code
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
       - name: Setup Lix
         uses: samueldr/lix-gha-installer-action@v2026-02-22
       - name: Check format
@@ -45,7 +45,7 @@ jobs:
         with:
           ssh-private-key: ${{ secrets.DEPLOY_KEY }}
       - name: Check out repository code
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
       - name: Setup Lix
         uses: samueldr/lix-gha-installer-action@v2026-02-22
       - name: Build config
