@@ -55,7 +55,8 @@ in
       retries: 3
       prompt: !ruby/regexp /^([\w.@-]+[#>]\s?)$/
       next_adds_job: false
-      vars: {}
+      vars:
+        remove_secret: true
       groups: {}
       group_map: {}
       models: {}
