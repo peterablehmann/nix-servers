@@ -77,8 +77,8 @@ in
           passive: true
         utf8_encoded: true
       output:
-        file:
-          directory: "${config.services.oxidized.dataDir}/configs"
+        git:
+          repo: "${config.services.oxidized.dataDir}/configs"
       source:
         default: csv
         csv:
