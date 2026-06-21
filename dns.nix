@@ -104,10 +104,7 @@
           a.data = "152.53.47.219";
           aaaa.data = "2a0a:4cc0:0:2c6e::";
         };
-        "gw.home" = {
-          a.data = "80.151.251.16";
-          aaaa.data = "2003:a:177f:bb10::1";
-        };
+        "router01.home01".cname.data = "hke0akjkmaa.sn.mynetname.net";
         "incus-1" = {
           a.data = "192.168.33.2";
           aaaa.data = "2003:a:173b:1010::2";
