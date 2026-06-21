@@ -95,6 +95,7 @@ in
       bbr00.nbg.de.as213422.net,2a01:4f8:1b7:730::5,vyos
       bbr01.nbg.de.as213422.net,2a01:4f8:1b7:730::c,vyos
       bbr01.dus.de.as213422.net,2a14:7c0:7000:3ff::14b,vyos
+      router01.home01.xnee.net,,routeros
     '';
   };
 
