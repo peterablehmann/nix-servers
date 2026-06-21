@@ -15,10 +15,15 @@
     domain = "xnee.net";
     provider = "proxmox.xnee.net";
     network = {
+      ipv4 = {
+        address = "192.168.48.6";
+        prefixLength = 24;
+        gateway = "192.168.48.1";
+      };
       ipv6 = {
-        address = "2a01:4f8:1b7:730::6";
-        prefixLength = 56;
-        gateway = "2a01:4f8:1b7:700::1";
+        address = "2a01:4f8:1b7:731::6";
+        prefixLength = 64;
+        gateway = "2a01:4f8:1b7:731::1";
       };
     };
   };
