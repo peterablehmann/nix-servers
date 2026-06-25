@@ -39,58 +39,58 @@ in
   services.oxidized = {
     enable = true;
     configFile = pkgs.writeText "oxidized-config.yml" ''
-    ---
-    username: oxi
-    vars:
-      remove_secret: true
-    resolve_dns: true
-    interval: 3600
-    pid: "${config.services.oxidized.dataDir}/.config/oxidized/pid"
-    debug: false
-    run_once: false
-    threads: 30
-    use_max_threads: false
-    timeout: 20
-    timelimit: 300
-    retries: 3
-    prompt: !ruby/regexp /^([\w.@-]+[#>]\s?)$/
-    next_adds_job: false
-    groups: {}
-    group_map: {}
-    models: {}
-    extensions:
-      oxidized-web:
-        load: true
-        listen: "[::1]"
-    crash:
-      directory: "${config.services.oxidized.dataDir}/.config/oxidized/crashes"
-      hostnames: false
-    stats:
-      history_size: 10
-    input:
-      default: ssh
+      ---
+      username: oxi
+      vars:
+        remove_secret: true
+      resolve_dns: true
+      interval: 3600
+      pid: "${config.services.oxidized.dataDir}/.config/oxidized/pid"
       debug: false
-      ssh:
-        secure: false
-      ftp:
-        passive: true
-      utf8_encoded: true
-    output:
-      default: git
-      git:
-        user: Oxidized
-        email: oxi+noreply@xnee.net
-        repo: "${config.services.oxidized.dataDir}/configs.git"
-    source:
-      default: csv
-      csv:
-        file: "${config.services.oxidized.dataDir}/.config/oxidized/router.db"
-        delimiter: !ruby/regexp /,/
-        map:
-          name: 0
-          ip: 1
-          model: 2
-        gpg: false
+      run_once: false
+      threads: 30
+      use_max_threads: false
+      timeout: 20
+      timelimit: 300
+      retries: 3
+      prompt: !ruby/regexp /^([\w.@-]+[#>]\s?)$/
+      next_adds_job: false
+      groups: {}
+      group_map: {}
+      models: {}
+      extensions:
+        oxidized-web:
+          load: true
+          listen: "[::1]"
+      crash:
+        directory: "${config.services.oxidized.dataDir}/.config/oxidized/crashes"
+        hostnames: false
+      stats:
+        history_size: 10
+      input:
+        default: ssh
+        debug: false
+        ssh:
+          secure: false
+        ftp:
+          passive: true
+        utf8_encoded: true
+      output:
+        default: git
+        git:
+          user: Oxidized
+          email: oxi+noreply@xnee.net
+          repo: "${config.services.oxidized.dataDir}/configs.git"
+      source:
+        default: csv
+        csv:
+          file: "${config.services.oxidized.dataDir}/.config/oxidized/router.db"
+          delimiter: !ruby/regexp /,/
+          map:
+            name: 0
+            ip: 1
+            model: 2
+          gpg: false
     '';
     routerDB = pkgs.writeText "oxidized-router.db" ''
       bbr00.nbg.de.as213422.net,2a01:4f8:1b7:730::5,vyos
