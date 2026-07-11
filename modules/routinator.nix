@@ -41,6 +41,7 @@ in
         http-tls-key = "${tls-dir}/key.pem";
         http-tls-cert = "${tls-dir}/fullchain.pem";
         rtr-listen = [ "[::]:8282" ];
+        enable-aspa = true;
       };
     };
   };
