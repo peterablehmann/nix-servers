@@ -42,6 +42,10 @@ in
         };
       };
       ipv4 = {
+        dns = mkOption {
+          type = types.bool;
+          default = true;
+        };
         address = mkOption {
           type = types.nullOr types.str;
           default = null;

@@ -15,6 +15,7 @@
     provider = "proxmox.xnee.net";
     network = {
       ipv4 = {
+        dns = false;
         address = "192.168.48.5";
         prefixLength = 24;
         gateway = "192.168.48.1";

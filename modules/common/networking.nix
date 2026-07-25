@@ -11,9 +11,10 @@
         "${config.networking.fqdn}" = { };
       };
       baseDomains."${config.networking.domain}" =
-        lib.optionalAttrs (config.metadata.network.ipv4.address != null) {
-          a.data = config.metadata.network.ipv4.address;
-        }
+        lib.optionalAttrs (config.metadata.network.ipv4.address != null && config.metadata.network.ipv4.dns)
+          {
+            a.data = config.metadata.network.ipv4.address;
+          }
         // lib.optionalAttrs (config.metadata.network.ipv6.address != null) {
           aaaa.data = config.metadata.network.ipv6.address;
         };
