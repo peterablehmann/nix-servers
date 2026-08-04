@@ -105,21 +105,11 @@
           aaaa.data = "2a0a:4cc0:0:2c6e::";
         };
         "router01.home01".cname.data = "hke0akjkmaa.sn.mynetname.net";
-        "incus-1" = {
-          a.data = "192.168.33.2";
-          aaaa.data = "2003:a:173b:1010::2";
-        };
-        "docker-pub-1".aaaa.data = "2003:a:173b:1050:1266:6aff:fec7:8004";
-        "forgejo".cname.data = "docker-pub-1.xnee.net";
         "docker-1" = {
           a.data = "157.90.190.84";
           aaaa.data = "2a01:4f8:1b7:730::9";
         };
-        "proxy01" = {
-          a.data = "157.90.190.84";
-          aaaa.data = "2a01:4f8:1b7:730::9";
-        };
-        "*.proxy01" = {
+        "*.docker-1" = {
           a.data = "157.90.190.84";
           aaaa.data = "2a01:4f8:1b7:730::9";
         };
