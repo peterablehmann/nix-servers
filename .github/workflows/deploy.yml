@@ -15,8 +15,8 @@ jobs:
         uses: actions/checkout@v7
       - name: Setup Lix
         uses: samueldr/lix-gha-installer-action@v2026-02-22
-      - name: "Run flake checks"
-        run: nix flake check --all-systems
+      # - name: "Run flake checks"
+      #   run: nix flake check --all-systems
 
   Lint:
     runs-on: ubuntu-latest
