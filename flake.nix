@@ -89,14 +89,6 @@
             self.nixosModules.common
           ];
         };
-        immich = nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit inputs outputs; };
-          extraModules = [ inputs.colmena.nixosModules.deploymentOptions ];
-          modules = [
-            ./nodes/immich
-            self.nixosModules.common
-          ];
-        };
         "storage1" = nixpkgs.lib.nixosSystem {
           specialArgs = { inherit inputs outputs; };
           extraModules = [ inputs.colmena.nixosModules.deploymentOptions ];
