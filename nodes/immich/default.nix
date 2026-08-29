@@ -5,7 +5,6 @@
 }:
 {
   imports = [
-    inputs.self.nixosModules.immich
     ./disko.nix
     ./hardware-configuration.nix
   ];
