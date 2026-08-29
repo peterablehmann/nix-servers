@@ -36,7 +36,7 @@ in
       forceSSL = true;
       locations = {
         "/" = {
-          proxyPass = "http://unix:${config.services.netbox.bind}";
+          proxyPass = "http://${config.services.netbox.bind}";
         };
         "/static/" = {
           alias = "${config.services.netbox.dataDir}/static/";
