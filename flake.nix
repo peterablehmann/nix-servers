@@ -89,6 +89,14 @@
             self.nixosModules.common
           ];
         };
+        stigr = nixpkgs.lib.nixosSystem {
+          specialArgs = { inherit inputs outputs; };
+          extraModules = [ inputs.colmena.nixosModules.deploymentOptions ];
+          modules = [
+            ./nodes/stigr
+            self.nixosModules.common
+          ];
+        };
         "storage1" = nixpkgs.lib.nixosSystem {
           specialArgs = { inherit inputs outputs; };
           extraModules = [ inputs.colmena.nixosModules.deploymentOptions ];
