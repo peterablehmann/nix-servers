@@ -27,32 +27,32 @@
     };
   };
 
-  services.qemuGuest.enable = true;
+  services = {
+    qemuGuest.enable = true;
+    nginx.defaultListenAddresses = [ "[::1]" ];
+    haproxy = {
+      enable = true;
+      config = ''
+        frontend http-in
+          mode tcp
+          tcp-request inspect-delay 5s
+          bind ${config.metadata.network.ipv4.address}:80
+          bind [${config.metadata.network.ipv6.address}]:80
+          default_backend http-local
 
-  services.nginx.defaultListenAddresses = [ "[::1]" ];
+        frontend https-in
+          mode tcp
+          tcp-request inspect-delay 5s
+          bind ${config.metadata.network.ipv4.address}:443
+          bind [${config.metadata.network.ipv6.address}]:443
+          default_backend https-local
 
-  services.haproxy = {
-    enable = true;
-    config = ''
-      frontend http-in
-        mode tcp
-        tcp-request inspect-delay 5s
-        bind ${config.metadata.network.ipv4.address}:80
-        bind [${config.metadata.network.ipv6.address}]:80
-        default_backend http-local
+        backend http-local
+          server local [::1]:80
 
-      frontend https-in
-        mode tcp
-        tcp-request inspect-delay 5s
-        bind ${config.metadata.network.ipv4.address}:443
-        bind [${config.metadata.network.ipv6.address}]:443
-        default_backend https-local
-      
-      backend http-local
-        server local [::1]:80
-
-      backend https-local
-        server local [::1]:443
-    '';
+        backend https-local
+          server local [::1]:443
+      '';
+    };
   };
 }
