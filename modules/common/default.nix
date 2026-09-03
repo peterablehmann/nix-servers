@@ -20,7 +20,6 @@
     ./nginx.nix
     ./nix.nix
     ./ssh.nix
-    ./tailscale.nix
     ./time.nix
     ./users.nix
   ];
