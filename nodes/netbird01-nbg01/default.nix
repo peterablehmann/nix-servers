@@ -27,5 +27,16 @@
     };
   };
 
-  services.qemuGuest.enable = true;
+  sops.secrets."netbird/setupKey" = {};
+
+  services = {
+    qemuGuest.enable = true;
+    netbird.clients.router = {
+      login = {
+        enable = true;
+        setupKeyFile = config.sops.secrets."netbird/setupKey".path;
+      };
+      port = 51833;
+    };
+  };
 }
