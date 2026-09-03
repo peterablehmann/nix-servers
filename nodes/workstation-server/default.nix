@@ -17,31 +17,17 @@
     network = {
       ipv4 = {
         dns = false;
-        address = "192.168.48.4";
+        address = "192.168.48.5";
         prefixLength = 24;
         gateway = "192.168.48.1";
       };
       ipv6 = {
-        address = "2a01:4f8:1b7:731::4";
+        address = "2a01:4f8:1b7:731::5";
         prefixLength = 64;
         gateway = "2a01:4f8:1b7:731::1";
       };
     };
   };
-  systemd.network = {
-    enable = true;
-    networks = {
-      "20-mgmt" = {
-        networkConfig = {
-          DHCP = false;
-          IPv6AcceptRA = false;
-        };
-        matchConfig.Name = "enp0s19";
-        address = [ "192.168.104.2/24" ];
-      };
-    };
-  };
-  services.tailscale.extraUpFlags = [ "--advertise-routes=192.168.104.0/24" ];
   services.qemuGuest.enable = true;
 
   nix.settings.experimental-features = [
