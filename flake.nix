@@ -97,6 +97,14 @@
             self.nixosModules.common
           ];
         };
+        netbird02-nbg01 = nixpkgs.lib.nixosSystem {
+          specialArgs = { inherit inputs outputs; };
+          extraModules = [ inputs.colmena.nixosModules.deploymentOptions ];
+          modules = [
+            ./nodes/netbird02-nbg01
+            self.nixosModules.common
+          ];
+        };
         paperless = nixpkgs.lib.nixosSystem {
           specialArgs = { inherit inputs outputs; };
           extraModules = [ inputs.colmena.nixosModules.deploymentOptions ];
