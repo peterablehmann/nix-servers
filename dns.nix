@@ -88,9 +88,7 @@
       #   "www".cname.data = "uic-fahrzeugnummer.de";
       # };
       "xnee.net" = lib.recursiveUpdate defaults {
-        "" = www208 // {
-          txt.data = [ "TAILSCALE-fMbKHU9GGi8WDXsYeZxJ" ] ++ defaults."".txt.data;
-        };
+        "" = www208;
         "www".cname.data = "xnee.net";
         "kvm1" = {
           a.data = "100.85.70.7";
