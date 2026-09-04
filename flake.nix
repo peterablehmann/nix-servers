@@ -97,6 +97,14 @@
             self.nixosModules.common
           ];
         };
+        paperless = nixpkgs.lib.nixosSystem {
+          specialArgs = { inherit inputs outputs; };
+          extraModules = [ inputs.colmena.nixosModules.deploymentOptions ];
+          modules = [
+            ./nodes/paperless
+            self.nixosModules.common
+          ];
+        };
         "storage1" = nixpkgs.lib.nixosSystem {
           specialArgs = { inherit inputs outputs; };
           extraModules = [ inputs.colmena.nixosModules.deploymentOptions ];

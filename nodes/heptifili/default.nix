@@ -6,7 +6,6 @@
   imports = [
     inputs.self.nixosModules.immich
     inputs.self.nixosModules.netbox
-    inputs.self.nixosModules.paperless
     inputs.self.nixosModules.powerdns
     inputs.self.nixosModules.radicale
     inputs.self.nixosModules.restic-server
