@@ -4,10 +4,31 @@
   pkgs,
   ...
 }:
-let
-  domain = "oxidized.xnee.net";
-in
 {
+  imports = [
+    ./disko.nix
+    ./hardware-configuration.nix
+  ];
+
+  metadata = {
+    hostName = "oxidized";
+    domain = "xnee.net";
+    provider = "proxmox.xnee.net";
+    network = {
+      ipv4 = {
+        address = "192.168.48.10";
+        prefixLength = 24;
+        gateway = "192.168.48.1";
+      };
+      ipv6 = {
+        address = "2a01:4f8:1b7:731::a";
+        prefixLength = 64;
+        gateway = "2a01:4f8:1b7:731::1";
+      };
+    };
+  };
+  services.qemuGuest.enable = true;
+
   sops.secrets = {
     "oxidized/ssh_key" = {
       sopsFile = "${inputs.self}/secrets/${config.networking.hostName}.yaml";
@@ -16,13 +37,12 @@ in
       path = "${config.services.oxidized.dataDir}/.ssh/id_ed25519";
     };
   };
-  networking.domains.subDomains.${domain} = { };
-  security.acme.certs."${domain}" = { };
+  security.acme.certs."${config.networking.fqdn}" = { };
 
   services.nginx = {
     enable = true;
-    virtualHosts."${domain}" = {
-      useACMEHost = domain;
+    virtualHosts."${config.networking.fqdn}" = {
+      useACMEHost = config.networking.fqdn;
       kTLS = true;
       forceSSL = true;
       basicAuthFile = pkgs.writeText "basicAuth.txt" ''
@@ -41,8 +61,6 @@ in
     configFile = pkgs.writeText "oxidized-config.yml" ''
       ---
       username: oxi
-      vars:
-        remove_secret: true
       resolve_dns: true
       interval: 3600
       pid: "${config.services.oxidized.dataDir}/.config/oxidized/pid"
@@ -97,6 +115,7 @@ in
       bbr01.nbg.de.as213422.net,2a01:4f8:1b7:730::c,vyos
       bbr01.dus.de.as213422.net,2a14:7c0:7000:3ff::14b,vyos
       router01.home01.xnee.net,,routeros
+      r1.nbg01.xnee.net,,vyos
     '';
   };
 

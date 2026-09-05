@@ -113,6 +113,14 @@
             self.nixosModules.common
           ];
         };
+        oxidized = nixpkgs.lib.nixosSystem {
+          specialArgs = { inherit inputs outputs; };
+          extraModules = [ inputs.colmena.nixosModules.deploymentOptions ];
+          modules = [
+            ./nodes/oxidized
+            self.nixosModules.common
+          ];
+        };
         paperless = nixpkgs.lib.nixosSystem {
           specialArgs = { inherit inputs outputs; };
           extraModules = [ inputs.colmena.nixosModules.deploymentOptions ];
@@ -163,7 +171,6 @@
         paperless = ./modules/paperless.nix;
         pdns-recursor = ./modules/pdns-recursor.nix;
         restic-server = ./modules/restic-server;
-        oxidized = ./modules/oxidized.nix;
         pocket-id = ./modules/pocket-id.nix;
         powerdns = ./modules/powerdns.nix;
         routinator = ./modules/routinator.nix;
