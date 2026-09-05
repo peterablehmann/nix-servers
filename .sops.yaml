@@ -9,6 +9,7 @@ keys:
   - &system_paperless age123ld5gwyjhxzyacjxaglr6lc4y5ur77gzshmvaqpq66wmjnj235shmdxd9
   - &system_radicale age17n2lefat6hmzgx6js5h8dv7yvc4zqwt73h58w2vexfynyzmp5v5s8n5ya4
   - &system_storage1 age1084ma2v4nqcl4dqr7styvhgr8ee4mxgs7qd6trsycakrydaqe38q57m3pc
+  - &system_syncthing age1wrvwdjn37z2ket48mwsewu2mck0v2zzh2xq7luazq3p7yesvdekqf5kr8e
   - &system_workstation_server age1dxdta04txkwa25dlzq8rppwrj0ju5e5je0pz0qrek0jz2fs2cc7sym7acy
   - &system_ymir age183wgf8xp46chqk049ekyg7vsan2p50zh4lqfllcllzwuekeywdzqn7pz0q
 
@@ -24,6 +25,7 @@ creation_rules:
       - *system_oxidized
       - *system_paperless
       - *system_radicale
+      - *system_syncthing
       - *system_workstation_server
       - *system_ymir
       - *system_heptifili
@@ -70,6 +72,13 @@ creation_rules:
       - *peter_kleeblatt
       - *peter_sleipnir
       - *system_radicale
+
+  - path_regex: secrets/syncthing.(yaml|json|env|ini)$
+    key_groups:
+    - age:
+      - *peter_kleeblatt
+      - *peter_sleipnir
+      - *system_syncthing
 
   - path_regex: secrets/heptifili.(yaml|json|env|ini)$
     key_groups:

@@ -145,6 +145,14 @@
             self.nixosModules.common
           ];
         };
+        syncthing = nixpkgs.lib.nixosSystem {
+          specialArgs = { inherit inputs outputs; };
+          extraModules = [ inputs.colmena.nixosModules.deploymentOptions ];
+          modules = [
+            ./nodes/syncthing
+            self.nixosModules.common
+          ];
+        };
         workstation-server = nixpkgs.lib.nixosSystem {
           specialArgs = { inherit inputs outputs; };
           extraModules = [ inputs.colmena.nixosModules.deploymentOptions ];
@@ -174,7 +182,6 @@
         pocket-id = ./modules/pocket-id.nix;
         powerdns = ./modules/powerdns.nix;
         routinator = ./modules/routinator.nix;
-        syncthing = ./modules/syncthing.nix;
       };
 
       dns = (nixos-dns.utils.generate nixpkgs.legacyPackages.x86_64-linux).octodnsConfig {

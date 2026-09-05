@@ -7,7 +7,6 @@
     inputs.self.nixosModules.immich
     inputs.self.nixosModules.powerdns
     inputs.self.nixosModules.restic-server
-    inputs.self.nixosModules.syncthing
     ./disko.nix
     ./hardware-configuration.nix
   ];
