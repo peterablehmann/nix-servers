@@ -4,6 +4,7 @@ keys:
   - &system_heptifili age1hme485ggszkphmky3y0s59r35zmva8jp4awjq8uj6gxc5e7wcvcsx9rg4h
   - &system_netbird01-nbg01 age1tgw82ae452xl3tjkuhwh9q2gh7yjk8km8lxdaqgtshxq3cfau4ps5hf6es
   - &system_netbird02-nbg01 age1auqtpnlel968wslf0r7qe2lnp3ehar8h3dcv0wedmx3nq8aesupsy2tmmw
+  - &system_netbox age16fp4l8gvg24c96lrjprrq524p8lw02qtwh3wll8w0qzx5rw4cfdq74klpl
   - &system_paperless age123ld5gwyjhxzyacjxaglr6lc4y5ur77gzshmvaqpq66wmjnj235shmdxd9
   - &system_storage1 age1084ma2v4nqcl4dqr7styvhgr8ee4mxgs7qd6trsycakrydaqe38q57m3pc
   - &system_workstation_server age1dxdta04txkwa25dlzq8rppwrj0ju5e5je0pz0qrek0jz2fs2cc7sym7acy
@@ -17,6 +18,7 @@ creation_rules:
       - *peter_sleipnir
       - *system_netbird01-nbg01
       - *system_netbird02-nbg01
+      - *system_netbox
       - *system_paperless
       - *system_workstation_server
       - *system_ymir
@@ -36,6 +38,13 @@ creation_rules:
       - *peter_kleeblatt
       - *peter_sleipnir
       - *system_netbird02-nbg01
+
+  - path_regex: secrets/netbox.(yaml|json|env|ini)$
+    key_groups:
+    - age:
+      - *peter_kleeblatt
+      - *peter_sleipnir
+      - *system_netbox
   
   - path_regex: secrets/paperless.(yaml|json|env|ini)$
     key_groups:

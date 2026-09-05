@@ -4,34 +4,52 @@
   pkgs,
   ...
 }:
-let
-  domain = "netbox.xnee.net";
-in
 {
+  imports = [
+    ./disko.nix
+    ./hardware-configuration.nix
+  ];
+
+  metadata = {
+    hostName = "netbox";
+    domain = "xnee.net";
+    provider = "proxmox.xnee.net";
+    network = {
+      ipv4 = {
+        address = "192.168.48.8";
+        prefixLength = 24;
+        gateway = "192.168.48.1";
+      };
+      ipv6 = {
+        address = "2a01:4f8:1b7:731::8";
+        prefixLength = 64;
+        gateway = "2a01:4f8:1b7:731::1";
+      };
+    };
+  };
+  services.qemuGuest.enable = true;
+
   sops.secrets = {
     "netbox/secret_key" = {
-      sopsFile = "${inputs.self}/secrets/${config.networking.hostName}.yaml";
       owner = "netbox";
       group = "netbox";
     };
     "netbox/environment" = {
-      sopsFile = "${inputs.self}/secrets/${config.networking.hostName}.yaml";
       owner = "netbox";
       group = "netbox";
     };
     "netbox/api_pepper" = {
-      sopsFile = "${inputs.self}/secrets/${config.networking.hostName}.yaml";
       owner = "netbox";
       group = "netbox";
     };
   };
-  networking.domains.subDomains.${domain} = { };
-  security.acme.certs."${domain}" = { };
+
+  security.acme.certs."${config.networking.fqdn}" = { };
 
   services.nginx = {
     enable = true;
-    virtualHosts."${domain}" = {
-      useACMEHost = domain;
+    virtualHosts."${config.networking.fqdn}" = {
+      useACMEHost = config.networking.fqdn;
       kTLS = true;
       forceSSL = true;
       locations = {
@@ -52,7 +70,7 @@ in
     apiTokenPeppersFile = config.sops.secrets."netbox/api_pepper".path;
     plugins = python3Packages: with python3Packages; [ netbox-topology-views ];
     settings = {
-      ALLOWED_HOSTS = [ domain ];
+      ALLOWED_HOSTS = [ config.networking.fqdn ];
       # Remote authentication support
       REMOTE_AUTH_ENABLED = true;
       REMOTE_AUTH_BACKEND = "social_core.backends.open_id_connect.OpenIdConnectAuth";

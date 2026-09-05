@@ -105,6 +105,14 @@
             self.nixosModules.common
           ];
         };
+        netbox = nixpkgs.lib.nixosSystem {
+          specialArgs = { inherit inputs outputs; };
+          extraModules = [ inputs.colmena.nixosModules.deploymentOptions ];
+          modules = [
+            ./nodes/netbox
+            self.nixosModules.common
+          ];
+        };
         paperless = nixpkgs.lib.nixosSystem {
           specialArgs = { inherit inputs outputs; };
           extraModules = [ inputs.colmena.nixosModules.deploymentOptions ];
@@ -144,7 +152,6 @@
         immich = ./modules/immich.nix;
         kanidm = ./modules/kanidm.nix;
         monitoring = ./modules/monitoring;
-        netbox = ./modules/netbox.nix;
         paperless = ./modules/paperless.nix;
         pdns-recursor = ./modules/pdns-recursor.nix;
         radicale = ./modules/radicale;
