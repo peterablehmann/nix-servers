@@ -6,6 +6,7 @@ keys:
   - &system_netbird02-nbg01 age1auqtpnlel968wslf0r7qe2lnp3ehar8h3dcv0wedmx3nq8aesupsy2tmmw
   - &system_netbox age16fp4l8gvg24c96lrjprrq524p8lw02qtwh3wll8w0qzx5rw4cfdq74klpl
   - &system_paperless age123ld5gwyjhxzyacjxaglr6lc4y5ur77gzshmvaqpq66wmjnj235shmdxd9
+  - &system_radicale age17n2lefat6hmzgx6js5h8dv7yvc4zqwt73h58w2vexfynyzmp5v5s8n5ya4
   - &system_storage1 age1084ma2v4nqcl4dqr7styvhgr8ee4mxgs7qd6trsycakrydaqe38q57m3pc
   - &system_workstation_server age1dxdta04txkwa25dlzq8rppwrj0ju5e5je0pz0qrek0jz2fs2cc7sym7acy
   - &system_ymir age183wgf8xp46chqk049ekyg7vsan2p50zh4lqfllcllzwuekeywdzqn7pz0q
@@ -20,6 +21,7 @@ creation_rules:
       - *system_netbird02-nbg01
       - *system_netbox
       - *system_paperless
+      - *system_radicale
       - *system_workstation_server
       - *system_ymir
       - *system_heptifili
@@ -52,6 +54,13 @@ creation_rules:
       - *peter_kleeblatt
       - *peter_sleipnir
       - *system_paperless
+  
+  - path_regex: secrets/radicale.(yaml|json|env|ini)$
+    key_groups:
+    - age:
+      - *peter_kleeblatt
+      - *peter_sleipnir
+      - *system_radicale
 
   - path_regex: secrets/heptifili.(yaml|json|env|ini)$
     key_groups:

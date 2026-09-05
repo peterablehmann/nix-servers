@@ -121,6 +121,14 @@
             self.nixosModules.common
           ];
         };
+        radicale = nixpkgs.lib.nixosSystem {
+          specialArgs = { inherit inputs outputs; };
+          extraModules = [ inputs.colmena.nixosModules.deploymentOptions ];
+          modules = [
+            ./nodes/radicale
+            self.nixosModules.common
+          ];
+        };
         "storage1" = nixpkgs.lib.nixosSystem {
           specialArgs = { inherit inputs outputs; };
           extraModules = [ inputs.colmena.nixosModules.deploymentOptions ];
@@ -154,7 +162,6 @@
         monitoring = ./modules/monitoring;
         paperless = ./modules/paperless.nix;
         pdns-recursor = ./modules/pdns-recursor.nix;
-        radicale = ./modules/radicale;
         restic-server = ./modules/restic-server;
         oxidized = ./modules/oxidized.nix;
         pocket-id = ./modules/pocket-id.nix;
