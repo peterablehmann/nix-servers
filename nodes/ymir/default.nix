@@ -8,7 +8,6 @@
     ./disko.nix
     ./hardware-configuration.nix
     inputs.self.nixosModules.monitoring
-    inputs.self.nixosModules.kanidm
     inputs.self.nixosModules.pocket-id
     inputs.self.nixosModules.routinator
   ];
