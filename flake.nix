@@ -173,13 +173,10 @@
 
       nixosModules = {
         common = ./modules/common;
-        immich = ./modules/immich.nix;
         monitoring = ./modules/monitoring;
         paperless = ./modules/paperless.nix;
-        pdns-recursor = ./modules/pdns-recursor.nix;
         restic-server = ./modules/restic-server;
         pocket-id = ./modules/pocket-id.nix;
-        powerdns = ./modules/powerdns.nix;
         routinator = ./modules/routinator.nix;
       };
 
