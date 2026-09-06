@@ -5,8 +5,6 @@
 {
   imports = [
     inputs.self.nixosModules.immich
-    inputs.self.nixosModules.powerdns
-    inputs.self.nixosModules.restic-server
     ./disko.nix
     ./hardware-configuration.nix
   ];
