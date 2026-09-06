@@ -70,8 +70,6 @@
           aaaa.data = "2a01:4f8:1b7:730::c";
           a.data = "157.90.190.86";
         };
-        "bbr00.dus.de".aaaa.data = "2a0f:6283:1401::";
-        "bbr00.dus.de.mgmt".aaaa.data = "2a0c:b640:10::2:38";
         "bbr01.dus.de".aaaa.data = "2a0f:6283:1401::1";
         "bbr01.dus.de.mgmt".aaaa.data = "2a14:7c0:7000:3ff::14b";
       };
@@ -90,10 +88,6 @@
       "xnee.net" = lib.recursiveUpdate defaults {
         "" = www208;
         "www".cname.data = "xnee.net";
-        "kvm1" = {
-          a.data = "100.85.70.7";
-          aaaa.data = "fd7a:115c:a1e0::f701:4607";
-        };
         "pbs-dus-1" = {
           a.data = "77.90.16.233";
           aaaa.data = "2a0f:6284:4300:101::74";
@@ -103,14 +97,6 @@
           aaaa.data = "2a0a:4cc0:0:2c6e::";
         };
         "router01.home01".cname.data = "hke0akjkmaa.sn.mynetname.net";
-        "docker-1" = {
-          a.data = "157.90.190.84";
-          aaaa.data = "2a01:4f8:1b7:730::9";
-        };
-        "*.docker-1" = {
-          a.data = "157.90.190.84";
-          aaaa.data = "2a01:4f8:1b7:730::9";
-        };
         "r1.nbg01" = {
           a.data = "49.12.178.245";
           aaaa.data = "2a01:4f8:1b7:730::2";
