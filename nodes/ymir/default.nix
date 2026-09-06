@@ -39,9 +39,6 @@
       enable = true;
       setupKeyFile = config.sops.secrets."netbird/setupKey".path;
     };
-    environment = {
-      "NB_ENABLE_LOCAL_FORWARDING" = "true";
-    };
     port = 51833;
   };
 }
