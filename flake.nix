@@ -81,11 +81,11 @@
       // builtins.mapAttrs (name: value: { imports = value._module.args.modules; }) conf;
 
       nixosConfigurations = {
-        heptifili = nixpkgs.lib.nixosSystem {
+        immich = nixpkgs.lib.nixosSystem {
           specialArgs = { inherit inputs outputs; };
           extraModules = [ inputs.colmena.nixosModules.deploymentOptions ];
           modules = [
-            ./nodes/heptifili
+            ./nodes/immich
             self.nixosModules.common
           ];
         };
