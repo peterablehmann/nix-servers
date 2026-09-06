@@ -32,4 +32,13 @@
   };
 
   routinator.domain = "routinator.${config.metadata.domain}";
+
+  sops.secrets."netbird/setupKey" = {};
+  services.netbird.clients.router = {
+    login = {
+      enable = true;
+      setupKeyFile = config.sops.secrets."netbird/setupKey".path;
+    };
+    port = 51833;
+  };
 }
