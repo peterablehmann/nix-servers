@@ -68,7 +68,7 @@
     package = pkgs.netbox;
     secretKeyFile = config.sops.secrets."netbox/secret_key".path;
     apiTokenPeppersFile = config.sops.secrets."netbox/api_pepper".path;
-    plugins = python3Packages: with python3Packages; [ netbox-topology-views ];
+    plugins = python3Packages: with pkgs.netboxPlugins; [ netbox-topology-views ];
     settings = {
       ALLOWED_HOSTS = [ config.networking.fqdn ];
       # Remote authentication support
