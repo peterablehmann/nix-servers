@@ -2,6 +2,7 @@ keys:
   - &peter_kleeblatt age1hczyac0fvxs2uegmvgfld464p2ffqs7wkg3jn2lkmzq4drr5aywqqd376x
   - &peter_sleipnir age1hlpr0fx03wk4q2fk86w6ywm5tw8e0n7k7e850yj73g4n08pf3pxs5rlwz9
   - &system_immich age12tusnmklcgpueq62tkn0pucd546tgdwhvemhwdkp065vnsky9q5sjvs2ud
+  - &system_miniflux age1w4zurtmey42w3za35q5qfqxh0099gvnykg8lpm6sxvhsmvvaaajs73qxgc
   - &system_netbird01-nbg01 age1tgw82ae452xl3tjkuhwh9q2gh7yjk8km8lxdaqgtshxq3cfau4ps5hf6es
   - &system_netbird02-nbg01 age1auqtpnlel968wslf0r7qe2lnp3ehar8h3dcv0wedmx3nq8aesupsy2tmmw
   - &system_netbox age16fp4l8gvg24c96lrjprrq524p8lw02qtwh3wll8w0qzx5rw4cfdq74klpl
@@ -20,6 +21,7 @@ creation_rules:
       - *peter_kleeblatt
       - *peter_sleipnir
       - *system_immich
+      - *system_miniflux
       - *system_netbird01-nbg01
       - *system_netbird02-nbg01
       - *system_netbox
@@ -37,6 +39,13 @@ creation_rules:
       - *peter_kleeblatt
       - *peter_sleipnir
       - *system_immich
+
+  - path_regex: secrets/miniflux.(yaml|json|env|ini)$
+    key_groups:
+    - age:
+      - *peter_kleeblatt
+      - *peter_sleipnir
+      - *system_miniflux
 
   - path_regex: secrets/netbird01-nbg01.(yaml|json|env|ini)$
     key_groups:
@@ -86,13 +95,6 @@ creation_rules:
       - *peter_kleeblatt
       - *peter_sleipnir
       - *system_syncthing
-
-  - path_regex: secrets/heptifili.(yaml|json|env|ini)$
-    key_groups:
-    - age:
-      - *peter_kleeblatt
-      - *peter_sleipnir
-      - *system_heptifili
 
   - path_regex: secrets/storage1.(yaml|json|env|ini)$
     key_groups:

@@ -89,6 +89,14 @@
             self.nixosModules.common
           ];
         };
+        miniflux = nixpkgs.lib.nixosSystem {
+          specialArgs = { inherit inputs outputs; };
+          extraModules = [ inputs.colmena.nixosModules.deploymentOptions ];
+          modules = [
+            ./nodes/miniflux
+            self.nixosModules.common
+          ];
+        };
         netbird01-nbg01 = nixpkgs.lib.nixosSystem {
           specialArgs = { inherit inputs outputs; };
           extraModules = [ inputs.colmena.nixosModules.deploymentOptions ];
