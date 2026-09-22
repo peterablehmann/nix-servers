@@ -38,10 +38,6 @@
       owner = "netbox";
       group = "netbox";
     };
-    "netbox/api_pepper" = {
-      owner = "netbox";
-      group = "netbox";
-    };
   };
 
   security.acme.certs."${config.networking.fqdn}" = { };
@@ -67,7 +63,6 @@
     enable = true;
     package = pkgs.netbox;
     secretKeyFile = config.sops.secrets."netbox/secret_key".path;
-    apiTokenPeppersFile = config.sops.secrets."netbox/api_pepper".path;
     plugins = python3Packages: with pkgs.netboxPlugins; [ netbox-topology-views ];
     settings = {
       ALLOWED_HOSTS = [ config.networking.fqdn ];
