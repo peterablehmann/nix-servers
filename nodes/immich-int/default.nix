@@ -3,6 +3,9 @@
   inputs,
   ...
 }:
+let
+  domain = "immich.xnee.net";
+in
 {
   imports = [
     ./disko.nix
@@ -10,7 +13,7 @@
   ];
 
   metadata = {
-    hostName = "immich";
+    hostName = "immich-int";
     domain = "xnee.net";
     provider = "proxmox.xnee.net";
     network = {
@@ -29,7 +32,7 @@
   services.qemuGuest.enable = true;
 
   security.acme.certs.${config.networking.fqdn} = { };
-  services.nginx.virtualHosts."${config.networking.fqdn}" = {
+  services.nginx.virtualHosts."${domain}" = {
     useACMEHost = config.networking.fqdn;
     kTLS = true;
     forceSSL = true;
@@ -50,7 +53,7 @@
   services.immich = {
     enable = true;
     host = "::1";
-    settings.server.externalDomain = "https://${config.networking.fqdn}";
+    settings.server.externalDomain = "https://${domain}";
   };
 
   backup.paths = [ config.services.immich.mediaLocation ];

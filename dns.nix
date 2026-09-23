@@ -87,6 +87,7 @@
       # };
       "xnee.net" = lib.recursiveUpdate defaults {
         "" = www208;
+        "*".cname.data = "eu1.netbird.services";
         "www".cname.data = "xnee.net";
         "pbs-dus-1" = {
           a.data = "77.90.16.233";
