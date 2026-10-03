@@ -87,9 +87,11 @@
 
         immich = {
           imports = [ ./nodes/immich ];
+          deployment.tags = [ "ci" ];
         };
         miniflux = {
           imports = [ ./nodes/miniflux ];
+          deployment.tags = [ "ci" ];
         };
         netbird01-nbg01 = {
           imports = [ ./nodes/netbird01-nbg01 ];
@@ -99,27 +101,35 @@
         };
         netbox = {
           imports = [ ./nodes/netbox ];
+          deployment.tags = [ "ci" ];
         };
         oxidized = {
           imports = [ ./nodes/oxidized ];
+          deployment.tags = [ "ci" ];
         };
         paperless = {
           imports = [ ./nodes/paperless ];
+          deployment.tags = [ "ci" ];
         };
         radicale = {
           imports = [ ./nodes/storage1 ];
+          deployment.tags = [ "ci" ];
         };
         storage1 = {
           imports = [ ./nodes/storage1 ];
+          deployment.tags = [ "ci" ];
         };
         syncthing = {
           imports = [ ./nodes/syncthing ];
+          deployment.tags = [ "ci" ];
         };
         workstation-server = {
           imports = [ ./nodes/workstation-server ];
+          deployment.tags = [ "ci" ];
         };
         ymir = {
           imports = [ ./nodes/ymir ];
+          deployment.tags = [ "ci" ];
         };
       };
 

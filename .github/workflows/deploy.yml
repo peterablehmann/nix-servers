@@ -34,12 +34,10 @@ jobs:
     needs: [ Check, Lint ]
     runs-on: ubuntu-latest
     steps:
-      - name: Tailscale
-        uses: tailscale/github-action@v4
-        with:
-          oauth-client-id: ${{ secrets.TS_OAUTH_CLIENT_ID }}
-          oauth-secret: ${{ secrets.TS_OAUTH_SECRET }}
-          tags: tag:gh-actions
+      - name: Setup netbird
+        run: |
+          curl -fsSL https://pkgs.netbird.io/install.sh | sh
+          netbird login --setup-key ${{ secrets.NB_SETUP_KEY }}
       - name: Initialize SSH-Key
         uses: webfactory/ssh-agent@v0.10.0
         with:
@@ -57,4 +55,4 @@ jobs:
         env:
           HETZNER_DNS_API: ${{ secrets.HETZNER_DNS_API }}
       - name: Activate config
-        run: nix develop --command bash -c 'colmena apply'
+        run: nix develop --command bash -c 'colmena apply --on @ci'
