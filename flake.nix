@@ -112,7 +112,7 @@
           deployment.tags = [ "ci" ];
         };
         radicale = {
-          imports = [ ./nodes/storage1 ];
+          imports = [ ./nodes/radicale ];
           deployment.tags = [ "ci" ];
         };
         storage1 = {
