@@ -27,30 +27,33 @@
       };
     };
   };
-  services.qemuGuest.enable = true;
 
   security.acme.certs."${config.networking.fqdn}" = { };
 
-  services.nginx = {
-    enable = true;
-    virtualHosts."${config.networking.fqdn}" = {
-      useACMEHost = config.networking.fqdn;
-      kTLS = true;
-      forceSSL = true;
-      locations = {
-        "/" = {
-          proxyPass = "http://${config.services.miniflux.config.LISTEN_ADDR}";
+  services = {
+    qemuGuest.enable = true;
+
+    nginx = {
+      enable = true;
+      virtualHosts."${config.networking.fqdn}" = {
+        useACMEHost = config.networking.fqdn;
+        kTLS = true;
+        forceSSL = true;
+        locations = {
+          "/" = {
+            proxyPass = "http://${config.services.miniflux.config.LISTEN_ADDR}";
+          };
         };
       };
     };
-  };
 
-  services.miniflux = {
-    enable = true;
-    config = {
-      BASE_URL = "https://${config.networking.fqdn}";
-      CREATE_ADMIN = false;
-      LISTEN_ADDR = "[::1]:8080";
+    miniflux = {
+      enable = true;
+      config = {
+        BASE_URL = "https://${config.networking.fqdn}";
+        CREATE_ADMIN = false;
+        LISTEN_ADDR = "[::1]:8080";
+      };
     };
   };
 }
