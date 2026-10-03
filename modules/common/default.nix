@@ -6,10 +6,6 @@
 }:
 {
   imports = [
-    # inputs.lix-module.nixosModules.default
-    inputs.disko.nixosModules.disko
-    inputs.sops-nix.nixosModules.sops
-    inputs.nixos-dns.nixosModules.dns
     ./acme.nix
     ./backup
     ./boot.nix

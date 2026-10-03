@@ -32,7 +32,7 @@
 
   routinator.domain = "routinator.${config.metadata.domain}";
 
-  sops.secrets."netbird/setupKey" = {};
+  sops.secrets."netbird/setupKey" = { };
   services.netbird.clients.router = {
     login = {
       enable = true;

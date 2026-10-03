@@ -27,7 +27,7 @@
     };
   };
 
-  sops.secrets."netbird/setupKey" = {};
+  sops.secrets."netbird/setupKey" = { };
 
   services = {
     qemuGuest.enable = true;

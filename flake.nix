@@ -45,8 +45,6 @@
     }@inputs:
     let
       inherit (self) outputs;
-      # let's filter the installer configuration since we don't want to deploy it with colmena
-      conf = builtins.removeAttrs self.nixosConfigurations [ "home-installer" ];
     in
     (flake-utils.lib.eachDefaultSystem (
       system:
@@ -70,114 +68,62 @@
       }
     ))
     // {
-      colmena = {
-        # see for details:
-        # https://github.com/zhaofengli/colmena/issues/60#issuecomment-1510496861
+      colmenaHive = colmena.lib.makeHive {
         meta = {
-          nixpkgs = import inputs.nixpkgs { system = "x86_64-linux"; };
-          nodeSpecialArgs = builtins.mapAttrs (name: value: value._module.specialArgs) conf;
+          specialArgs = { inherit inputs outputs; };
+          nixpkgs = import nixpkgs {
+            system = "x86_64-linux";
+          };
         };
-      }
-      // builtins.mapAttrs (name: value: { imports = value._module.args.modules; }) conf;
 
-      nixosConfigurations = {
-        immich = nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit inputs outputs; };
-          extraModules = [ inputs.colmena.nixosModules.deploymentOptions ];
-          modules = [
-            ./nodes/immich
+        defaults = {
+          imports = [
+            disko.nixosModules.disko
+            sops-nix.nixosModules.sops
+            nixos-dns.nixosModules.dns
             self.nixosModules.common
           ];
         };
-        miniflux = nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit inputs outputs; };
-          extraModules = [ inputs.colmena.nixosModules.deploymentOptions ];
-          modules = [
-            ./nodes/miniflux
-            self.nixosModules.common
-          ];
+        
+        immich = {
+          imports = [ ./nodes/immich ];
         };
-        netbird01-nbg01 = nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit inputs outputs; };
-          extraModules = [ inputs.colmena.nixosModules.deploymentOptions ];
-          modules = [
-            ./nodes/netbird01-nbg01
-            self.nixosModules.common
-          ];
+        miniflux = {
+          imports = [ ./nodes/miniflux ];
         };
-        netbird02-nbg01 = nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit inputs outputs; };
-          extraModules = [ inputs.colmena.nixosModules.deploymentOptions ];
-          modules = [
-            ./nodes/netbird02-nbg01
-            self.nixosModules.common
-          ];
+        netbird01-nbg01 = {
+          imports = [ ./nodes/netbird01-nbg01 ];
         };
-        netbox = nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit inputs outputs; };
-          extraModules = [ inputs.colmena.nixosModules.deploymentOptions ];
-          modules = [
-            ./nodes/netbox
-            self.nixosModules.common
-          ];
+        netbird02-nbg01 = {
+          imports = [ ./nodes/netbird02-nbg01 ];
         };
-        oxidized = nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit inputs outputs; };
-          extraModules = [ inputs.colmena.nixosModules.deploymentOptions ];
-          modules = [
-            ./nodes/oxidized
-            self.nixosModules.common
-          ];
+        netbox = {
+          imports = [ ./nodes/netbox ];
         };
-        paperless = nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit inputs outputs; };
-          extraModules = [ inputs.colmena.nixosModules.deploymentOptions ];
-          modules = [
-            ./nodes/paperless
-            self.nixosModules.common
-          ];
+        oxidized = {
+          imports = [ ./nodes/oxidized ];
         };
-        radicale = nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit inputs outputs; };
-          extraModules = [ inputs.colmena.nixosModules.deploymentOptions ];
-          modules = [
-            ./nodes/radicale
-            self.nixosModules.common
-          ];
+        paperless = {
+          imports = [ ./nodes/paperless ];
         };
-        "storage1" = nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit inputs outputs; };
-          extraModules = [ inputs.colmena.nixosModules.deploymentOptions ];
-          modules = [
-            ./nodes/storage1
-            self.nixosModules.common
-          ];
+        radicale = {
+          imports = [ ./nodes/storage1 ];
         };
-        syncthing = nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit inputs outputs; };
-          extraModules = [ inputs.colmena.nixosModules.deploymentOptions ];
-          modules = [
-            ./nodes/syncthing
-            self.nixosModules.common
-          ];
+        storage1 = {
+          imports = [ ./nodes/storage1 ];
         };
-        workstation-server = nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit inputs outputs; };
-          extraModules = [ inputs.colmena.nixosModules.deploymentOptions ];
-          modules = [
-            ./nodes/workstation-server
-            self.nixosModules.common
-          ];
+        syncthing = {
+          imports = [ ./nodes/syncthing ];
         };
-        ymir = nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit inputs outputs; };
-          extraModules = [ inputs.colmena.nixosModules.deploymentOptions ];
-          modules = [
-            ./nodes/ymir
-            self.nixosModules.common
-          ];
+        workstation-server = {
+          imports = [ ./nodes/workstation-server ];
+        };
+        ymir = {
+          imports = [ ./nodes/ymir ];
         };
       };
+
+      nixosConfigurations = self.colmenaHive.nodes;
 
       nixosModules = {
         common = ./modules/common;
