@@ -11,8 +11,8 @@
         "nix-command"
         "flakes"
       ];
+      nix-path = [ "nixpkgs=flake:nixpkgs" ];
     };
-    nixPath = [ "nixpkgs=flake:nixpkgs" ];
     gc = {
       automatic = true;
       options = "--delete-older-than 14d";
