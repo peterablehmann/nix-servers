@@ -84,7 +84,7 @@
             self.nixosModules.common
           ];
         };
-        
+
         immich = {
           imports = [ ./nodes/immich ];
         };
