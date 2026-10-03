@@ -1,9 +1,16 @@
 keys:
   - &peter_kleeblatt age1hczyac0fvxs2uegmvgfld464p2ffqs7wkg3jn2lkmzq4drr5aywqqd376x
   - &peter_sleipnir age1hlpr0fx03wk4q2fk86w6ywm5tw8e0n7k7e850yj73g4n08pf3pxs5rlwz9
-  - &system_heptifili age1hme485ggszkphmky3y0s59r35zmva8jp4awjq8uj6gxc5e7wcvcsx9rg4h
-  - &system_stigr age1tgw82ae452xl3tjkuhwh9q2gh7yjk8km8lxdaqgtshxq3cfau4ps5hf6es
+  - &system_immich age12tusnmklcgpueq62tkn0pucd546tgdwhvemhwdkp065vnsky9q5sjvs2ud
+  - &system_miniflux age1w4zurtmey42w3za35q5qfqxh0099gvnykg8lpm6sxvhsmvvaaajs73qxgc
+  - &system_netbird01-nbg01 age1tgw82ae452xl3tjkuhwh9q2gh7yjk8km8lxdaqgtshxq3cfau4ps5hf6es
+  - &system_netbird02-nbg01 age1auqtpnlel968wslf0r7qe2lnp3ehar8h3dcv0wedmx3nq8aesupsy2tmmw
+  - &system_netbox age16fp4l8gvg24c96lrjprrq524p8lw02qtwh3wll8w0qzx5rw4cfdq74klpl
+  - &system_oxidized age15h06p697f4s3vr9utrfpdwpt4hq4usumtd2dnylngwzf3sfk6a4q39gav5
+  - &system_paperless age123ld5gwyjhxzyacjxaglr6lc4y5ur77gzshmvaqpq66wmjnj235shmdxd9
+  - &system_radicale age17n2lefat6hmzgx6js5h8dv7yvc4zqwt73h58w2vexfynyzmp5v5s8n5ya4
   - &system_storage1 age1084ma2v4nqcl4dqr7styvhgr8ee4mxgs7qd6trsycakrydaqe38q57m3pc
+  - &system_syncthing age1wrvwdjn37z2ket48mwsewu2mck0v2zzh2xq7luazq3p7yesvdekqf5kr8e
   - &system_workstation_server age1dxdta04txkwa25dlzq8rppwrj0ju5e5je0pz0qrek0jz2fs2cc7sym7acy
   - &system_ymir age183wgf8xp46chqk049ekyg7vsan2p50zh4lqfllcllzwuekeywdzqn7pz0q
 
@@ -13,25 +20,81 @@ creation_rules:
     - age:
       - *peter_kleeblatt
       - *peter_sleipnir
-      - *system_stigr
+      - *system_immich
+      - *system_miniflux
+      - *system_netbird01-nbg01
+      - *system_netbird02-nbg01
+      - *system_netbox
+      - *system_oxidized
+      - *system_paperless
+      - *system_radicale
+      - *system_syncthing
       - *system_workstation_server
       - *system_ymir
-      - *system_heptifili
       - *system_storage1
 
-  - path_regex: secrets/stigr.(yaml|json|env|ini)$
+  - path_regex: secrets/immich.(yaml|json|env|ini)$
     key_groups:
     - age:
       - *peter_kleeblatt
       - *peter_sleipnir
-      - *system_stigr
+      - *system_immich
 
-  - path_regex: secrets/heptifili.(yaml|json|env|ini)$
+  - path_regex: secrets/miniflux.(yaml|json|env|ini)$
     key_groups:
     - age:
       - *peter_kleeblatt
       - *peter_sleipnir
-      - *system_heptifili
+      - *system_miniflux
+
+  - path_regex: secrets/netbird01-nbg01.(yaml|json|env|ini)$
+    key_groups:
+    - age:
+      - *peter_kleeblatt
+      - *peter_sleipnir
+      - *system_netbird01-nbg01
+  
+  - path_regex: secrets/netbird02-nbg01.(yaml|json|env|ini)$
+    key_groups:
+    - age:
+      - *peter_kleeblatt
+      - *peter_sleipnir
+      - *system_netbird02-nbg01
+
+  - path_regex: secrets/netbox.(yaml|json|env|ini)$
+    key_groups:
+    - age:
+      - *peter_kleeblatt
+      - *peter_sleipnir
+      - *system_netbox
+
+  - path_regex: secrets/oxidized.(yaml|json|env|ini)$
+    key_groups:
+    - age:
+      - *peter_kleeblatt
+      - *peter_sleipnir
+      - *system_oxidized
+  
+  - path_regex: secrets/paperless.(yaml|json|env|ini)$
+    key_groups:
+    - age:
+      - *peter_kleeblatt
+      - *peter_sleipnir
+      - *system_paperless
+  
+  - path_regex: secrets/radicale.(yaml|json|env|ini)$
+    key_groups:
+    - age:
+      - *peter_kleeblatt
+      - *peter_sleipnir
+      - *system_radicale
+
+  - path_regex: secrets/syncthing.(yaml|json|env|ini)$
+    key_groups:
+    - age:
+      - *peter_kleeblatt
+      - *peter_sleipnir
+      - *system_syncthing
 
   - path_regex: secrets/storage1.(yaml|json|env|ini)$
     key_groups:

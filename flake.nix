@@ -45,8 +45,6 @@
     }@inputs:
     let
       inherit (self) outputs;
-      # let's filter the installer configuration since we don't want to deploy it with colmena
-      conf = builtins.removeAttrs self.nixosConfigurations [ "home-installer" ];
     in
     (flake-utils.lib.eachDefaultSystem (
       system:
@@ -70,74 +68,80 @@
       }
     ))
     // {
-      colmena = {
-        # see for details:
-        # https://github.com/zhaofengli/colmena/issues/60#issuecomment-1510496861
+      colmenaHive = colmena.lib.makeHive {
         meta = {
-          nixpkgs = import inputs.nixpkgs { system = "x86_64-linux"; };
-          nodeSpecialArgs = builtins.mapAttrs (name: value: value._module.specialArgs) conf;
+          specialArgs = { inherit inputs outputs; };
+          nixpkgs = import nixpkgs {
+            system = "x86_64-linux";
+          };
         };
-      }
-      // builtins.mapAttrs (name: value: { imports = value._module.args.modules; }) conf;
 
-      nixosConfigurations = {
-        heptifili = nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit inputs outputs; };
-          extraModules = [ inputs.colmena.nixosModules.deploymentOptions ];
-          modules = [
-            ./nodes/heptifili
+        defaults = {
+          imports = [
+            disko.nixosModules.disko
+            sops-nix.nixosModules.sops
+            nixos-dns.nixosModules.dns
             self.nixosModules.common
           ];
         };
-        stigr = nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit inputs outputs; };
-          extraModules = [ inputs.colmena.nixosModules.deploymentOptions ];
-          modules = [
-            ./nodes/stigr
-            self.nixosModules.common
-          ];
+
+        immich = {
+          imports = [ ./nodes/immich ];
+          deployment.tags = [ "ci" ];
         };
-        "storage1" = nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit inputs outputs; };
-          extraModules = [ inputs.colmena.nixosModules.deploymentOptions ];
-          modules = [
-            ./nodes/storage1
-            self.nixosModules.common
-          ];
+        miniflux = {
+          imports = [ ./nodes/miniflux ];
+          deployment.tags = [ "ci" ];
         };
-        workstation-server = nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit inputs outputs; };
-          extraModules = [ inputs.colmena.nixosModules.deploymentOptions ];
-          modules = [
-            ./nodes/workstation-server
-            self.nixosModules.common
-          ];
+        netbird01-nbg01 = {
+          imports = [ ./nodes/netbird01-nbg01 ];
         };
-        ymir = nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit inputs outputs; };
-          extraModules = [ inputs.colmena.nixosModules.deploymentOptions ];
-          modules = [
-            ./nodes/ymir
-            self.nixosModules.common
-          ];
+        netbird02-nbg01 = {
+          imports = [ ./nodes/netbird02-nbg01 ];
+        };
+        netbox = {
+          imports = [ ./nodes/netbox ];
+          deployment.tags = [ "ci" ];
+        };
+        oxidized = {
+          imports = [ ./nodes/oxidized ];
+          deployment.tags = [ "ci" ];
+        };
+        paperless = {
+          imports = [ ./nodes/paperless ];
+          deployment.tags = [ "ci" ];
+        };
+        radicale = {
+          imports = [ ./nodes/radicale ];
+          deployment.tags = [ "ci" ];
+        };
+        storage1 = {
+          imports = [ ./nodes/storage1 ];
+          deployment.tags = [ "ci" ];
+        };
+        syncthing = {
+          imports = [ ./nodes/syncthing ];
+          deployment.tags = [ "ci" ];
+        };
+        workstation-server = {
+          imports = [ ./nodes/workstation-server ];
+          deployment.tags = [ "ci" ];
+        };
+        ymir = {
+          imports = [ ./nodes/ymir ];
+          deployment.tags = [ "ci" ];
         };
       };
 
+      nixosConfigurations = self.colmenaHive.nodes;
+
       nixosModules = {
         common = ./modules/common;
-        immich = ./modules/immich.nix;
-        kanidm = ./modules/kanidm.nix;
         monitoring = ./modules/monitoring;
-        netbox = ./modules/netbox.nix;
         paperless = ./modules/paperless.nix;
-        pdns-recursor = ./modules/pdns-recursor.nix;
-        radicale = ./modules/radicale;
         restic-server = ./modules/restic-server;
-        oxidized = ./modules/oxidized.nix;
         pocket-id = ./modules/pocket-id.nix;
-        powerdns = ./modules/powerdns.nix;
         routinator = ./modules/routinator.nix;
-        syncthing = ./modules/syncthing.nix;
       };
 
       dns = (nixos-dns.utils.generate nixpkgs.legacyPackages.x86_64-linux).octodnsConfig {

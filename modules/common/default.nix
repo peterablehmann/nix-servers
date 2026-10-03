@@ -6,10 +6,6 @@
 }:
 {
   imports = [
-    # inputs.lix-module.nixosModules.default
-    inputs.disko.nixosModules.disko
-    inputs.sops-nix.nixosModules.sops
-    inputs.nixos-dns.nixosModules.dns
     ./acme.nix
     ./backup
     ./boot.nix
@@ -20,13 +16,12 @@
     ./nginx.nix
     ./nix.nix
     ./ssh.nix
-    ./tailscale.nix
     ./time.nix
     ./users.nix
   ];
 
   deployment = {
-    targetHost = config.networking.hostName;
+    targetHost = config.networking.fqdn;
   };
 
   console.keyMap = "de";

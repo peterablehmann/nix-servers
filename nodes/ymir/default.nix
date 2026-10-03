@@ -8,8 +8,6 @@
     ./disko.nix
     ./hardware-configuration.nix
     inputs.self.nixosModules.monitoring
-    inputs.self.nixosModules.kanidm
-    inputs.self.nixosModules.oxidized
     inputs.self.nixosModules.pocket-id
     inputs.self.nixosModules.routinator
   ];
@@ -33,4 +31,13 @@
   };
 
   routinator.domain = "routinator.${config.metadata.domain}";
+
+  sops.secrets."netbird/setupKey" = { };
+  services.netbird.clients.router = {
+    login = {
+      enable = true;
+      setupKeyFile = config.sops.secrets."netbird/setupKey".path;
+    };
+    port = 51833;
+  };
 }

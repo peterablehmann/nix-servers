@@ -9,20 +9,26 @@
 
 buildGoModule rec {
   pname = "vyconfigure";
-  version = "0.2.2";
+  version = "0.2.3";
 
   src = fetchFromGitHub {
     owner = "offline-kollektiv";
     repo = "vyconfigure";
-    rev = "5d667cab185ee7920bd7cd86506313474a33c823";
-    hash = "sha256-EavGfcey0tGqGU7EFf7HT83JKyTM4SZ21vl+SM/rSNw=";
+    rev = "v${version}";
+    hash = "sha256-Vq1aCs3aSs24S9n7YZTNCPpdbE70Qf+FDjWGe7eVTM0=";
   };
 
   nativeBuildInputs = [
     installShellFiles
   ];
 
-  vendorHash = "sha256-7ZhS3RHIq68q22J5jEjCAVyf7PMLETKM1a0vqyzgHWA=";
+  vendorHash = "sha256-hbdetqQ5Oz+ys7hH51pi8lCQiIGj8Rje38sNFK4KSrg=";
+
+  ldflags = [
+    "-s"
+    "-w"
+    "-X github.com/offline-kollektiv/vyconfigure/cmd.Version=${version}"
+  ];
 
   postInstall = lib.optionalString (stdenv.buildPlatform.canExecute stdenv.hostPlatform) ''
     local INSTALL="$out/bin/vyconfigure"
