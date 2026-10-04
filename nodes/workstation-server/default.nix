@@ -45,7 +45,7 @@
     wireguard-tools
     jdk
     jujutsu
-    (pkgs.callPackage ./vyconfigure.nix { })
+    vyconfigure
     go
     golangci-lint
     gopls

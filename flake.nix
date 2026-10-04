@@ -54,6 +54,7 @@
       {
         devShells.default = pkgs.mkShell {
           packages = with pkgs; [
+            apacheHttpd
             # pkgs is needed here because colmena would otherwise be in the scope two times
             pkgs.colmena
             sops
@@ -73,6 +74,7 @@
           specialArgs = { inherit inputs outputs; };
           nixpkgs = import nixpkgs {
             system = "x86_64-linux";
+            overlays = [ (import ./pkgs/default.nix) ];
           };
         };
 
