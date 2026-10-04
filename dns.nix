@@ -61,15 +61,9 @@
         "" = www208;
         "lg".cname.data = "managed-lg.bgp.tools";
         "bbr00.nbg.de".aaaa.data = "2a0f:6283:1400::";
-        "bbr00.nbg.de.mgmt" = {
-          aaaa.data = "2a01:4f8:1b7:730::5";
-          a.data = "157.90.190.85";
-        };
+        "bbr00.nbg.de.mgmt".aaaa.data = "2a01:4f8:1b7:730::5";
         "bbr01.nbg.de".aaaa.data = "2a0f:6283:1400::1";
-        "bbr01.nbg.de.mgmt" = {
-          aaaa.data = "2a01:4f8:1b7:730::c";
-          a.data = "157.90.190.86";
-        };
+        "bbr01.nbg.de.mgmt".aaaa.data = "2a01:4f8:1b7:730::c";
         "bbr01.dus.de".aaaa.data = "2a0f:6283:1401::1";
         "bbr01.dus.de.mgmt".aaaa.data = "2a14:7c0:7000:3ff::14b";
       };
