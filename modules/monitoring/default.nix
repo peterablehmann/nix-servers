@@ -1,7 +1,7 @@
 {
   imports = [
     # ./parsedmarc.nix
-    ./prometheus.nix
+    ./victoriametrics.nix
     ./grafana.nix
   ];
 }

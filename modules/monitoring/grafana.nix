@@ -82,7 +82,7 @@ in
       datasources.settings.datasources = [
         {
           name = "prometheus";
-          url = "http://${config.services.prometheus.listenAddress}:${builtins.toString config.services.prometheus.port}";
+          url = "http://${config.services.victoriametrics.listenAddress}";
           type = "prometheus";
           editable = false;
         }
