@@ -10,9 +10,6 @@
     "prometheus/basic_auth" = {
       owner = "victoriametrics";
     };
-    "prometheus/mmp_basic_auth" = {
-      owner = "victoriametrics";
-    };
     "prometheus/slsystems_basic_auth" = {
       owner = "victoriametrics";
     };
@@ -60,10 +57,7 @@
             };
             static_configs = [
               {
-                targets = [
-                  "node-exporter.docker-1.xnee.net"
-                ]
-                ++ lib.mapAttrsToList (name: host: "node-exporter.${host.config.networking.fqdn}") (
+                targets = lib.mapAttrsToList (name: host: "node-exporter.${host.config.networking.fqdn}") (
                   lib.filterAttrs (
                     name: host: host.config.services.prometheus.exporters.node.enable
                   ) inputs.self.nixosConfigurations
@@ -80,8 +74,6 @@
                 targets = [
                   "bbr00.nbg.de.mgmt.as213422.net:9100"
                   "bbr01.nbg.de.mgmt.as213422.net:9100"
-                  "acr00.nbg.de.mgmt.as213422.net:9100"
-                  "bbr00.dus.de.mgmt.as213422.net:9100"
                   "bbr01.dus.de.mgmt.as213422.net:9100"
                 ];
               }
@@ -128,8 +120,6 @@
                 targets = [
                   "bbr00.nbg.de.mgmt.as213422.net:9342"
                   "bbr01.nbg.de.mgmt.as213422.net:9342"
-                  "acr00.nbg.de.mgmt.as213422.net:9342"
-                  "bbr00.dus.de.mgmt.as213422.net:9342"
                   "bbr01.dus.de.mgmt.as213422.net:9342"
                 ];
               }
@@ -144,23 +134,6 @@
                 targets = lib.mapAttrsToList (name: host: "ntpd-exporter.${host.config.networking.fqdn}") (
                   lib.filterAttrs (name: host: host.config.services.ntpd-rs.enable) inputs.self.nixosConfigurations
                 );
-              }
-            ];
-          }
-          {
-            job_name = "offline-kollektiv-mmp";
-            scrape_interval = "30s";
-            scheme = "https";
-            basic_auth = {
-              username = "monitoring";
-              password_file = config.sops.secrets."prometheus/mmp_basic_auth".path;
-            };
-            static_configs = [
-              {
-                targets = [
-                  "pdu01.nbg01.infra.aq0.de"
-                  "pdu02.nbg01.infra.aq0.de"
-                ];
               }
             ];
           }
@@ -255,31 +228,6 @@
                     name: host: host.config.services.pdns-recursor.enable
                   ) inputs.self.nixosConfigurations
                 );
-              }
-            ];
-          }
-          {
-            job_name = "blackbox_exporter";
-            scrape_interval = "1m";
-            basic_auth = {
-              username = "prometheus";
-              password_file = config.sops.secrets."prometheus/basic_auth".path;
-            };
-            static_configs = [
-              {
-                targets = [ "blackbox.xnee.net" ];
-              }
-            ];
-          }
-          {
-            job_name = "prometheus";
-            scrape_interval = "5s";
-            scheme = "http";
-            static_configs = [
-              {
-                targets = [
-                  "monitoring.xnee.net:9001"
-                ];
               }
             ];
           }
