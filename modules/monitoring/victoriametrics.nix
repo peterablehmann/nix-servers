@@ -5,6 +5,9 @@
   pkgs,
   ...
 }:
+let
+  domain = "vm.xnee.net";
+in
 {
   sops.secrets = {
     "prometheus/basic_auth" = {
@@ -27,6 +30,22 @@
   };
 
   environment.systemPackages = [ pkgs.victoriametrics ];
+
+  security.acme.certs."${domain}" = { };
+
+  networking.domains.subDomains."${domain}" = { };
+
+  services.nginx.virtualHosts."${domain}" = {
+    useACMEHost = domain;
+    kTLS = true;
+    forceSSL = true;
+    basicAuthFile = pkgs.writeText "basicAuth.txt" ''
+      vmrwusr:$2y$05$O4GYxP5rGO.gIMGyvBT8vOZsshTOFCspZi48yTVifO5phlQjEbTgS
+    '';
+    locations."/api/v1/write" = {
+      proxyPass = "http://${config.services.victoriametrics.listenAddress}";
+    };
+  };
 
   services = {
     victoriametrics = {
