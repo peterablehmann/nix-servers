@@ -54,12 +54,14 @@ in
       listenAddress = "[::1]:9001";
       retentionPeriod = "90d";
       prometheusConfig = {
-        global.metric_relabel_configs = [{
-          source_labels = [ "instance" ];
-          target_label = "instance";
-          regex = "(.+):(.+)";
-          replacement = "$1";
-        }];
+        global.metric_relabel_configs = [
+          {
+            source_labels = [ "instance" ];
+            target_label = "instance";
+            regex = "(.+):(.+)";
+            replacement = "$1";
+          }
+        ];
         scrape_configs = [
           {
             job_name = "bgp-tools";
