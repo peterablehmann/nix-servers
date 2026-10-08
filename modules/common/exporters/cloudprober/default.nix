@@ -4,24 +4,23 @@
   lib,
   ...
 }:
-let
-  domain = "cloudprober.${config.networking.fqdn}";
-in
 {
   imports = [
     ./cloudprober-module.nix
   ];
 
-  security.acme.certs."${domain}" = { };
-
-  networking.domains.subDomains."${domain}" = { };
-
-  services.nginx.virtualHosts."${domain}" = {
-    useACMEHost = domain;
-    kTLS = true;
-    forceSSL = true;
-    locations."/".proxyPass = "http://[${config.services.cloudprober.settings.host}]:9313";
-  };
+  services.vmagent.prometheusConfig.scrape_configs = [
+    {
+      job_name = "cloudprober";
+      scrape_interval = "15s";
+      scheme = "http";
+      static_configs = [
+        {
+          targets = [ "[::1]:9313" ];
+        }
+      ];
+    }
+  ];
 
   services.cloudprober = {
     enable = true;

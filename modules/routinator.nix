@@ -21,7 +21,7 @@ in
       kTLS = true;
       forceSSL = true;
       locations."/" = {
-        proxyPass = "https://[::1]:8323";
+        proxyPass = "http://[::1]:8323";
       };
     };
 
@@ -34,15 +34,33 @@ in
 
     networking.firewall.allowedTCPPorts = [ 8282 ];
 
-    services.routinator = {
-      enable = true;
-      settings = {
-        http-tls-listen = [ "[::1]:8323" ];
-        http-tls-key = "${tls-dir}/key.pem";
-        http-tls-cert = "${tls-dir}/fullchain.pem";
-        rtr-listen = [ "[::]:8282" ];
-        enable-aspa = true;
+    services = {
+      routinator = {
+        enable = true;
+        settings = {
+          http-listen = [ "[::1]:8323" ];
+          rtr-listen = [ "[::]:8282" ];
+          enable-aspa = true;
+        };
       };
+      vmagent.prometheusConfig.scrape_configs = [
+        {
+          job_name = "routinator";
+          scrape_interval = "15s";
+          scheme = "http";
+          metric_relabel_configs = [
+            {
+              target_label = "instance";
+              replacement = "${cfg.domain}";
+            }
+          ];
+          static_configs = [
+            {
+              targets = [ "[::1]:8323" ];
+            }
+          ];
+        }
+      ];
     };
   };
 }

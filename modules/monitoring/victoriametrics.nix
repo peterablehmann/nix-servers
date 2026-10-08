@@ -76,25 +76,7 @@ in
           }
           {
             job_name = "node-exporter";
-            scrape_interval = "5s";
-            scheme = "https";
-            basic_auth = {
-              username = "prometheus";
-              password_file = config.sops.secrets."prometheus/basic_auth".path;
-            };
-            static_configs = [
-              {
-                targets = lib.mapAttrsToList (name: host: "node-exporter.${host.config.networking.fqdn}") (
-                  lib.filterAttrs (
-                    name: host: host.config.services.prometheus.exporters.node.enable
-                  ) inputs.self.nixosConfigurations
-                );
-              }
-            ];
-          }
-          {
-            job_name = "node-exporter-as213422";
-            scrape_interval = "5s";
+            scrape_interval = "15s";
             scheme = "http";
             static_configs = [
               {
@@ -125,22 +107,8 @@ in
             ];
           }
           {
-            job_name = "cloudprober";
-            scrape_interval = "5s";
-            scheme = "https";
-            static_configs = [
-              {
-                targets = lib.mapAttrsToList (name: host: "cloudprober.${host.config.networking.fqdn}") (
-                  lib.filterAttrs (
-                    name: host: host.config.services.cloudprober.enable
-                  ) inputs.self.nixosConfigurations
-                );
-              }
-            ];
-          }
-          {
             job_name = "frr-exporter";
-            scrape_interval = "5s";
+            scrape_interval = "15s";
             scheme = "http";
             static_configs = [
               {
@@ -149,64 +117,6 @@ in
                   "bbr01.nbg.de.mgmt.as213422.net:9342"
                   "bbr01.dus.de.mgmt.as213422.net:9342"
                 ];
-              }
-            ];
-          }
-          {
-            job_name = "ntpd-exporter";
-            scrape_interval = "5s";
-            scheme = "https";
-            static_configs = [
-              {
-                targets = lib.mapAttrsToList (name: host: "ntpd-exporter.${host.config.networking.fqdn}") (
-                  lib.filterAttrs (name: host: host.config.services.ntpd-rs.enable) inputs.self.nixosConfigurations
-                );
-              }
-            ];
-          }
-          {
-            job_name = "smartctl-exporter";
-            scrape_interval = "5m";
-            scheme = "https";
-            basic_auth = {
-              username = "prometheus";
-              password_file = config.sops.secrets."prometheus/basic_auth".path;
-            };
-            static_configs = [
-              {
-                targets = lib.mapAttrsToList (name: host: "smartctl-exporter.${host.config.networking.fqdn}") (
-                  lib.filterAttrs (
-                    name: host: host.config.services.prometheus.exporters.smartctl.enable
-                  ) inputs.self.nixosConfigurations
-                );
-              }
-            ];
-          }
-          {
-            job_name = "transceiver-exporter";
-            scrape_interval = "5s";
-            scheme = "https";
-            basic_auth = {
-              username = "prometheus";
-              password_file = config.sops.secrets."prometheus/basic_auth".path;
-            };
-            static_configs = [ { targets = [ ]; } ];
-          }
-          {
-            job_name = "zfs-exporter";
-            scrape_interval = "30s";
-            scheme = "https";
-            basic_auth = {
-              username = "prometheus";
-              password_file = config.sops.secrets."prometheus/basic_auth".path;
-            };
-            static_configs = [
-              {
-                targets = lib.mapAttrsToList (name: host: "zfs-exporter.${host.config.networking.fqdn}") (
-                  lib.filterAttrs (
-                    name: host: host.config.services.prometheus.exporters.zfs.enable
-                  ) inputs.self.nixosConfigurations
-                );
               }
             ];
           }
@@ -224,18 +134,6 @@ in
                   lib.filterAttrs (
                     name: host: host.config.services.restic.server.enable
                   ) inputs.self.nixosConfigurations
-                );
-              }
-            ];
-          }
-          {
-            job_name = "routinator";
-            scrape_interval = "2m";
-            scheme = "https";
-            static_configs = [
-              {
-                targets = lib.mapAttrsToList (name: host: host.config.routinator.domain) (
-                  lib.filterAttrs (name: host: host.config.services.routinator.enable) inputs.self.nixosConfigurations
                 );
               }
             ];
@@ -260,6 +158,11 @@ in
           }
         ];
       };
+    };
+    vmagent.remoteWrite = {
+      url = lib.mkForce "http://${config.services.victoriametrics.listenAddress}/api/v1/write";
+      basicAuthUsername = lib.mkForce null;
+      basicAuthPasswordFile = lib.mkForce null;
     };
   };
 }

@@ -18,14 +18,17 @@ in
       useNetworkingTimeServers = true;
       settings.observability.metrics-exporter-listen = "[::1]:9975";
     };
-
-    nginx.virtualHosts."${domain}" = {
-      useACMEHost = domain;
-      kTLS = true;
-      forceSSL = true;
-      locations."/" = {
-        proxyPass = "http://${config.services.ntpd-rs.settings.observability.metrics-exporter-listen}";
-      };
-    };
+    vmagent.prometheusConfig.scrape_configs = [
+      {
+        job_name = "ntpd-exporter";
+        scrape_interval = "15s";
+        scheme = "http";
+        static_configs = [
+          {
+            targets = [ "[::1]:9975" ];
+          }
+        ];
+      }
+    ];
   };
 }
