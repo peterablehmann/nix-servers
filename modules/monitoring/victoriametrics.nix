@@ -138,24 +138,6 @@ in
               }
             ];
           }
-          {
-            job_name = "pdns-recursor";
-            scrape_interval = "5s";
-            scheme = "https";
-            basic_auth = {
-              username = "#";
-              password_file = config.sops.secrets."prometheus/basic_auth".path;
-            };
-            static_configs = [
-              {
-                targets = lib.mapAttrsToList (name: host: "dns-rec.${host.config.networking.fqdn}") (
-                  lib.filterAttrs (
-                    name: host: host.config.services.pdns-recursor.enable
-                  ) inputs.self.nixosConfigurations
-                );
-              }
-            ];
-          }
         ];
       };
     };
