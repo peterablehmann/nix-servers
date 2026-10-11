@@ -41,6 +41,7 @@ in
     forceSSL = true;
     basicAuthFile = pkgs.writeText "basicAuth.txt" ''
       vmrwusr:$2y$05$O4GYxP5rGO.gIMGyvBT8vOZsshTOFCspZi48yTVifO5phlQjEbTgS
+      slsvmrwusr:$2y$05$I2Bmkxiw3ioFcdK.uvk/P.iH8pZOljWdrxcKtAY0Ckjj4jjrN2BNu
     '';
     locations."/api/v1/write" = {
       proxyPass = "http://${config.services.victoriametrics.listenAddress}";
@@ -84,24 +85,6 @@ in
                   "bbr00.nbg.de.mgmt.as213422.net:9100"
                   "bbr01.nbg.de.mgmt.as213422.net:9100"
                   "bbr01.dus.de.mgmt.as213422.net:9100"
-                ];
-              }
-            ];
-          }
-          {
-            job_name = "node-exporter-slsystems";
-            scrape_interval = "15s";
-            scheme = "https";
-            basic_auth = {
-              username = "prometheus";
-              password_file = config.sops.secrets."prometheus/slsystems_basic_auth".path;
-            };
-            static_configs = [
-              {
-                targets = [
-                  "node-exporter.pve-1.slsystems.org"
-                  "node-exporter.pve-2.slsystems.org"
-                  "node-exporter.pve-3.slsystems.org"
                 ];
               }
             ];
