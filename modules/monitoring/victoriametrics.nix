@@ -51,7 +51,10 @@ in
   services = {
     victoriametrics = {
       enable = true;
-      extraOptions = [ "-enableTCP6" ];
+      extraOptions = [ 
+        "-enableTCP6"
+        "-dedup.minScrapeInterval=15s"
+      ];
       listenAddress = "[::1]:9001";
       retentionPeriod = "90d";
       prometheusConfig = {
