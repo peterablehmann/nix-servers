@@ -51,7 +51,7 @@ in
   services = {
     victoriametrics = {
       enable = true;
-      extraOptions = [ 
+      extraOptions = [
         "-enableTCP6"
         "-dedup.minScrapeInterval=15s"
       ];

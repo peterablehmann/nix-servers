@@ -5,7 +5,9 @@
   ...
 }:
 let
-  timeOffset = lib.mod (lib.fromHexString (builtins.substring 0 15 (builtins.hashString "sha256" config.networking.hostName))) 30;
+  timeOffset = lib.mod (lib.fromHexString (
+    builtins.substring 0 15 (builtins.hashString "sha256" config.networking.hostName)
+  )) 30;
   cfg = config.backup;
   mkResticConfig =
     {
