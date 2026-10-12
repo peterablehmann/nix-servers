@@ -5,6 +5,7 @@
   ...
 }:
 let
+  timeOffset = lib.mod (lib.fromHexString (builtins.substring 0 15 (builtins.hashString "sha256" config.networking.hostName))) 30;
   cfg = config.backup;
   mkResticConfig =
     {
@@ -23,9 +24,9 @@ let
         exclude
         ;
       timerConfig = {
-        OnCalendar = "*:00,30:00";
+        OnCalendar = "*:${builtins.toString timeOffset},${builtins.toString (timeOffset + 30)}:00";
         Persistent = true;
-        RandomizedDelaySec = "5m";
+        # RandomizedDelaySec = "5m";
       };
       passwordFile = config.sops.secrets."backup/password".path;
     };
