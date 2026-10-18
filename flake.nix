@@ -87,6 +87,10 @@
           ];
         };
 
+        factorio = {
+          imports = [ ./nodes/factorio ];
+          deployment.tags = [ "ci" ];
+        };
         immich = {
           imports = [ ./nodes/immich ];
           deployment.tags = [ "ci" ];
