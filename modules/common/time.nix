@@ -2,13 +2,7 @@
   config,
   ...
 }:
-let
-  domain = "ntpd-exporter.${config.networking.fqdn}";
-in
 {
-  networking.domains.subDomains.${domain} = { };
-  security.acme.certs.${domain} = { };
-
   time.timeZone = "Europe/Berlin";
   services = {
     timesyncd.enable = false;
