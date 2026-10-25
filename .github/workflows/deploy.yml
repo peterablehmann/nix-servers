@@ -47,7 +47,7 @@ jobs:
       - name: Setup Lix
         uses: samueldr/lix-gha-installer-action@v2026-02-22
       - name: Build config
-        run: nix develop --command bash -c 'colmena apply push'
+        run: nix develop --command bash -c 'colmena apply push --on @ci'
       - name: Build DNS config
         run: nix build .#dns
       - name: Deploy DNS config

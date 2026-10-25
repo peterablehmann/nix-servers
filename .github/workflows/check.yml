@@ -53,4 +53,4 @@ jobs:
       - name: Setup Lix
         uses: samueldr/lix-gha-installer-action@v2026-02-22
       - name: "Build system configurations"
-        run: nix develop --command bash -c 'colmena apply build'
+        run: nix develop --command bash -c 'colmena apply build --on @ci'
