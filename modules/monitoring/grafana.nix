@@ -91,50 +91,27 @@ in
         {
           name = "Cloudprober";
           type = "file";
-          options.path = pkgs.fetchurl {
-            url = "https://raw.githubusercontent.com/peterablehmann/grafana-dashboards/refs/heads/main/cloudprober.json";
-            hash = "sha256-s2+11fWGuaYwq3R0Tpm4jasKM31n7YI1kjqTSpxuYBc=";
-          };
+          options.path = ./dashboards/cloudprober.json;
+        }
+        {
+          name = "FRR - BGP";
+          type = "file";
+          options.path = ./dashboards/frr-bgp.json;
         }
         {
           name = "Node-Exporter";
           type = "file";
-          options.path = pkgs.fetchurl {
-            url = "https://raw.githubusercontent.com/rfmoz/grafana-dashboards/master/prometheus/node-exporter-full.json";
-            hash = "sha256-O6LYGoiytJikUVhuk9hxjNUyN7RHjk4Eop/aVXljeC8=";
-          };
-        }
-        {
-          name = "PowerDNS Recursor";
-          type = "file";
-          options.path = pkgs.fetchurl {
-            url = "https://raw.githubusercontent.com/peterablehmann/grafana-dashboards/refs/heads/main/pdns-recursor-dashboard.json";
-            hash = "sha256-9VXmPJOS8/t68Md/AHis5ssieZkdNJHhvN/vlY4hwrA=";
-          };
+          options.path = ./dashboards/node-exporter.json;
         }
         {
           name = "Restic REST Server";
           type = "file";
-          options.path = pkgs.fetchurl {
-            url = "https://raw.githubusercontent.com/peterablehmann/grafana-dashboards/refs/heads/main/restic-rest-server-dashboard.json";
-            hash = "sha256-SiX1E2d8+FQhiqFzog435ImkuiLgONXusKTN3s+UzIc=";
-          };
+          options.path = ./dashboards/restic-rest-server.json;
         }
         {
           name = "Routinator";
           type = "file";
-          options.path = pkgs.fetchurl {
-            url = "https://raw.githubusercontent.com/peterablehmann/grafana-dashboards/refs/heads/main/routinator-dashboard.json";
-            hash = "sha256-BhoMyG5CQaUunoMl09uhmWi46M29xcbpHyfMBxDathk=";
-          };
-        }
-        {
-          name = "TLS";
-          type = "file";
-          options.path = pkgs.fetchurl {
-            url = "https://raw.githubusercontent.com/peterablehmann/grafana-dashboards/main/tls-cert-dashboard.json";
-            hash = "sha256-900X5o5OMc/lIyE4ztb/jJTZoP9XEq//m9Hmks6RZro=";
-          };
+          options.path = ./dashboards/routinator.json;
         }
       ];
     };
