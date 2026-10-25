@@ -24,6 +24,11 @@
 
   sops.secrets."netbird/setupKey" = { };
 
+  networking.firewall.allowedUDPPorts = [
+    179 # BGP
+    3784 # BFD single-hop
+  ];
+
   services = {
     qemuGuest.enable = true;
     netbird.clients.router = {
