@@ -68,17 +68,6 @@ in
         ];
         scrape_configs = [
           {
-            job_name = "bgp-tools";
-            scrape_interval = "5m";
-            scheme = "https";
-            metrics_path = "/prom/e0906115-d67d-4769-89e5-bf95748fa348";
-            static_configs = [
-              {
-                targets = [ "prometheus.bgp.tools" ];
-              }
-            ];
-          }
-          {
             job_name = "node-exporter";
             scrape_interval = "15s";
             scheme = "http";
