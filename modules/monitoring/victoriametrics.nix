@@ -77,7 +77,7 @@ in
                   "bbr00.nbg.de.mgmt.as213422.net:9100"
                   "bbr01.nbg.de.mgmt.as213422.net:9100"
                   "bbr01.dus.de.mgmt.as213422.net:9100"
-                  "r1.priv.nbg01.xnee.net:9100"
+                  "r1.nbg01.xnee.net:9100"
                 ];
               }
             ];

@@ -91,11 +91,7 @@
           aaaa.data = "2a0a:4cc0:0:2c6e::";
         };
         "router01.home01".cname.data = "hke0akjkmaa.sn.mynetname.net";
-        "r1.nbg01" = {
-          a.data = "49.12.178.245";
-          aaaa.data = "2a01:4f8:1b7:730::2";
-        };
-        "r1.priv.nbg01".aaaa.data = "2a01:4f8:1b7:731::2";
+        "r1.nbg01".aaaa.data = "2a01:4f8:1b7:730::2";
       };
     };
 }
