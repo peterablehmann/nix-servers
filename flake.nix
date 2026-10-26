@@ -91,10 +91,6 @@
           imports = [ ./nodes/factorio ];
           deployment.tags = [ "ci" ];
         };
-        immich = {
-          imports = [ ./nodes/immich ];
-          deployment.tags = [ "ci" ];
-        };
         miniflux = {
           imports = [ ./nodes/miniflux ];
           deployment.tags = [ "ci" ];
@@ -121,6 +117,10 @@
           imports = [ ./nodes/radicale ];
           deployment.tags = [ "ci" ];
         };
+        srv01 = {
+          imports = [ ./nodes/srv01 ];
+          deployment.tags = [ "ci" ];
+        };
         storage1 = {
           imports = [ ./nodes/storage1 ];
           deployment.tags = [ "ci" ];
@@ -143,10 +143,11 @@
 
       nixosModules = {
         common = ./modules/common;
+        immich = ./modules/immich.nix;
         monitoring = ./modules/monitoring;
         paperless = ./modules/paperless.nix;
-        restic-server = ./modules/restic-server;
         pocket-id = ./modules/pocket-id.nix;
+        restic-server = ./modules/restic-server;
         routinator = ./modules/routinator.nix;
       };
 
