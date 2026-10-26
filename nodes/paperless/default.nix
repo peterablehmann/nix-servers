@@ -26,5 +26,4 @@
       };
     };
   };
-  services.qemuGuest.enable = true;
 }

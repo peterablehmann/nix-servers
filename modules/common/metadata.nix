@@ -1,6 +1,7 @@
-{ lib, ... }:
+{ config, lib, ... }:
 let
   inherit (lib) mkOption types;
+  cfg = config.metadata;
 in
 {
   options.metadata = {
@@ -74,5 +75,9 @@ in
         };
       };
     };
+  };
+  config = {
+    services.qemuGuest.enable =
+      if (builtins.elem cfg.provider [ "proxmox.xnee.net" ]) then true else false;
   };
 }

@@ -27,8 +27,6 @@
   };
   security.acme.certs.${config.networking.fqdn} = { };
   services = {
-    qemuGuest.enable = true;
-
     nginx.virtualHosts."${config.networking.fqdn}" = {
       useACMEHost = config.networking.fqdn;
       kTLS = true;

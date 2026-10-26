@@ -30,7 +30,6 @@
   ];
 
   services = {
-    qemuGuest.enable = true;
     netbird.clients.router = {
       login = {
         enable = true;

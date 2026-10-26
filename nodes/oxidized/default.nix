@@ -37,7 +37,6 @@
   security.acme.certs."${config.networking.fqdn}" = { };
 
   services = {
-    qemuGuest.enable = true;
     nginx = {
       enable = true;
       virtualHosts."${config.networking.fqdn}" = {

@@ -26,7 +26,6 @@
     };
   };
   services = {
-    qemuGuest.enable = true;
     syncthing = {
       enable = true;
       dataDir = "/var/lib/syncthing";
