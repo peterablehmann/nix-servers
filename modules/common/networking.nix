@@ -70,13 +70,16 @@
             lib.optional (config.metadata.network.ipv6.address != null)
               "${config.metadata.network.ipv6.address}/${builtins.toString config.metadata.network.ipv6.prefixLength}";
         routes =
-          lib.optional (config.metadata.network.ipv4.address != null) (
-            {
-              Gateway = config.metadata.network.ipv4.gateway;
-            }
-            // lib.optionalAttrs (config.metadata.provider == "hetzner-cloud") { GatewayOnLink = true; }
-          )
+          lib.optional (config.metadata.network.ipv4.address != null) {
+            Destination = "0.0.0.0/0";
+            Gateway =
+              if config.metadata.network.ipv4.gateway != null then
+                config.metadata.network.ipv4.gateway
+              else
+                config.metadata.network.ipv6.gateway;
+          }
           ++ lib.optional (config.metadata.network.ipv6.address != null) {
+            Destination = "::/0";
             Gateway = config.metadata.network.ipv6.gateway;
           };
         linkConfig.RequiredForOnline = "routable";

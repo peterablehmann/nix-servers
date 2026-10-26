@@ -20,7 +20,6 @@
       ipv4 = {
         address = "128.140.9.158";
         prefixLength = 32;
-        gateway = "172.31.1.1";
       };
       ipv6 = {
         address = "2a01:4f8:c2c:17c9::1";

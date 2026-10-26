@@ -15,17 +15,17 @@
     provider = "proxmox.xnee.net";
     network = {
       ipv4 = {
-        address = "192.168.48.12";
-        prefixLength = 24;
-        gateway = "192.168.48.1";
+        address = "157.90.190.82";
+        prefixLength = 29;
       };
       ipv6 = {
-        address = "2a01:4f8:1b7:731::c";
+        address = "2a01:4f8:1b7:732::5";
         prefixLength = 64;
-        gateway = "2a01:4f8:1b7:731::1";
+        gateway = "2a01:4f8:1b7:732::1";
       };
     };
   };
+
   security.acme.certs.${config.networking.fqdn} = { };
 
   services = {
