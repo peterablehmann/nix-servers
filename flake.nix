@@ -91,10 +91,6 @@
           imports = [ ./nodes/factorio ];
           deployment.tags = [ "ci" ];
         };
-        miniflux = {
-          imports = [ ./nodes/miniflux ];
-          deployment.tags = [ "ci" ];
-        };
         netbird01-nbg01 = {
           imports = [ ./nodes/netbird01-nbg01 ];
         };
@@ -144,6 +140,7 @@
       nixosModules = {
         common = ./modules/common;
         immich = ./modules/immich.nix;
+        miniflux = ./modules/miniflux.nix;
         monitoring = ./modules/monitoring;
         paperless = ./modules/paperless.nix;
         pocket-id = ./modules/pocket-id.nix;

@@ -8,6 +8,7 @@
     ./disko.nix
     ./hardware-configuration.nix
     inputs.self.nixosModules.immich
+    inputs.self.nixosModules.miniflux
   ];
 
   metadata = {
