@@ -57,7 +57,8 @@
 
   networking.nftables.enable = true;
 
-  services.fwupd.enable = true;
+  # Not needed on an all VM setup, need think of some more sensible logic when going for Bare metal machines again.
+  # services.fwupd.enable = true;
 
   programs.tmux.enable = true;
 
